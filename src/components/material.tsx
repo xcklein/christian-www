@@ -4,4 +4,15 @@
  * Wrapped exports for static site hosting.
  */
 
-export { Button, IconButton, ThemeProvider, Tooltip } from "@material-tailwind/react";
+export {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  CardFooter,
+  IconButton,
+  Navbar,
+  ThemeProvider,
+  Tooltip,
+  Typography as Type
+} from "@material-tailwind/react";

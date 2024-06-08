@@ -35,11 +35,11 @@ export class WwwStack extends Stack {
       websiteErrorDocument: "404.html",
     });
 
-    const cert = ACM.Certificate.fromCertificateArn(this, "WwwCert", CONFIG.CERT_ARN);
-
     const oai = new CF.OriginAccessIdentity(this, 'WwwOai');
 
     bucket.grantRead(oai);
+
+    const cert = ACM.Certificate.fromCertificateArn(this, "WwwCert", CONFIG.CERT_ARN);
 
     const dist = new CF.Distribution(this, "WwwDist", {
       domainNames: [CONFIG.DOMAIN_NAME],

@@ -27,7 +27,7 @@ export default function RootLayout({
             referrerPolicy="no-referrer"
           />
         </head>
-        <body className={inter.className}>
+        <body className={inter.className + " bg-palette-offwhite dark:bg-palette-grey text-palette-black dark:text-palette-white"}>
           {children}
         </body>
       </ThemeProvider>
