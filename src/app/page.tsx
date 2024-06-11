@@ -1,5 +1,5 @@
 import BasicPage from "@/components/basic-page";
-import { Button, Card, CardBody, CardFooter, CardHeader, IconButton, Tooltip, Type } from "@/components/material";
+import { Card, CardBody, CardHeader, IconButton, Tooltip, Text } from "@/components/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +10,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 items-center">
           <Image src="/ck_avatar_circle.png" alt="Image of Christian" width={384} height={384}/>
 
-          <Type variant="h1">Christian</Type>
+          <Text variant="h1">Christian</Text>
         </div>
 
         <div className="flex gap-2 justify-center">
@@ -35,18 +35,20 @@ export default function Home() {
           <Card className="bg-palette-white dark:bg-palette-black text-palette-black dark:text-palette-white">
             <CardHeader floated={false} shadow={false} color="transparent">
               <Link href="https://panacea.gg">
-                <Image src="/panacea.svg" alt="Image of Panacea logo" width={256} height={256} className="p-8"/>
+                <div className="max-w-[256px] max-h-[256px] p-8">
+                  <Image src="/panacea.svg" alt="Image of Panacea logo" width={256} height={256}/>
+                </div>
               </Link>
             </CardHeader>
             <CardBody>
               <Link href="https://panacea.gg">
-                <Type variant="h3">
+                <Text variant="h4">
                   Panacea
-                </Type>
+                </Text>
               </Link>
-              <Type>
-                Solving your needs.
-              </Type>
+              <Text>
+                Software solutions for all.
+              </Text>
             </CardBody>
           </Card>
 
@@ -55,12 +57,12 @@ export default function Home() {
               <Image src="/placeholder.jpg" alt="Image of Panacea logo" width={256} height={256}/>
             </CardHeader>
             <CardBody>
-              <Type variant="h3">
+              <Text variant="h4">
                 TBA
-              </Type>
-              <Type>
+              </Text>
+              <Text>
                 To be announced.
-              </Type>
+              </Text>
             </CardBody>
           </Card>
         </div>

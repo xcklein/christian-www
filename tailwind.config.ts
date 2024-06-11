@@ -26,4 +26,5 @@ const config = withMT({
   },
   plugins: [],
 });
+
 export default config;

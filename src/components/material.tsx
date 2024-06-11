@@ -14,5 +14,5 @@ export {
   Navbar,
   ThemeProvider,
   Tooltip,
-  Typography as Type
+  Typography as Text
 } from "@material-tailwind/react";

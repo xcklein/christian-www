@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { IconButton } from './material';
+import { IconButton, Tooltip } from './material';
 
-export default function ThemeButton() {
+export default function ThemeButton({ className }: { className?: string }) {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
@@ -29,8 +29,10 @@ export default function ThemeButton() {
   };
 
   return (
-    <IconButton onClick={handleToggle}>
-      {darkMode ? <i className="fas fa-moon text-lg"/> : <i className="fas fa-sun text-lg"/>}
-    </IconButton>
+    <Tooltip content={(darkMode ? "Dark mode. " : "Light mode. ") + "Click to switch."}>
+      <IconButton className={className} onClick={handleToggle}>
+        {darkMode ? <i className="fas fa-moon text-lg"/> : <i className="fas fa-sun text-lg"/>}
+      </IconButton>
+    </Tooltip>
   );
 };
