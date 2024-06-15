@@ -8,7 +8,7 @@ import {
   aws_s3 as S3,
   aws_s3_deployment as S3_DEPLOY,
   Stack,
-  StackProps
+  type StackProps
 } from "aws-cdk-lib";
 import { type Construct } from "constructs";
 import { CONFIG } from "./config.js";
@@ -21,18 +21,8 @@ export class WwwStack extends Stack {
       bucketName: CONFIG.DOMAIN_NAME,
       removalPolicy: RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
-      // TODO make bucket private--oai not working?
-      // publicReadAccess: false,
-      // blockPublicAccess: S3.BlockPublicAccess.BLOCK_ALL,
-      publicReadAccess: true,
-      blockPublicAccess: new S3.BlockPublicAccess({
-        blockPublicAcls: false,
-        blockPublicPolicy: false,
-        restrictPublicBuckets: false,
-        ignorePublicAcls: false
-      }),
-      websiteIndexDocument: "index.html",
-      websiteErrorDocument: "404.html",
+      publicReadAccess: false,
+      blockPublicAccess: S3.BlockPublicAccess.BLOCK_ALL,
     });
 
     const oai = new CF.OriginAccessIdentity(this, 'WwwOai');
@@ -42,8 +32,9 @@ export class WwwStack extends Stack {
     const cert = ACM.Certificate.fromCertificateArn(this, "WwwCert", CONFIG.CERT_ARN);
 
     const dist = new CF.Distribution(this, "WwwDist", {
-      domainNames: [CONFIG.DOMAIN_NAME],
+      domainNames: [CONFIG.DOMAIN_NAME, ...CONFIG.DOMAIN_SUBDOMAINS.map(s => `${s}.${CONFIG.DOMAIN_NAME}`)],
       certificate: cert,
+      defaultRootObject: "index.html",
       defaultBehavior: {
         origin: new CFO.S3Origin(bucket, {
           originAccessIdentity: oai,
@@ -64,8 +55,17 @@ export class WwwStack extends Stack {
     });
 
     const record = new R53.ARecord(this, 'WwwRecord', {
+      recordName: CONFIG.DOMAIN_NAME,
       zone: zone,
       target: R53.RecordTarget.fromAlias(new R53T.CloudFrontTarget(dist)),
     });
+
+    for (const sub of CONFIG.DOMAIN_SUBDOMAINS) {
+      new R53.ARecord(this, `WwwRecord-${sub}`, {
+        recordName: `${sub}.${CONFIG.DOMAIN_NAME}`,
+        zone: zone,
+        target: R53.RecordTarget.fromAlias(new R53T.Route53RecordTarget(record)),
+      });
+    }
   }
 }
