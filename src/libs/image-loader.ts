@@ -1,10 +1,6 @@
 export default function imageLoader({ src, width, quality }: { src: string, width: number, quality: number }) {
-  if (process.env.NODE_ENV === "development") {
-    return src;
-  }
+  const base = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://christian.gg";
+  const path = src.split("/").at(-1);
 
-  const s3 = "https://s3.us-east-2.amazonaws.com/christian.gg";
-  const path = src.startsWith('/') ? src.slice(1) : src;
-
-  return `${s3}/${path}?w=${width}&q=${quality || 75}`;
+  return `${base}/${path}`;
 }

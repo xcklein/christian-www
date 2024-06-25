@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "files.exclude": {
+    "**/.next": true,
+    "**/cdk.out": true,
+    "**/node_modules": true,
+    "**/cdk.context.json": true,
+    "**/next-env.d.ts": true,
+  }
+}

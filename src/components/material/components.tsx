@@ -10,6 +10,7 @@ export {
   CardBody,
   CardHeader,
   CardFooter,
+  Drawer,
   IconButton,
   Navbar,
   ThemeProvider,

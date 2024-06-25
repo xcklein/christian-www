@@ -1,10 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  Button {
-    @apply bg-palette-black dark:bg-palette-white;
-    @apply text-palette-white dark:text-palette-black;
-  }
-}

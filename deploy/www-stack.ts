@@ -29,18 +29,36 @@ export class WwwStack extends Stack {
 
     bucket.grantRead(oai);
 
+    const func = new CF.Function(this, "WwwFunction", {
+      runtime: CF.FunctionRuntime.JS_2_0,
+      code: CF.FunctionCode.fromFile({ filePath: "./deploy/viewer-request.js" })
+    });
+
     const cert = ACM.Certificate.fromCertificateArn(this, "WwwCert", CONFIG.CERT_ARN);
 
     const dist = new CF.Distribution(this, "WwwDist", {
       domainNames: [CONFIG.DOMAIN_NAME, ...CONFIG.DOMAIN_SUBDOMAINS.map(s => `${s}.${CONFIG.DOMAIN_NAME}`)],
       certificate: cert,
-      defaultRootObject: "index.html",
       defaultBehavior: {
         origin: new CFO.S3Origin(bucket, {
           originAccessIdentity: oai,
         }),
         viewerProtocolPolicy: CF.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        functionAssociations: [
+          {
+            eventType: CF.FunctionEventType.VIEWER_REQUEST,
+            function: func
+          }
+        ]
       },
+      defaultRootObject: "index.html",
+      errorResponses: [
+        {
+          httpStatus: 404,
+          responseHttpStatus: 200,
+          responsePagePath: "/404.html",
+        },
+      ],
     });
 
     const deploy = new S3_DEPLOY.BucketDeployment(this, "WwwDeploy", {

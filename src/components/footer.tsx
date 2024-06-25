@@ -1,10 +1,10 @@
 import { Text } from "@/components/material";
 import Link from "next/link";
 
-export default function Footer({ className }: { className?: string }) {
+export function Footer({ className }: { className?: string }) {
   return (
     <footer className={className}>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center p-2">
         <div className="flex-grow-0">
           <Text>&copy;&nbsp;2024&nbsp;Me</Text>
         </div>

@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  trailingSlash: true,
+  compress: false,
   images: {
-    unoptimized: true,
-    loaderFile: "./src/libs/image-loader.ts"
-  }
+    loaderFile: "./src/libs/image-loader.ts",
+  },
 };
 
 export default nextConfig;

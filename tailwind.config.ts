@@ -3,8 +3,8 @@ import withMT from "@material-tailwind/react/utils/withMT";
 const config = withMT({
   darkMode: "class",
   content: [
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -12,7 +12,6 @@ const config = withMT({
         palette: {
           black: "#202020",
           grey: "#292929",
-          silver: "#aaaaaa",
           offwhite: "#eeeeee",
           white: "#f8f8f8",
           red: "#ff595e",

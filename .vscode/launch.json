@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "localhost",
+      "command": "npm dev",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
+}

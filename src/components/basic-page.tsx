@@ -1,12 +1,12 @@
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
-export default function BasicPage({ children }: { children: React.ReactNode }) {
+export function BasicPage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col mx-auto max-w-screen-xl">
-      <Header className="m-2"/>
-      <main className="p-2">{children}</main>
-      <Footer className="p-2"/>
+    <div className="flex flex-col mx-auto max-w-screen-xl p-2">
+      <Header/>
+      <main>{children}</main>
+      <Footer/>
     </div>
   );
 }
