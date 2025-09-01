@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  },
+  "files.exclude": {
+    "**/.next": true,
+    "**/cdk.out": true,
+    "**/node_modules": true,
+    "**/cdk.context.json": true,
+    "**/next-env.d.ts": true
+  }
+}
