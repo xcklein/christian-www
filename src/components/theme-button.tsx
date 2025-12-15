@@ -10,7 +10,7 @@ export function ThemeButton() {
   };
 
   return (
-    <Button variant="outline" size="icon" onClick={handleClick}>
+    <Button variant="ghost" size="icon" onClick={handleClick}>
       {active === "light" ? <SunIcon /> : <MoonIcon />}
     </Button>
   );

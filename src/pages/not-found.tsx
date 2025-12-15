@@ -14,21 +14,21 @@ export function NotFoundPage() {
             top: `${Math.random() * 100}%`,
             left: `${Math.random() * 100}%`,
           }}
-        ></div>
+        />
         <div
           className="bg-primary animation-delay-2000 absolute h-96 w-96 animate-pulse rounded-full opacity-20 mix-blend-screen blur-3xl filter"
           style={{
             top: `${Math.random() * 100}%`,
             right: `${Math.random() * 100}%`,
           }}
-        ></div>
+        />
         <div
           className="bg-primary animation-delay-4000 absolute h-96 w-96 animate-pulse rounded-full opacity-20 mix-blend-screen blur-3xl filter"
           style={{
             bottom: `${Math.random() * 100}%`,
             right: `${Math.random() * 100}%`,
           }}
-        ></div>
+        />
       </div>
 
       {/* Animated stars/particles */}
@@ -45,7 +45,7 @@ export function NotFoundPage() {
               animationDelay: `${Math.random() * 2}s`,
               opacity: Math.random() * 0.7 + 0.3,
             }}
-          ></div>
+          />
         ))}
       </div>
 
