@@ -1,4 +1,10 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { v4 } from "uuid";
+
+interface Skill {
+  label: string;
+  image: string;
+}
 
 interface Node {
   id: string;
@@ -8,6 +14,7 @@ interface Node {
   vy: number;
   size: number;
   icon: ReactNode;
+  skill: Skill;
 }
 
 interface Ripple {
@@ -22,54 +29,62 @@ interface Ripple {
 }
 
 const RIPPLE_DURATION = 600;
-const RIPPLE_MAX_RADIUS = 128;
+const RIPPLE_MAX_RADIUS = 256;
 const RIPPLE_GROWTH_TIME = 400;
 
-const ICONS = [
-  "/icons/angular.svg",
-  "/icons/atlassian.svg",
-  "/icons/aws.svg",
-  "/icons/cpp.svg",
-  "/icons/csharp.svg",
-  "/icons/discord.svg",
-  "/icons/git.svg",
-  "/icons/github.svg",
-  "/icons/graphql.svg",
-  "/icons/hono.svg",
-  "/icons/java.svg",
-  "/icons/javascript.svg",
-  "/icons/jest.svg",
-  "/icons/labview.svg",
-  "/icons/launchdarkly.svg",
-  "/icons/nestjs.svg",
-  "/icons/nextjs.svg",
-  "/icons/python.svg",
-  "/icons/qt.svg",
-  "/icons/react.svg",
-  "/icons/redis.svg",
-  "/icons/sequelize.svg",
-  "/icons/sqlite.svg",
-  "/icons/threejs.svg",
-  "/icons/typescript.svg",
-  "/icons/unity.svg",
-  "/icons/vercel.svg",
-  "/icons/vitest.svg",
-  "/icons/vue.svg",
-  "/icons/windows.svg",
-  "/icons/wpf.svg",
-  "/icons/xamarin.svg",
+const SKILLS: Skill[] = [
+  { label: "Angular", image: "/icons/angular.svg" },
+  { label: "Atlassian", image: "/icons/atlassian.svg" },
+  { label: "AWS", image: "/icons/aws.svg" },
+  { label: "C++", image: "/icons/cpp.svg" },
+  { label: "C#", image: "/icons/csharp.svg" },
+  { label: "CSS", image: "/icons/css.svg" },
+  { label: "Discord", image: "/icons/discord.svg" },
+  { label: "Git", image: "/icons/git.svg" },
+  { label: "GitHub", image: "/icons/github.svg" },
+  { label: "GraphQL", image: "/icons/graphql.svg" },
+  { label: "Hono", image: "/icons/hono.svg" },
+  { label: "HTML", image: "/icons/html.svg" },
+  { label: "Java", image: "/icons/java.svg" },
+  { label: "JavaScript", image: "/icons/javascript.svg" },
+  { label: "Jest", image: "/icons/jest.svg" },
+  { label: "LabVIEW", image: "/icons/labview.svg" },
+  { label: "LaunchDarkly", image: "/icons/launchdarkly.svg" },
+  { label: "MySQL", image: "/icons/mysql.svg" },
+  { label: "NestJS", image: "/icons/nestjs.svg" },
+  { label: "Next.js", image: "/icons/nextjs.svg" },
+  { label: "Node.js", image: "/icons/nodejs.svg" },
+  { label: "Python", image: "/icons/python.svg" },
+  { label: "Qt", image: "/icons/qt.svg" },
+  { label: "React", image: "/icons/react.svg" },
+  { label: "Redis", image: "/icons/redis.svg" },
+  { label: "Sequelize", image: "/icons/sequelize.svg" },
+  { label: "SQLite", image: "/icons/sqlite.svg" },
+  { label: "Tailwind", image: "/icons/tailwind.svg" },
+  { label: "Three.js", image: "/icons/threejs.svg" },
+  { label: "TypeScript", image: "/icons/typescript.svg" },
+  { label: "Unity", image: "/icons/unity.svg" },
+  { label: "Vercel", image: "/icons/vercel.svg" },
+  { label: "Vitest", image: "/icons/vitest.svg" },
+  { label: "Vue", image: "/icons/vue.svg" },
+  { label: "Windows", image: "/icons/windows.svg" },
+  { label: "WPF", image: "/icons/wpf.svg" },
+  { label: "Xamarin", image: "/icons/xamarin.svg" },
 ];
 
-const createInitialNodes = (width: number, height: number): Node[] =>
-  ICONS.map((icon, i) => ({
+const createInitialNodes = (width: number, height: number) => {
+  const nodes: Node[] = SKILLS.map((skill, i) => ({
     id: i.toString(),
     x: Math.random() * (width - 100),
     y: Math.random() * (height - 100),
     vx: (Math.random() * 0.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
     vy: (Math.random() * 0.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
     size: 48,
-    icon: <img src={icon} alt="icon" className="h-full object-contain" />,
+    icon: <img src={skill.image} alt={skill.label} className="h-full object-contain" />,
+    skill: skill,
   }));
+  return nodes;
+};
 
 export function ScreensaverPage() {
   const [nodes, setNodes] = useState<Node[]>([]);
@@ -78,28 +93,10 @@ export function ScreensaverPage() {
   const nodesRef = useRef<Node[]>(nodes);
   const animationRef = useRef<number>(0);
   const ripplesRef = useRef<Ripple[]>([]);
-  const isTouchRef = useRef(false);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    const container = containerRef.current;
-    if (!container || !e.touches.length) return;
-
-    isTouchRef.current = true;
-    const rect = container.getBoundingClientRect();
-    const x = e.touches[0].clientX - rect.left;
-    const y = e.touches[0].clientY - rect.top;
-    createRipple(x, y);
-  };
-
-  const handleTouchEnd = () => {
-    setTimeout(() => {
-      isTouchRef.current = false;
-    }, 0);
-  };
 
   const createRipple = (x: number, y: number) => {
-    const newRipple: Ripple = {
-      id: `ripple-${Date.now().toString()}-${Math.random().toString()}`,
+    const ripple: Ripple = {
+      id: v4(),
       x,
       y,
       radius: 0,
@@ -108,12 +105,11 @@ export function ScreensaverPage() {
       duration: RIPPLE_DURATION,
       opacity: 1,
     };
-    ripplesRef.current = [...ripplesRef.current, newRipple];
+    ripplesRef.current = [...ripplesRef.current, ripple];
     setRipples([...ripplesRef.current]);
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isTouchRef.current || e.detail === 0) return;
     const container = containerRef.current;
     if (!container) return;
     const rect = container.getBoundingClientRect();
@@ -126,7 +122,6 @@ export function ScreensaverPage() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Initialize nodes with container dimensions on first render
     if (nodes.length === 0) {
       const initialNodes = createInitialNodes(container.clientWidth, container.clientHeight);
       setNodes(initialNodes);
@@ -218,17 +213,16 @@ export function ScreensaverPage() {
   }, [nodes.length]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full grow overflow-hidden"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onClick={handleClick}
-    >
+    <div ref={containerRef} className="relative w-full grow overflow-hidden" onClick={handleClick}>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-center">
+        <h1 className="text-muted-foreground text-4xl font-bold select-none">
+          Some stuff I have worked with
+        </h1>
+      </div>
       {nodes.map((node) => (
         <div
           key={node.id}
-          className="pointer-events-none absolute flex items-center justify-center overflow-clip"
+          className="absolute flex items-center justify-center overflow-clip"
           style={{
             left: `${node.x.toString()}px`,
             top: `${node.y.toString()}px`,
