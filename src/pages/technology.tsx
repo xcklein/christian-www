@@ -28,9 +28,9 @@ interface Ripple {
   opacity: number;
 }
 
-const RIPPLE_DURATION = 600;
+const RIPPLE_DURATION = 800;
 const RIPPLE_MAX_RADIUS = 256;
-const RIPPLE_GROWTH_TIME = 400;
+const RIPPLE_GROWTH_TIME = 600;
 
 const SKILLS: Skill[] = [
   { label: "Angular", image: "/icons/angular.svg" },
@@ -65,6 +65,7 @@ const SKILLS: Skill[] = [
   { label: "TypeScript", image: "/icons/typescript.svg" },
   { label: "Unity", image: "/icons/unity.svg" },
   { label: "Vercel", image: "/icons/vercel.svg" },
+  { label: "Vite", image: "/icons/vite.svg" },
   { label: "Vitest", image: "/icons/vitest.svg" },
   { label: "Vue", image: "/icons/vue.svg" },
   { label: "Windows", image: "/icons/windows.svg" },
@@ -86,7 +87,7 @@ const createInitialNodes = (width: number, height: number) => {
   return nodes;
 };
 
-export function ScreensaverPage() {
+export function TechnologyPage() {
   const [nodes, setNodes] = useState<Node[]>([]);
   const [ripples, setRipples] = useState<Ripple[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -127,7 +128,7 @@ export function ScreensaverPage() {
       setNodes(initialNodes);
       nodesRef.current = initialNodes;
     }
-  }, []);
+  }, [nodes.length]);
 
   useEffect(() => {
     const container = containerRef.current;

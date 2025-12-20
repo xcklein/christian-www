@@ -1,6 +1,6 @@
 import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
-import { ScreensaverPage } from "@/pages/screensaver";
+import { TechnologyPage } from "@/pages/technology";
 import type { RouteObject } from "react-router";
 import { Layout } from "./layout";
 
@@ -14,8 +14,8 @@ export const ROUTES: RouteObject[] = [
         element: <HomePage />,
       },
       {
-        path: "/screensaver",
-        element: <ScreensaverPage />,
+        path: "/technology",
+        element: <TechnologyPage />,
       },
     ],
   },

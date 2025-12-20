@@ -22,8 +22,8 @@ export function Nav() {
             <ul className="flex w-xs flex-col gap-1">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link to="/screensaver">
-                    <h4>Screensaver</h4>
+                  <Link to="/technology">
+                    <h4>Technology</h4>
                     <p className="text-muted-foreground">Some stuff I have worked with</p>
                   </Link>
                 </NavigationMenuLink>
