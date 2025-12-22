@@ -29,5 +29,8 @@ export default defineConfig([
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    rules: {
+      "@typescript-eslint/restrict-template-expressions": ["warn", { allowNumber: true }],
+    },
   },
 ]);

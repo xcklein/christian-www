@@ -37,3 +37,4 @@ All work should maintain:
 - Accessibility standards (WCAG 2.1 AA minimum)
 - Mobile-first responsive design
 - Performance optimization prioritization
+- Do not change the theme unless explicitly told otherwise

@@ -21,9 +21,14 @@ import { Link } from "react-router";
 
 export function Nav() {
   const isMobile = useIsMobile();
+
+  return isMobile ? <NavMobile /> : <NavOther />;
+}
+
+export function NavMobile() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  return isMobile ? (
+  return (
     <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="left">
       <DrawerTrigger asChild>
         <Button variant="ghost" size="icon">
@@ -82,7 +87,11 @@ export function Nav() {
         </div>
       </DrawerContent>
     </Drawer>
-  ) : (
+  );
+}
+
+export function NavOther() {
+  return (
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
         <NavigationMenuItem>

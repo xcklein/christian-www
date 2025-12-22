@@ -225,10 +225,10 @@ export function TechnologyPage() {
           key={node.id}
           className="absolute flex items-center justify-center overflow-clip"
           style={{
-            left: `${node.x.toString()}px`,
-            top: `${node.y.toString()}px`,
-            width: `${node.size.toString()}px`,
-            height: `${node.size.toString()}px`,
+            left: `${node.x}px`,
+            top: `${node.y}px`,
+            width: `${node.size}px`,
+            height: `${node.size}px`,
           }}
         >
           {node.icon}
@@ -239,10 +239,10 @@ export function TechnologyPage() {
           key={ripple.id}
           className="border-primary pointer-events-none absolute rounded-full border-2"
           style={{
-            left: `${ripple.x.toString()}px`,
-            top: `${ripple.y.toString()}px`,
-            width: `${(ripple.radius * 2).toString()}px`,
-            height: `${(ripple.radius * 2).toString()}px`,
+            left: `${ripple.x}px`,
+            top: `${ripple.y}px`,
+            width: `${ripple.radius * 2}px`,
+            height: `${ripple.radius * 2}px`,
             transform: "translate(-50%, -50%)",
             opacity: ripple.opacity,
           }}
