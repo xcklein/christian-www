@@ -48,6 +48,10 @@ const QUOTES: Quote[] = [
     text: "Your ability to break down complex problems, understand the biggest picture & how a small solution fits in, is unmatched.",
     author: "Anonymous (Team Member)",
   },
+  {
+    text: "You've clearly made an impact during team events by visually sketching out designs using Mermaid, Draw.io, etc.",
+    author: "Anonymous (Manager)",
+  },
 ];
 const QUOTES_INDEX_INIT = Math.floor(Math.random() * QUOTES.length);
 

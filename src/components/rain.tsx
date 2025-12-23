@@ -14,9 +14,13 @@ interface Phrase {
 }
 
 const PHRASES = [
-  "Visionary",
+  "Curious",
+  "Humble",
+  "Inspiring",
+  "Communicative",
   "Professional",
   "Wow",
+  "Resilient",
   "Innovative",
   "Kind",
   "Disciplined",
@@ -27,12 +31,14 @@ const PHRASES = [
   "Meticulous",
   "Driven",
   "Pragmatic",
+  "Ambitious",
   "Passionate",
   "Strategic",
   "Adaptive",
   "Confident",
   "Intelligent",
   "Empowering",
+  "Thorough",
   "Efficient",
 ];
 const PHRASES_INDEX_INIT = Math.floor(Math.random() * PHRASES.length);
@@ -66,7 +72,6 @@ export function Rain({ ref, className, ...props }: RainProps) {
 
   useEffect(() => {
     const interval = setInterval(spawnPhrase, SPAWN_INTERVAL_MS);
-    spawnPhrase();
     return () => {
       clearInterval(interval);
     };
