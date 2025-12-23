@@ -17,6 +17,35 @@
       opacity: 0;
     }
   }
+
+  --animate-rain: rain var(--animate-rain-duration, 16000ms) linear forwards;
+
+  @keyframes rain {
+    0% {
+      top: -10%;
+    }
+    100% {
+      top: 110%;
+    }
+  }
+
+  --animate-grow-shrink: grow-shrink var(--animate-grow-shrink-duration, 9000ms) ease-in-out
+    forwards;
+
+  @keyframes grow-shrink {
+    0% {
+      transform: scale(0);
+    }
+    10% {
+      transform: scale(1);
+    }
+    90% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
 }
 
 @layer base {
