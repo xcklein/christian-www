@@ -12,7 +12,8 @@ interface Bubble {
   subtext: string;
   x: number;
   y: number;
-  side: "left" | "right";
+  lr: "left" | "right";
+  tb: "top" | "bottom";
 }
 
 interface Quote {
@@ -40,7 +41,7 @@ const QUOTES: Quote[] = [
     author: "Anonymous (Team Member)",
   },
   {
-    text: "Christian is a leader. When he came back from leave, his presence was immediately felt.",
+    text: "Christian is a leader. [...] his presence was immediately felt.",
     author: "Anonymous (Team Member)",
   },
   {
@@ -62,8 +63,9 @@ export function Bubbles({ ref, className, ...props }: BubblesProps) {
       text: quote.text,
       subtext: quote.author,
       x: Math.random() * 23 + 2,
-      y: Math.random() * 90,
-      side: Math.random() > 0.5 ? "left" : "right",
+      y: Math.random() * 40,
+      lr: Math.random() > 0.5 ? "left" : "right",
+      tb: Math.random() > 0.5 ? "top" : "bottom",
     };
 
     index.current = (index.current + 1) % QUOTES.length;
@@ -91,21 +93,22 @@ export function Bubbles({ ref, className, ...props }: BubblesProps) {
           key={bubble.id}
           className={cn(
             "animate-grow-shrink absolute",
-            bubble.side === "left" ? "origin-bottom-left" : "origin-bottom-right",
+            bubble.lr === "left" ? "origin-bottom-left" : "origin-bottom-right",
           )}
           style={{
-            left: bubble.side === "left" ? `${bubble.x}%` : undefined,
-            right: bubble.side === "right" ? `${bubble.x}%` : undefined,
-            top: `${bubble.y}%`,
+            left: bubble.lr === "left" ? `${bubble.x}%` : undefined,
+            right: bubble.lr === "right" ? `${bubble.x}%` : undefined,
+            top: bubble.tb === "top" ? `${bubble.y}%` : undefined,
+            bottom: bubble.tb === "bottom" ? `${bubble.y}%` : undefined,
           }}
         >
           <div
             className={cn(
-              "bg-primary dark:bg-secondary relative flex max-w-[66vw] flex-col gap-1 rounded-2xl px-4 py-2",
-              bubble.side === "left" ? "text-left" : "text-right",
+              "bg-primary dark:bg-secondary relative flex max-w-[66vw] flex-col gap-1 rounded-2xl px-4 py-2 md:max-w-[33vw]",
+              bubble.lr === "left" ? "text-left" : "text-right",
               // bubble tail ↓
               "after:border-t-primary dark:after:border-t-secondary after:absolute after:-bottom-2 after:h-0 after:w-0 after:border-t-8 after:border-r-8 after:border-l-8 after:content-['']",
-              bubble.side === "left"
+              bubble.lr === "left"
                 ? "after:left-3 after:border-r-transparent after:border-l-transparent"
                 : "after:right-3 after:border-r-transparent after:border-l-transparent",
             )}
