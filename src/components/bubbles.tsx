@@ -25,7 +25,7 @@ const BUBBLE_DURATION_MS = 9000;
 const BUBBLE_REMOVE_BUFFER_MS = 1000;
 const QUOTES: Quote[] = [
   { text: "How do you know so much about this stuff?", author: "Anonymous (Team Member)" },
-  { text: "I'm so proud of you.", author: "Mom" },
+  { text: "I'm proud of you.", author: "Mom" },
   {
     text: "Unfortunately, we can't create a team full of Christians.",
     author: "Anonymous (Manager)",
@@ -89,19 +89,21 @@ export function Bubbles({ ref, className, ...props }: BubblesProps) {
       {bubbles.map((bubble) => (
         <div
           key={bubble.id}
-          className="absolute"
+          className={cn(
+            "animate-grow-shrink absolute",
+            bubble.side === "left" ? "origin-bottom-left" : "origin-bottom-right",
+          )}
           style={{
             left: bubble.side === "left" ? `${bubble.x}%` : undefined,
             right: bubble.side === "right" ? `${bubble.x}%` : undefined,
             top: `${bubble.y}%`,
-            animation: `grow-shrink ${BUBBLE_DURATION_MS}ms ease-in-out forwards`,
           }}
         >
           <div
             className={cn(
               "bg-primary dark:bg-secondary relative flex max-w-[66vw] flex-col gap-1 rounded-2xl px-4 py-2",
               bubble.side === "left" ? "text-left" : "text-right",
-              // bubble tail ⬇️
+              // bubble tail ↓
               "after:border-t-primary dark:after:border-t-secondary after:absolute after:-bottom-2 after:h-0 after:w-0 after:border-t-8 after:border-r-8 after:border-l-8 after:content-['']",
               bubble.side === "left"
                 ? "after:left-3 after:border-r-transparent after:border-l-transparent"
