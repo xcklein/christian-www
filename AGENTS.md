@@ -38,3 +38,4 @@ All work should maintain:
 - Mobile-first responsive design
 - Performance optimization prioritization
 - Do not change the theme unless explicitly told otherwise
+- Prefer Tailwind-based styles over raw CSS

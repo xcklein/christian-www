@@ -72,7 +72,7 @@ export function Rain({ className }: { className?: string }) {
       {phrases.map((phrase) => (
         <div
           key={phrase.id}
-          className="pointer-events-none absolute text-6xl font-bold opacity-20 will-change-transform select-none"
+          className="pointer-events-none absolute transform-gpu text-6xl font-bold opacity-20 will-change-transform select-none"
           style={{
             left: phrase.side === "left" ? `${phrase.x}%` : undefined,
             right: phrase.side === "right" ? `${phrase.x}%` : undefined,
