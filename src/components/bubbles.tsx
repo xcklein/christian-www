@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type HTMLAttributes } from "react";
 import { v4 } from "uuid";
+
+interface BubblesProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: React.RefObject<HTMLDivElement | null>;
+}
 
 interface Bubble {
   id: string;
@@ -11,21 +15,42 @@ interface Bubble {
   side: "left" | "right";
 }
 
-const SPAWN_INTERVAL_MS = 8000;
-const BUBBLE_DURATION_MS = 9000;
-const BUBBLE_REMOVE_BUFFER_MS = 1000;
-
 interface Quote {
   text: string;
   author: string;
 }
 
+const SPAWN_INTERVAL_MS = 8000;
+const BUBBLE_DURATION_MS = 9000;
+const BUBBLE_REMOVE_BUFFER_MS = 1000;
 const QUOTES: Quote[] = [
-  { text: "They don't think it be like it is, but it do.", author: "Oscar Gamble" },
+  { text: "How do you know so much about this stuff?", author: "Anonymous (Team Member)" },
+  { text: "I'm so proud of you.", author: "Mom" },
+  {
+    text: "Unfortunately, we can't create a team full of Christians.",
+    author: "Anonymous (Manager)",
+  },
+  {
+    text: "Christian always finds the time to help his teammates out.",
+    author: "Anonymous (Team Member)",
+  },
+  { text: "You are the epitome of a senior software engineer.", author: "Anonymous (Team Member)" },
+  {
+    text: "He is knowledgeable across a broad range of topics and is a great resource.",
+    author: "Anonymous (Team Member)",
+  },
+  {
+    text: "Christian is a leader. When he came back from leave, his presence was immediately felt.",
+    author: "Anonymous (Team Member)",
+  },
+  {
+    text: "Your ability to break down complex problems, understand the biggest picture & how a small solution fits in, is unmatched.",
+    author: "Anonymous (Team Member)",
+  },
 ];
 const QUOTES_INDEX_INIT = Math.floor(Math.random() * QUOTES.length);
 
-export function Bubbles({ className }: { className?: string }) {
+export function Bubbles({ ref, className, ...props }: BubblesProps) {
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
   const index = useRef(QUOTES_INDEX_INIT);
 
@@ -60,7 +85,7 @@ export function Bubbles({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={cn("overflow-hidden", className)}>
+    <div ref={ref} className={cn("overflow-hidden", className)} {...props}>
       {bubbles.map((bubble) => (
         <div
           key={bubble.id}
