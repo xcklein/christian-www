@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { type HTMLAttributes, useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
+
+interface RainProps extends HTMLAttributes<HTMLDivElement> {
+  ref?: React.RefObject<HTMLDivElement | null>;
+}
 
 interface Phrase {
   id: string;
@@ -12,10 +16,11 @@ interface Phrase {
 const PHRASES = [
   "Visionary",
   "Professional",
+  "Wow",
   "Innovative",
   "Kind",
   "Disciplined",
-  "Leader",
+  "Influential",
   "Reliable",
   "Creative",
   "Collaborative",
@@ -29,14 +34,13 @@ const PHRASES = [
   "Intelligent",
   "Empowering",
   "Efficient",
-  "Wow",
 ];
 const PHRASES_INDEX_INIT = Math.floor(Math.random() * PHRASES.length);
 const SPAWN_INTERVAL_MS = 2000;
 const RAIN_DURATION_MS = 16000;
 const PHRASE_REMOVE_BUFFER_MS = 1000;
 
-export function Rain({ className }: { className?: string }) {
+export function Rain({ ref, className, ...props }: RainProps) {
   const [phrases, setPhrases] = useState<Phrase[]>([]);
   const index = useRef(PHRASES_INDEX_INIT);
 
@@ -48,7 +52,7 @@ export function Rain({ className }: { className?: string }) {
       id: v4(),
       text,
       x,
-      side: Math.random() > 0.5 ? "left" : "right",
+      side: index.current % 2 ? "left" : "right",
     };
 
     index.current = (index.current + 1) % PHRASES.length;
@@ -68,15 +72,14 @@ export function Rain({ className }: { className?: string }) {
   }, []);
 
   return (
-    <div className={cn("overflow-hidden", className)}>
+    <div ref={ref} className={cn("overflow-hidden", className)} {...props}>
       {phrases.map((phrase) => (
         <div
           key={phrase.id}
-          className="animate-rain pointer-events-none absolute transform-gpu text-6xl font-bold opacity-20 will-change-transform select-none"
+          className="animate-rain pointer-events-none absolute top-[-10%] text-5xl font-bold opacity-20 select-none sm:text-6xl lg:text-8xl"
           style={{
             left: phrase.side === "left" ? `${phrase.x}%` : undefined,
             right: phrase.side === "right" ? `${phrase.x}%` : undefined,
-            top: "-10%",
           }}
         >
           {phrase.text}
