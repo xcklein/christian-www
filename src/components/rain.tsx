@@ -66,6 +66,7 @@ export function Rain({ ref, className, ...props }: RainProps) {
 
   useEffect(() => {
     const interval = setInterval(spawnPhrase, SPAWN_INTERVAL_MS);
+    spawnPhrase();
     return () => {
       clearInterval(interval);
     };
