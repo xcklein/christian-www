@@ -55,6 +55,18 @@ export function NavMobile() {
                   <p className="text-muted-foreground text-sm">Some stuff I have worked with</p>
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/albums"
+                  className="hover:bg-accent flex flex-col gap-1 rounded-md p-2"
+                  onClick={() => {
+                    setDrawerOpen(false);
+                  }}
+                >
+                  <h4 className="font-medium">Albums</h4>
+                  <p className="text-muted-foreground text-sm">Some stuff I have worked with</p>
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="flex flex-col gap-1">
@@ -102,6 +114,14 @@ export function NavOther() {
                 <NavigationMenuLink asChild>
                   <Link to="/technology">
                     <h4>Technology</h4>
+                    <p className="text-muted-foreground">Some stuff I have worked with</p>
+                  </Link>
+                </NavigationMenuLink>
+              </li>
+              <li>
+                <NavigationMenuLink asChild>
+                  <Link to="/albums">
+                    <h4>Albums</h4>
                     <p className="text-muted-foreground">Some stuff I have worked with</p>
                   </Link>
                 </NavigationMenuLink>

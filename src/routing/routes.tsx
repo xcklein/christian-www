@@ -1,3 +1,4 @@
+import { AlbumsPage } from "@/pages/albums";
 import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
 import { TechnologyPage } from "@/pages/technology";
@@ -16,6 +17,10 @@ export const ROUTES: RouteObject[] = [
       {
         path: "/technology",
         element: <TechnologyPage />,
+      },
+      {
+        path: "/albums",
+        element: <AlbumsPage />,
       },
     ],
   },

@@ -1,5 +1,6 @@
 @import "./tailwind.css";
 @import "./theme.css";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -46,6 +47,34 @@
       transform: scale(0);
     }
   }
+
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+:root {
+  --palette-red: #ff595e;
+  --palette-yellow: #ffca3a;
+  --palette-green: #8ac926;
+  --palette-blue: #1982c4;
+  --palette-violet: #6a4c93;
+}
+
+@theme {
+  --color-palette-red: var(--palette-red);
+  --color-palette-yellow: var(--palette-yellow);
+  --color-palette-green: var(--palette-green);
+  --color-palette-blue: var(--palette-blue);
+  --color-palette-violet: var(--palette-violet);
 }
 
 @layer base {
@@ -54,5 +83,26 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
   }
 }
