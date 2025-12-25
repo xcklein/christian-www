@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { HouseIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Nav } from "./nav";
-import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
+import { ThemeButton } from "./theme-button";
 import { Button } from "./ui/button";
 
 interface HeaderProps {
@@ -25,17 +25,9 @@ export function Header({ className }: HeaderProps) {
         )}
         <Nav />
       </span>
-      <span className="flex flex-1 justify-center">
-        {isMobile && (
-          <Button variant="ghost" asChild>
-            <Link to="/" className="text-lg font-bold">
-              christian.gg
-            </Link>
-          </Button>
-        )}
-      </span>
+      <span className="flex flex-1 justify-center"></span>
       <span className="flex flex-0 items-center gap-2">
-        <AnimatedThemeToggler />
+        <ThemeButton />
       </span>
     </header>
   );

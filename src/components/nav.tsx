@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
   Drawer,
   DrawerContent,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
@@ -15,9 +16,12 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { GithubIcon, LinkedinIcon, MenuIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
+import { Footer } from "./footer";
+import { GitHub } from "./svg/github";
+import { LinkedIn } from "./svg/linkedin";
 
 export function Nav() {
   const isMobile = useIsMobile();
@@ -37,7 +41,16 @@ export function NavMobile() {
       </DrawerTrigger>
       <DrawerContent className="p-6" aria-describedby={undefined}>
         <DrawerHeader className="mb-4 p-0">
-          <DrawerTitle className="text-2xl font-bold">Menu</DrawerTitle>
+          <DrawerTitle className="text-2xl font-bold">
+            <Link
+              to="/"
+              onClick={() => {
+                setDrawerOpen(false);
+              }}
+            >
+              christian.gg
+            </Link>
+          </DrawerTitle>
         </DrawerHeader>
         <div className="flex flex-col gap-1">
           <div className="flex flex-col gap-1">
@@ -55,18 +68,6 @@ export function NavMobile() {
                   <p className="text-muted-foreground text-sm">Some stuff I have worked with</p>
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/albums"
-                  className="hover:bg-accent flex flex-col gap-1 rounded-md p-2"
-                  onClick={() => {
-                    setDrawerOpen(false);
-                  }}
-                >
-                  <h4 className="font-medium">Albums</h4>
-                  <p className="text-muted-foreground text-sm">Some stuff I have worked with</p>
-                </Link>
-              </li>
             </ul>
           </div>
           <div className="flex flex-col gap-1">
@@ -77,9 +78,9 @@ export function NavMobile() {
                   to="https://github.com/xcklein"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:bg-accent flex flex-row items-center gap-1 rounded-md p-2"
+                  className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
                 >
-                  <GithubIcon className="size-4" />
+                  <GitHub fill="var(--foreground)" className="size-4" />
                   GitHub
                 </Link>
               </li>
@@ -88,15 +89,18 @@ export function NavMobile() {
                   to="https://linkedin.com/in/xcklein"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:bg-accent flex flex-row items-center gap-1 rounded-md p-2"
+                  className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
                 >
-                  <LinkedinIcon className="size-4" />
+                  <LinkedIn fill="var(--foreground)" className="size-4" />
                   LinkedIn
                 </Link>
               </li>
             </ul>
           </div>
         </div>
+        <DrawerFooter className="p-0">
+          <Footer />
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );
@@ -118,14 +122,6 @@ export function NavOther() {
                   </Link>
                 </NavigationMenuLink>
               </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link to="/albums">
-                    <h4>Albums</h4>
-                    <p className="text-muted-foreground">Some stuff I have worked with</p>
-                  </Link>
-                </NavigationMenuLink>
-              </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -141,7 +137,7 @@ export function NavOther() {
                     rel="noopener noreferrer"
                     className="flex flex-row items-center gap-1"
                   >
-                    <GithubIcon />
+                    <GitHub fill="var(--foreground)" className="size-4" />
                     GitHub
                   </Link>
                 </NavigationMenuLink>
@@ -154,7 +150,7 @@ export function NavOther() {
                     rel="noopener noreferrer"
                     className="flex flex-row items-center gap-1"
                   >
-                    <LinkedinIcon />
+                    <LinkedIn fill="var(--foreground)" className="size-4" />
                     LinkedIn
                   </Link>
                 </NavigationMenuLink>

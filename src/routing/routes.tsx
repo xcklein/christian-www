@@ -1,4 +1,4 @@
-import { AlbumsPage } from "@/pages/albums";
+import { CanvasPage } from "@/pages/canvas";
 import { HomePage } from "@/pages/home";
 import { NotFoundPage } from "@/pages/not-found";
 import { TechnologyPage } from "@/pages/technology";
@@ -19,8 +19,8 @@ export const ROUTES: RouteObject[] = [
         element: <TechnologyPage />,
       },
       {
-        path: "/albums",
-        element: <AlbumsPage />,
+        path: "/canvas",
+        element: <CanvasPage />,
       },
     ],
   },
