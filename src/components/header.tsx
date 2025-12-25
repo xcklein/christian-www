@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { HouseIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Nav } from "./nav";
-import { ThemeButton } from "./theme-button";
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
 import { Button } from "./ui/button";
 
 interface HeaderProps {
@@ -35,7 +35,7 @@ export function Header({ className }: HeaderProps) {
         )}
       </span>
       <span className="flex flex-0 items-center gap-2">
-        <ThemeButton />
+        <AnimatedThemeToggler />
       </span>
     </header>
   );

@@ -12,6 +12,7 @@ export function ThemeButton() {
   return (
     <Button variant="ghost" size="icon" onClick={handleClick}>
       {active === "light" ? <SunIcon /> : <MoonIcon />}
+      <span className="sr-only">Toggle theme</span>
     </Button>
   );
 }
