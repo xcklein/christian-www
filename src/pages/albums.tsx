@@ -109,7 +109,7 @@ export function AlbumsPage() {
               return (
                 <div
                   key={album.id}
-                  className="relative aspect-square w-36 cursor-pointer transition-transform hover:scale-110 md:w-44"
+                  className="relative aspect-square w-32 cursor-pointer transition-transform hover:scale-110 md:w-44"
                   onClick={() => {
                     toggleFlip(album.id);
                   }}
@@ -124,20 +124,15 @@ export function AlbumsPage() {
                   >
                     {/* Front */}
                     <div className="absolute inset-0 flex items-center justify-center p-4 backface-hidden">
-                      <img src={album.image} alt={album.name} className="h-16 w-16" />
+                      <img src={album.image} alt={album.name} className="size-10 md:size-16" />
                     </div>
 
                     {/* Back */}
-                    <div
-                      className="absolute inset-0 flex flex-col justify-between p-4 backface-hidden"
-                      style={{
-                        transform: "rotateY(180deg)",
-                      }}
-                    >
-                      <span className="flex flex-row items-center gap-2">
-                        <img src={album.image} alt={album.name} className="h-4 w-4" />
-                        <h3 className="text-sm font-bold">{album.name}</h3>
-                      </span>
+                    <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-4 opacity-10">
+                        <img src={album.image} alt={album.name} className="size-10 md:size-16" />
+                      </div>
+                      <h3 className="text-sm font-bold">{album.name}</h3>
                       <div>
                         <p className="text-muted-foreground text-xs">xp</p>
                         <p className="text-xs font-semibold">{album.experience}</p>
