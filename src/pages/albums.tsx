@@ -109,7 +109,7 @@ export function AlbumsPage() {
               return (
                 <div
                   key={album.id}
-                  className="relative aspect-square w-40 cursor-pointer transition-transform hover:scale-110"
+                  className="relative aspect-square w-36 cursor-pointer transition-transform hover:scale-110 md:w-44"
                   onClick={() => {
                     toggleFlip(album.id);
                   }}
