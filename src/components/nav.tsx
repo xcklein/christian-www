@@ -80,7 +80,7 @@ export function NavMobile() {
                   rel="noopener noreferrer"
                   className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
                 >
-                  <GitHub fill="var(--foreground)" className="size-4" />
+                  <GitHub className="text-foreground size-4" />
                   GitHub
                 </Link>
               </li>
@@ -91,7 +91,7 @@ export function NavMobile() {
                   rel="noopener noreferrer"
                   className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
                 >
-                  <LinkedIn fill="var(--foreground)" className="size-4" />
+                  <LinkedIn className="text-foreground size-4" />
                   LinkedIn
                 </Link>
               </li>
@@ -137,7 +137,7 @@ export function NavOther() {
                     rel="noopener noreferrer"
                     className="flex flex-row items-center gap-1"
                   >
-                    <GitHub fill="var(--foreground)" className="size-4" />
+                    <GitHub className="text-foreground size-4" />
                     GitHub
                   </Link>
                 </NavigationMenuLink>
@@ -150,7 +150,7 @@ export function NavOther() {
                     rel="noopener noreferrer"
                     className="flex flex-row items-center gap-1"
                   >
-                    <LinkedIn fill="var(--foreground)" className="size-4" />
+                    <LinkedIn className="text-foreground size-4" />
                     LinkedIn
                   </Link>
                 </NavigationMenuLink>

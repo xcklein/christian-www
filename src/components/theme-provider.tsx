@@ -11,7 +11,7 @@ type ThemeProviderProps = {
 
 export type ThemeState = {
   theme: Theme;
-  active: Omit<Theme, "system">;
+  actual: Omit<Theme, "system">;
   setTheme: (theme: Theme) => void;
 };
 
@@ -45,7 +45,7 @@ export function ThemeProvider({
 
   const value: ThemeState = {
     theme,
-    active: theme === "system" ? getSystemTheme() : theme,
+    actual: theme === "system" ? getSystemTheme() : theme,
     setTheme: (theme: Theme) => {
       localStorage.setItem(storageKey, theme);
       setTheme(theme);

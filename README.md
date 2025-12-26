@@ -2,14 +2,6 @@
 
 A professional portfolio website showcasing software engineering expertise, projects, and technical background. Built with modern web technologies for performance, accessibility, and user experience.
 
-## Features
-
-- **Dark/Light Theme Support** - Seamless theme switching with persistent user preferences
-- **Responsive Design** - Mobile-first approach ensuring perfect display across all devices
-- **Accessibility First** - WCAG 2.1 AA compliant for inclusive user experience
-- **Type-Safe** - Full TypeScript strict mode for code reliability
-- **Performance Optimized** - Fast load times and smooth interactions
-
 ## Tech Stack
 
 - **Framework**: React 19+ with TypeScript
@@ -64,12 +56,12 @@ pnpm run lint
 
 ```
 src/
-├── components/      # Reusable UI components
-├── contexts/        # React contexts (theme management)
-├── hooks/          # Custom React hooks
+├── components/     # Reusable UI components
+├── contexts/       # React contexts
+├── hooks/          # React hooks
 ├── pages/          # Page components
 ├── routing/        # Routing configuration
-├── styles/         # Global and theme styles
+├── styles/         # Global styles
 └── lib/            # Utility functions
 ```
 

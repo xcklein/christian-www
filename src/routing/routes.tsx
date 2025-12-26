@@ -1,7 +1,7 @@
-import { CanvasPage } from "@/pages/canvas";
-import { HomePage } from "@/pages/home";
-import { NotFoundPage } from "@/pages/not-found";
-import { TechnologyPage } from "@/pages/technology";
+import { CanvasPage } from "@/pages/canvas-page";
+import { HomePage } from "@/pages/home-page";
+import { NotFoundPage } from "@/pages/not-found-page";
+import { TechnologyPage } from "@/pages/technology-page";
 import type { RouteObject } from "react-router";
 import { Layout } from "./layout";
 

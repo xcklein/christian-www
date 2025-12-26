@@ -19,14 +19,6 @@ Content and presentation should be professional, contemporary, and reflective of
 - **Package Manager**: pnpm
 - **Deployment**: Vercel
 
-## Key Features
-
-- Dark/Light theme support with persistence
-- Responsive design for all devices
-- Accessibility-first component development
-- Type-safe codebase with TypeScript
-- Professional component library (shadcn/ui based)
-
 ## Development Guidelines
 
 All work should maintain:

@@ -3,7 +3,7 @@ import { MoonIcon, SunIcon } from "lucide-react";
 import { Button } from "./ui/button";
 
 export function ThemeButton() {
-  const { active, setTheme } = useTheme();
+  const { actual: active, setTheme } = useTheme();
 
   const handleClick = () => {
     setTheme(active === "light" ? "dark" : "light");

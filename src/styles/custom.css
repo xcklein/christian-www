@@ -1,0 +1,72 @@
+:root {
+  --palette-red: #ff595e;
+  --palette-yellow: #ffca3a;
+  --palette-green: #8ac926;
+  --palette-blue: #1982c4;
+  --palette-violet: #6a4c93;
+}
+
+@theme {
+  --color-palette-red: var(--palette-red);
+  --color-palette-yellow: var(--palette-yellow);
+  --color-palette-green: var(--palette-green);
+  --color-palette-blue: var(--palette-blue);
+  --color-palette-violet: var(--palette-violet);
+}
+
+@theme {
+  --animate-twinkle: twinkle 3s ease-in-out infinite;
+
+  @keyframes twinkle {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  --animate-rain: rain var(--animate-rain-duration, 16000ms) linear forwards;
+
+  @keyframes rain {
+    0% {
+      top: -10%;
+    }
+    100% {
+      top: 110%;
+    }
+  }
+
+  --animate-grow-shrink: grow-shrink var(--animate-grow-shrink-duration, 9000ms) ease-in-out
+    forwards;
+
+  @keyframes grow-shrink {
+    0% {
+      transform: scale(0);
+    }
+    10% {
+      transform: scale(1);
+    }
+    90% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}

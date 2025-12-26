@@ -6,7 +6,7 @@ export function HomePage() {
     <>
       <div className="m-auto flex max-w-2xl flex-col items-center justify-center gap-4 p-4">
         <Rain aria-hidden="true" className="pointer-events-none absolute -z-10 h-full w-full" />
-        <img src="christian-circle.png" alt="Avatar of Christian" className="w-96" />
+        <img src="images/christian-circle.png" alt="Avatar of Christian" className="w-96" />
         <h1 className="text-4xl font-bold">Christian</h1>
         <Bubbles className="pointer-events-none absolute h-full w-full" />
       </div>

@@ -1,10 +1,6 @@
+import { TECHNOLOGIES, type Technology } from "@/lib/technologies";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { v4 } from "uuid";
-
-interface Skill {
-  label: string;
-  image: string;
-}
 
 interface Node {
   id: string;
@@ -14,7 +10,7 @@ interface Node {
   vy: number;
   size: number;
   icon: ReactNode;
-  skill: Skill;
+  tech: Technology;
 }
 
 interface Ripple {
@@ -32,59 +28,16 @@ const RIPPLE_DURATION = 800;
 const RIPPLE_MAX_RADIUS = 256;
 const RIPPLE_GROWTH_TIME = 600;
 
-const SKILLS: Skill[] = [
-  { label: "Angular", image: "/icons/angular.svg" },
-  { label: "Atlassian", image: "/icons/atlassian.svg" },
-  { label: "AWS", image: "/icons/aws.svg" },
-  { label: "C++", image: "/icons/cpp.svg" },
-  { label: "C#", image: "/icons/csharp.svg" },
-  { label: "CSS", image: "/icons/css.svg" },
-  { label: "Discord.js", image: "/icons/discordjs.svg" },
-  { label: "Expo", image: "/icons/expo.svg" },
-  { label: "Git", image: "/icons/git.svg" },
-  { label: "GitHub", image: "/icons/github.svg" },
-  { label: "GraphQL", image: "/icons/graphql.svg" },
-  { label: "Hono", image: "/icons/hono.svg" },
-  { label: "HTML", image: "/icons/html.svg" },
-  { label: "Java", image: "/icons/java.svg" },
-  { label: "JavaScript", image: "/icons/javascript.svg" },
-  { label: "Jest", image: "/icons/jest.svg" },
-  { label: "LabVIEW", image: "/icons/labview.svg" },
-  { label: "LaunchDarkly", image: "/icons/launchdarkly.svg" },
-  { label: "Linux", image: "/icons/linux.svg" },
-  { label: "MySQL", image: "/icons/mysql.svg" },
-  { label: "NestJS", image: "/icons/nestjs.svg" },
-  { label: "Next.js", image: "/icons/nextjs.svg" },
-  { label: "Node.js", image: "/icons/nodejs.svg" },
-  { label: "Python", image: "/icons/python.svg" },
-  { label: "Qt", image: "/icons/qt.svg" },
-  { label: "React", image: "/icons/react.svg" },
-  { label: "Redis", image: "/icons/redis.svg" },
-  { label: "Sequelize", image: "/icons/sequelize.svg" },
-  { label: "SQLite", image: "/icons/sqlite.svg" },
-  { label: "Tailwind", image: "/icons/tailwind.svg" },
-  { label: "Three.js", image: "/icons/threejs.svg" },
-  { label: "TypeScript", image: "/icons/typescript.svg" },
-  { label: "Unity", image: "/icons/unity.svg" },
-  { label: "Vercel", image: "/icons/vercel.svg" },
-  { label: "Vite", image: "/icons/vite.svg" },
-  { label: "Vitest", image: "/icons/vitest.svg" },
-  { label: "Vue", image: "/icons/vue.svg" },
-  { label: "Windows", image: "/icons/windows.svg" },
-  { label: "WPF", image: "/icons/wpf.svg" },
-  { label: "Xamarin", image: "/icons/xamarin.svg" },
-];
-
 const createInitialNodes = (width: number, height: number) => {
-  const nodes: Node[] = SKILLS.map((skill, i) => ({
+  const nodes: Node[] = TECHNOLOGIES.map((tech, i) => ({
     id: i.toString(),
     x: Math.random() * (width - 100),
     y: Math.random() * (height - 100),
     vx: (Math.random() * 0.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
     vy: (Math.random() * 0.5 + 0.5) * (Math.random() > 0.5 ? 1 : -1),
     size: 48,
-    icon: <img src={skill.image} alt={skill.label} className="h-full object-contain" />,
-    skill: skill,
+    icon: <img src={tech.img} alt={tech.name} className="h-full object-contain" />,
+    tech: tech,
   }));
   return nodes;
 };
