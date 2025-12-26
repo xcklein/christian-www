@@ -7,7 +7,7 @@ export function Layout() {
   const isMobile = useIsMobile();
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-dvh flex-col">
       <Header className="flex-0" />
       <main className="relative flex flex-1">
         <Outlet />
