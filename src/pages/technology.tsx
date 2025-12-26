@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
-import { ArrowLeftRightIcon } from "lucide-react";
+import { IterationCcwIcon } from "lucide-react";
 import { useState } from "react";
 import { v4 } from "uuid";
 
-type Exp = "Growing" | "Seasoned" | "Dangerous";
+type Exp = "Growing" | "Seasoned" | "Hardened";
 
 interface Album {
   id: string;
@@ -16,20 +16,20 @@ interface Album {
 
 const ALBUMS: Album[] = [
   { id: v4(), name: "Angular", experience: "Growing", image: "/icons/angular.svg" },
-  { id: v4(), name: "Atlassian", experience: "Dangerous", image: "/icons/atlassian.svg" },
-  { id: v4(), name: "AWS", experience: "Dangerous", image: "/icons/aws.svg" },
-  { id: v4(), name: "C++", experience: "Growing", image: "/icons/cpp.svg" },
-  { id: v4(), name: "C#", experience: "Dangerous", image: "/icons/csharp.svg" },
+  { id: v4(), name: "Atlassian", experience: "Hardened", image: "/icons/atlassian.svg" },
+  { id: v4(), name: "AWS", experience: "Hardened", image: "/icons/aws.svg" },
+  { id: v4(), name: "C++", experience: "Seasoned", image: "/icons/cpp.svg" },
+  { id: v4(), name: "C#", experience: "Hardened", image: "/icons/csharp.svg" },
   { id: v4(), name: "CSS", experience: "Seasoned", image: "/icons/css.svg" },
   { id: v4(), name: "Discord.js", experience: "Seasoned", image: "/icons/discordjs.svg" },
   { id: v4(), name: "Expo", experience: "Growing", image: "/icons/expo.svg" },
   { id: v4(), name: "Git", experience: "Seasoned", image: "/icons/git.svg" },
-  { id: v4(), name: "GitHub", experience: "Dangerous", image: "/icons/github.svg" },
-  { id: v4(), name: "GraphQL", experience: "Dangerous", image: "/icons/graphql.svg" },
+  { id: v4(), name: "GitHub", experience: "Hardened", image: "/icons/github.svg" },
+  { id: v4(), name: "GraphQL", experience: "Hardened", image: "/icons/graphql.svg" },
   { id: v4(), name: "Hono", experience: "Growing", image: "/icons/hono.svg" },
   { id: v4(), name: "HTML", experience: "Seasoned", image: "/icons/html.svg" },
   { id: v4(), name: "Java", experience: "Seasoned", image: "/icons/java.svg" },
-  { id: v4(), name: "JavaScript", experience: "Dangerous", image: "/icons/javascript.svg" },
+  { id: v4(), name: "JavaScript", experience: "Hardened", image: "/icons/javascript.svg" },
   { id: v4(), name: "Jest", experience: "Growing", image: "/icons/jest.svg" },
   { id: v4(), name: "LabVIEW", experience: "Seasoned", image: "/icons/labview.svg" },
   { id: v4(), name: "LaunchDarkly", experience: "Seasoned", image: "/icons/launchdarkly.svg" },
@@ -37,23 +37,23 @@ const ALBUMS: Album[] = [
   { id: v4(), name: "MySQL", experience: "Seasoned", image: "/icons/mysql.svg" },
   { id: v4(), name: "NestJS", experience: "Seasoned", image: "/icons/nestjs.svg" },
   { id: v4(), name: "Next.js", experience: "Growing", image: "/icons/nextjs.svg" },
-  { id: v4(), name: "Node.js", experience: "Dangerous", image: "/icons/nodejs.svg" },
+  { id: v4(), name: "Node.js", experience: "Hardened", image: "/icons/nodejs.svg" },
   { id: v4(), name: "Python", experience: "Seasoned", image: "/icons/python.svg" },
   { id: v4(), name: "Qt", experience: "Growing", image: "/icons/qt.svg" },
   { id: v4(), name: "React", experience: "Seasoned", image: "/icons/react.svg" },
   { id: v4(), name: "Redis", experience: "Seasoned", image: "/icons/redis.svg" },
-  { id: v4(), name: "Sequelize", experience: "Dangerous", image: "/icons/sequelize.svg" },
+  { id: v4(), name: "Sequelize", experience: "Hardened", image: "/icons/sequelize.svg" },
   { id: v4(), name: "SQLite", experience: "Seasoned", image: "/icons/sqlite.svg" },
   { id: v4(), name: "Tailwind", experience: "Seasoned", image: "/icons/tailwind.svg" },
   { id: v4(), name: "Three.js", experience: "Growing", image: "/icons/threejs.svg" },
-  { id: v4(), name: "TypeScript", experience: "Dangerous", image: "/icons/typescript.svg" },
+  { id: v4(), name: "TypeScript", experience: "Hardened", image: "/icons/typescript.svg" },
   { id: v4(), name: "Unity", experience: "Growing", image: "/icons/unity.svg" },
   { id: v4(), name: "Vercel", experience: "Growing", image: "/icons/vercel.svg" },
   { id: v4(), name: "Vite", experience: "Seasoned", image: "/icons/vite.svg" },
   { id: v4(), name: "Vitest", experience: "Seasoned", image: "/icons/vitest.svg" },
   { id: v4(), name: "Vue", experience: "Seasoned", image: "/icons/vue.svg" },
-  { id: v4(), name: "Windows", experience: "Dangerous", image: "/icons/windows.svg" },
-  { id: v4(), name: "WPF", experience: "Dangerous", image: "/icons/wpf.svg" },
+  { id: v4(), name: "Windows", experience: "Hardened", image: "/icons/windows.svg" },
+  { id: v4(), name: "WPF", experience: "Hardened", image: "/icons/wpf.svg" },
   { id: v4(), name: "Xamarin", experience: "Growing", image: "/icons/xamarin.svg" },
 ];
 
@@ -61,7 +61,7 @@ function ExpBar({ level }: { level: Exp }) {
   const colors: Record<Exp, string> = {
     Growing: "bg-palette-green",
     Seasoned: "bg-palette-yellow",
-    Dangerous: "bg-palette-red",
+    Hardened: "bg-palette-red",
   };
 
   return <div className={`${colors[level]} h-1 w-full`} />;
@@ -122,7 +122,7 @@ export function TechnologyPage() {
                     style={{
                       transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
                       transition:
-                        "transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease-out",
+                        "transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 1.2s ease-out",
                     }}
                   >
                     {/* Front */}
@@ -151,9 +151,9 @@ export function TechnologyPage() {
       <Button
         size="icon"
         onClick={handleButtonClick}
-        className="absolute right-4 bottom-4 z-10 size-12 rounded-full"
+        className="absolute right-4 bottom-4 z-10 size-14 rounded-full"
       >
-        <ArrowLeftRightIcon />
+        <IterationCcwIcon className="size-6" />
       </Button>
     </div>
   );
