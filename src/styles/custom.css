@@ -28,7 +28,9 @@
       opacity: 0;
     }
   }
+}
 
+@theme {
   --animate-rain: rain var(--animate-rain-duration, 16000ms) linear forwards;
 
   @keyframes rain {
@@ -39,7 +41,9 @@
       top: 110%;
     }
   }
+}
 
+@theme {
   --animate-grow-shrink: grow-shrink var(--animate-grow-shrink-duration, 9000ms) ease-in-out
     forwards;
 
@@ -57,7 +61,9 @@
       transform: scale(0);
     }
   }
+}
 
+@theme {
   --animate-float: float 3s ease-in-out infinite;
 
   @keyframes float {
@@ -69,4 +75,8 @@
       transform: translateY(-10px);
     }
   }
+}
+
+@theme {
+  --ease-flip-heavy: cubic-bezier(0.3, 0.8, 0.2, 1.3);
 }
