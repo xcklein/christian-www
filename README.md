@@ -1,6 +1,6 @@
 # christian-www
 
-A professional portfolio website showcasing software engineering expertise, projects, and technical background. Built with modern web technologies for performance, accessibility, and user experience.
+A professional portfolio website showcasing software engineering expertise, projects, and technical background. Built with modern web technologies prioritizing performance, accessibility, and user experience.
 
 ## Tech Stack
 
@@ -8,48 +8,55 @@ A professional portfolio website showcasing software engineering expertise, proj
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS with custom theme system
 - **Routing**: React Router for client-side navigation
-- **UI Components**: shadcn/ui based component library
-- **Code Quality**: ESLint + Prettier
+- **UI Components**: shadcn/ui component library
+- **Code Quality**: ESLint and Prettier
 - **Package Manager**: pnpm
+- **Testing**: Vitest
 - **Deployment**: Vercel
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 24+ and pnpm
+- Node.js 24+
+- pnpm
 
 ### Installation
 
 ```bash
-# Install dependencies
 pnpm install
 ```
 
 ### Development
 
 ```bash
-# Start development server
 pnpm run dev
 ```
 
-The site will be available at `http://localhost:5173`
+The development server runs at `http://localhost:5173`
 
 ### Build
 
 ```bash
-# Create production build
 pnpm run build
+```
 
-# Preview production build locally
+### Preview Production Build
+
+```bash
 pnpm run preview
 ```
 
-### Code Quality
+### Linting
 
 ```bash
-# Run ESLint
 pnpm run lint
+```
+
+### Testing
+
+```bash
+pnpm run test
 ```
 
 ## Project Structure
@@ -67,7 +74,7 @@ src/
 
 ## Deployment
 
-This site is deployed on Vercel. Push to the main branch to trigger automatic deployments.
+The site is deployed on Vercel with automatic deployments triggered on pushes to the main branch.
 
 ## License
 

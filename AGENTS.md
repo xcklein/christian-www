@@ -1,37 +1,38 @@
 # Agents
 
-Instructions for AI agents. All guidance in this document shall be followed unless explicitly directed otherwise.
+Instructions for AI agents working on this project. All guidance in this document shall be followed unless explicitly directed otherwise.
 
-## Context
+## Project Context
 
-This is a personal portfolio website for a software engineer. The site serves as a showcase of skills, projects, and professional background.
+This is a professional portfolio website showcasing software engineering expertise, projects, and technical background. Content and presentation should be professional, contemporary, and reflective of senior-level engineering capabilities with diverse technical expertise.
 
-Content and presentation should be professional, contemporary, and reflective of a senior-level engineer with diverse technical expertise.
-
-## Technical Stack
+## Technology Stack
 
 - **Frontend Framework**: React 19+ with TypeScript
 - **Build Tool**: Vite
-- **Component Library**: Shadcn
-- **Styling**: Tailwind CSS with a Tweakcn theme
-- **Routing**: Client-side routing with React Router
-- **Code Quality**: ESLint, Prettier
+- **Component Library**: shadcn/ui
+- **Styling**: Tailwind CSS with custom theme
+- **Routing**: React Router (client-side)
+- **Code Quality**: ESLint and Prettier
 - **Package Manager**: pnpm
+- **Testing**: Vitest
 - **Deployment**: Vercel
 
-## Development Guidelines
+## Development Standards
 
-All work should maintain:
+All contributions must maintain:
 
 - Professional tone and design standards
-- TypeScript strict mode
-- ESLint and Prettier compliance
-- Accessibility standards (WCAG 2.1 AA minimum)
-- Mobile-first responsive design
-- Performance optimization prioritization
-- Do not change the theme unless explicitly told otherwise
-- Prefer Tailwind-based styles over raw CSS
+- TypeScript strict mode enabled
+- Full ESLint and Prettier compliance
+- WCAG 2.1 AA accessibility standards minimum
+- Mobile-first responsive design approach
+- Performance optimization as a priority
+- Tailwind CSS for styling (no raw CSS unless necessary)
+- Component-focused tests validating core functionality and behavior
+- Never change the theme without explicit direction
 
-## Notes
+## Important Notes
 
-- The `framer-motion` NPM package is installed as `motion`
+- The `framer-motion` package is installed and aliased as `motion`
+- Maintain consistency with existing code patterns and conventions
