@@ -1,7 +1,5 @@
 import { cn } from "@/lib/utils";
-import { SquareArrowOutUpRightIcon } from "lucide-react";
-import { Link } from "react-router";
-import { Button } from "./ui/button";
+import { SourceButton } from "./source-button";
 
 interface FooterProps {
   className?: string;
@@ -14,15 +12,7 @@ export function Footer({ className }: FooterProps) {
         <p className="text-sm">© 2025 Me</p>
       </span>
       <span>
-        <Button variant="link" asChild>
-          <Link
-            to="https://github.com/xcklein/christian-www"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Source <SquareArrowOutUpRightIcon />
-          </Link>
-        </Button>
+        <SourceButton />
       </span>
     </footer>
   );

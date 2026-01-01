@@ -1,3 +1,4 @@
+import { SourceButton } from "@/components/source-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -5,7 +6,7 @@ import { Marquee } from "@/components/ui/marquee";
 import { QUOTES } from "@/lib/quotes";
 import { TECHNOLOGIES, type Technology } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
-import { ArrowDownIcon, SquareArrowOutUpRightIcon, StarIcon } from "lucide-react";
+import { ArrowDownIcon, StarIcon } from "lucide-react";
 import { motion } from "motion/react";
 import type { ComponentProps } from "react";
 import { useInView } from "react-intersection-observer";
@@ -242,15 +243,7 @@ export function HomePage() {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: (MADE_WITH.length + 1) * 0.1 }}
         >
-          <Button variant="link" asChild>
-            <Link
-              to="https://github.com/xcklein/christian-www"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source <SquareArrowOutUpRightIcon />
-            </Link>
-          </Button>
+          <SourceButton />
         </motion.div>
       </Section>
     </div>
