@@ -18,7 +18,7 @@ export const TECHNOLOGIES: Record<string, Technology> = {
   cpp: { name: "C++", exp: Exp.SEASONED, img: "/images/icons/cpp.svg" },
   csharp: { name: "C#", exp: Exp.HARDENED, img: "/images/icons/csharp.svg" },
   css: { name: "CSS", exp: Exp.SEASONED, img: "/images/icons/css.svg" },
-  discordjs: { name: "Discord.js", exp: Exp.SEASONED, img: "/images/icons/discordjs.svg" },
+  discordjs: { name: "Discord.js", exp: Exp.HARDENED, img: "/images/icons/discordjs.svg" },
   expo: { name: "Expo", exp: Exp.GROWING, img: "/images/icons/expo.svg" },
   git: { name: "Git", exp: Exp.SEASONED, img: "/images/icons/git.svg" },
   github: { name: "GitHub", exp: Exp.HARDENED, img: "/images/icons/github.svg" },

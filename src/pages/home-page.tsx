@@ -1,4 +1,5 @@
 import { SourceButton } from "@/components/source-button";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -6,9 +7,17 @@ import { Marquee } from "@/components/ui/marquee";
 import { QUOTES } from "@/lib/quotes";
 import { TECHNOLOGIES, type Technology } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
-import { ArrowDownIcon, StarIcon } from "lucide-react";
+import {
+  AppWindowIcon,
+  ArrowDownIcon,
+  DatabaseIcon,
+  ServerIcon,
+  StarIcon,
+  UserIcon,
+} from "lucide-react";
 import { motion } from "motion/react";
-import type { ComponentProps } from "react";
+import type { ComponentProps, ComponentPropsWithRef } from "react";
+import { useRef } from "react";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router";
 
@@ -46,7 +55,7 @@ function Section({ className, ...props }: ComponentProps<"section">) {
   return (
     <motion.section
       ref={ref}
-      className={cn("flex h-lvh w-full flex-col items-center justify-center gap-8", className)}
+      className={cn("flex h-svh w-full flex-col items-center justify-center gap-8", className)}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       exit={{ opacity: 0, y: -20 }}
@@ -54,6 +63,150 @@ function Section({ className, ...props }: ComponentProps<"section">) {
     >
       {props.children}
     </motion.section>
+  );
+}
+
+function Circle({ ref, className, children, ...props }: ComponentPropsWithRef<typeof Card>) {
+  return (
+    <Card
+      ref={ref}
+      className={cn("z-10 flex size-24 items-center justify-center rounded-full p-6", className)}
+      {...props}
+    >
+      {children}
+    </Card>
+  );
+}
+
+function FullStackSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const userRef = useRef<HTMLDivElement>(null);
+  const frontendRef = useRef<HTMLDivElement>(null);
+  const backendRef = useRef<HTMLDivElement>(null);
+  const dataRef = useRef<HTMLDivElement>(null);
+
+  const pathWidth = 8;
+  const duration = 6;
+
+  return (
+    <Section>
+      <motion.div
+        className="flex flex-col gap-2 text-4xl font-bold"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <h2>Full Stack</h2>
+        <h2>Expertise</h2>
+      </motion.div>
+      <motion.div
+        ref={containerRef}
+        className="relative flex w-full flex-col items-center justify-center overflow-hidden"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: false, amount: 0.5 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <div className="flex flex-col items-center gap-8 md:gap-12">
+          <div className="relative flex justify-center">
+            <Circle ref={userRef}>
+              <UserIcon className="h-full w-full object-contain" />
+            </Circle>
+            <motion.p
+              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              User
+            </motion.p>
+          </div>
+          <div className="relative flex justify-center">
+            <Circle ref={frontendRef}>
+              <AppWindowIcon className="h-full w-full object-contain" />
+            </Circle>
+            <motion.p
+              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Frontend
+            </motion.p>
+          </div>
+          <div className="relative flex justify-center">
+            <Circle ref={backendRef}>
+              <ServerIcon className="h-full w-full object-contain" />
+            </Circle>
+            <motion.p
+              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Backend
+            </motion.p>
+          </div>
+          <div className="relative flex justify-center">
+            <Circle ref={dataRef}>
+              <DatabaseIcon className="h-full w-full object-contain" />
+            </Circle>
+            <motion.p
+              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Data
+            </motion.p>
+          </div>
+        </div>
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={dataRef}
+          toRef={backendRef}
+          gradientStartColor="var(--foreground)"
+          gradientStopColor="var(--primary)"
+          pathColor="var(--muted-foreground)"
+          pathWidth={pathWidth}
+          reverse
+          duration={duration}
+          vertical
+          delay={0}
+        />
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={backendRef}
+          toRef={frontendRef}
+          gradientStartColor="var(--foreground)"
+          gradientStopColor="var(--primary)"
+          pathColor="var(--muted-foreground)"
+          pathWidth={pathWidth}
+          reverse
+          duration={duration}
+          vertical
+          delay={1}
+        />
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={frontendRef}
+          toRef={userRef}
+          gradientStartColor="var(--foreground)"
+          gradientStopColor="var(--primary)"
+          pathColor="var(--muted-foreground)"
+          pathWidth={pathWidth}
+          reverse
+          duration={duration}
+          vertical
+          delay={2}
+        />
+      </motion.div>
+    </Section>
   );
 }
 
@@ -109,6 +262,7 @@ export function HomePage() {
           <ArrowDownIcon className="text-primary size-8" />
         </motion.div>
       </Section>
+      <FullStackSection />
       <Section>
         <motion.h2
           className="text-4xl font-bold"
@@ -119,7 +273,7 @@ export function HomePage() {
         >
           Top Languages
         </motion.h2>
-        <motion.span
+        <motion.div
           className="flex flex-row flex-wrap items-center justify-center gap-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -145,7 +299,7 @@ export function HomePage() {
               <p className="text-xl font-semibold">{name}</p>
             </motion.div>
           ))}
-        </motion.span>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
