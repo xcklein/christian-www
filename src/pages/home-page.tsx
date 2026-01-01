@@ -46,7 +46,7 @@ function Section({ className, ...props }: ComponentProps<"section">) {
   return (
     <motion.section
       ref={ref}
-      className={cn("flex h-dvh w-full flex-col items-center justify-center gap-8", className)}
+      className={cn("flex h-lvh w-full flex-col items-center justify-center gap-8", className)}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       exit={{ opacity: 0, y: -20 }}
@@ -72,15 +72,26 @@ export function HomePage() {
             <AvatarFallback className="text-4xl">C</AvatarFallback>
           </Avatar>
         </motion.div>
-        <motion.h1
-          className="text-4xl font-bold"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
-          Christian
-        </motion.h1>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <motion.h1
+            className="text-4xl font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          >
+            Christian
+          </motion.h1>
+          <motion.p
+            className="text-muted-foreground text-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+          >
+            Software Engineer
+          </motion.p>
+        </div>
         <motion.div
           className="animate-bounce"
           initial={{ opacity: 0, y: -10 }}
@@ -223,8 +234,8 @@ export function HomePage() {
         >
           {MADE_WITH.map(({ tech }, index) => (
             <motion.div
-              className="flex flex-col items-center gap-4"
               key={tech.name}
+              className="flex flex-col items-center gap-4"
               initial={{ opacity: 0, rotateY: -90 }}
               whileInView={{ opacity: 1, rotateY: 0 }}
               viewport={{ once: false, amount: 0.5 }}

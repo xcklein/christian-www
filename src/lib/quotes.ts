@@ -8,11 +8,6 @@ interface Quote {
 
 export const QUOTES: Quote[] = [
   {
-    text: "How do you know so much about this stuff?",
-    author: { name: "Anonymous", title: "Team Member" },
-  },
-  { text: "I'm proud of you.", author: { name: "Mom" } },
-  {
     text: "Unfortunately, we can't create a team full of Christians.",
     author: { name: "Anonymous", title: "Manager" },
   },
@@ -40,4 +35,9 @@ export const QUOTES: Quote[] = [
     text: "You've clearly made an impact during team events by visually sketching out designs using Mermaid, Draw.io, etc.",
     author: { name: "Anonymous", title: "Manager" },
   },
+  {
+    text: "How do you know so much about this stuff?",
+    author: { name: "Anonymous", title: "Team Member" },
+  },
+  { text: "I'm proud of you.", author: { name: "Mom" } },
 ];
