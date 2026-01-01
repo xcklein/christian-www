@@ -296,7 +296,7 @@ export function HomePage() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.15 }}
             >
-              <div className="flex size-32 items-center justify-center">
+              <div className="flex size-28 items-center justify-center md:size-32">
                 <img src={icon} className="h-full w-full object-contain" />
               </div>
               <p className="text-xl font-semibold">{name}</p>
@@ -398,7 +398,7 @@ export function HomePage() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
             >
-              <div className="flex size-32 items-center justify-center">
+              <div className="flex size-28 items-center justify-center md:size-32">
                 <img src={tech.img} alt={tech.name} className="h-full w-full object-contain" />
               </div>
               <p className="text-xl font-semibold">{tech.name}</p>
