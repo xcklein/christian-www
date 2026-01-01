@@ -108,80 +108,67 @@ function FullStackSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="flex flex-col items-center gap-8 md:gap-12">
-          <div className="relative flex justify-center">
+        <div className="grid w-fit grid-cols-2 gap-x-4 gap-y-8 md:gap-x-6 md:gap-y-12">
+          <div className="flex justify-center">
             <Circle ref={userRef}>
               <UserIcon className="h-full w-full object-contain" />
             </Circle>
-            <motion.p
-              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              User
-            </motion.p>
           </div>
-          <div className="relative flex justify-center">
+          <motion.p
+            className="flex items-center font-semibold"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            User
+          </motion.p>
+          <div className="flex justify-center">
             <Circle ref={frontendRef}>
               <AppWindowIcon className="h-full w-full object-contain" />
             </Circle>
-            <motion.p
-              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              Frontend
-            </motion.p>
           </div>
-          <div className="relative flex justify-center">
+          <motion.p
+            className="flex items-center font-semibold"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            Frontend
+          </motion.p>
+          <div className="flex justify-center">
             <Circle ref={backendRef}>
               <ServerIcon className="h-full w-full object-contain" />
             </Circle>
-            <motion.p
-              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              Backend
-            </motion.p>
           </div>
-          <div className="relative flex justify-center">
+          <motion.p
+            className="flex items-center font-semibold"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            Backend
+          </motion.p>
+          <div className="flex justify-center">
             <Circle ref={dataRef}>
               <DatabaseIcon className="h-full w-full object-contain" />
             </Circle>
-            <motion.p
-              className="absolute top-1/2 left-full ml-4 -translate-y-1/2 font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              Data
-            </motion.p>
           </div>
+          <motion.p
+            className="flex items-center font-semibold"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            Data
+          </motion.p>
         </div>
         <AnimatedBeam
           containerRef={containerRef}
-          fromRef={dataRef}
-          toRef={backendRef}
-          gradientStartColor="var(--foreground)"
-          gradientStopColor="var(--primary)"
-          pathColor="var(--muted-foreground)"
-          pathWidth={pathWidth}
-          reverse
-          duration={duration}
-          vertical
-          delay={0}
-        />
-        <AnimatedBeam
-          containerRef={containerRef}
-          fromRef={backendRef}
+          fromRef={userRef}
           toRef={frontendRef}
           gradientStartColor="var(--foreground)"
           gradientStopColor="var(--primary)"
@@ -189,21 +176,37 @@ function FullStackSection() {
           pathWidth={pathWidth}
           reverse
           duration={duration}
+          delay={3}
+          curvature={120}
           vertical
-          delay={1}
         />
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={frontendRef}
-          toRef={userRef}
+          toRef={backendRef}
           gradientStartColor="var(--foreground)"
           gradientStopColor="var(--primary)"
           pathColor="var(--muted-foreground)"
           pathWidth={pathWidth}
           reverse
           duration={duration}
-          vertical
           delay={2}
+          curvature={-120}
+          vertical
+        />
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={backendRef}
+          toRef={dataRef}
+          gradientStartColor="var(--foreground)"
+          gradientStopColor="var(--primary)"
+          pathColor="var(--muted-foreground)"
+          pathWidth={pathWidth}
+          reverse
+          duration={duration}
+          delay={1}
+          curvature={120}
+          vertical
         />
       </motion.div>
     </Section>
