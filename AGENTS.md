@@ -31,3 +31,7 @@ All work should maintain:
 - Performance optimization prioritization
 - Do not change the theme unless explicitly told otherwise
 - Prefer Tailwind-based styles over raw CSS
+
+## Notes
+
+- The `framer-motion` NPM package is installed as `motion`

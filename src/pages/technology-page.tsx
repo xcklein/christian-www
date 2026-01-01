@@ -20,7 +20,7 @@ type FlipState = Record<string, boolean>;
 export function TechnologyPage() {
   const [flipped, setFlipped] = useState<FlipState>({});
 
-  const isAllFlipped = TECHNOLOGIES.every((album) => flipped[album.name]);
+  const isAllFlipped = Object.values(TECHNOLOGIES).every((album) => flipped[album.name]);
 
   const handleCardClick = (id: string) => {
     setFlipped((prev) => ({
@@ -34,23 +34,26 @@ export function TechnologyPage() {
       setFlipped({});
     } else {
       const updated: FlipState = {};
-      TECHNOLOGIES.forEach((album) => {
+      Object.values(TECHNOLOGIES).forEach((album) => {
         updated[album.name] = true;
       });
       setFlipped(updated);
     }
   };
 
-  const rowLength = Math.ceil(TECHNOLOGIES.length / 4);
+  const rowLength = Math.ceil(Object.values(TECHNOLOGIES).length / 4);
   const rows = Array.from({ length: 4 }, (_, i) =>
-    TECHNOLOGIES.slice(i * rowLength, Math.min((i + 1) * rowLength, TECHNOLOGIES.length)),
+    Object.values(TECHNOLOGIES).slice(
+      i * rowLength,
+      Math.min((i + 1) * rowLength, Object.values(TECHNOLOGIES).length),
+    ),
   );
 
   return (
     <div className="relative flex flex-col justify-center overflow-hidden">
       {rows.map((row, idx) => (
         // eslint-disable-next-line react-x/no-array-index-key
-        <Marquee key={idx} repeat={4} pauseOnHover className="[--duration:24s]">
+        <Marquee key={idx} pauseOnHover className="[--duration:24s]">
           {row.map((node) => {
             const isFlipped = flipped[node.name] || false;
 
@@ -70,13 +73,25 @@ export function TechnologyPage() {
                 >
                   {/* Front */}
                   <div className="absolute inset-0 flex items-center justify-center p-4 backface-hidden">
-                    <img src={node.img} alt={node.name} className="size-12 md:size-16" />
+                    <div className="flex size-12 items-center justify-center md:size-16">
+                      <img
+                        src={node.img}
+                        alt={node.name}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
                   </div>
 
                   {/* Back */}
                   <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10">
-                      <img src={node.img} alt={node.name} className="size-12 md:size-16" />
+                      <div className="flex size-12 items-center justify-center md:size-16">
+                        <img
+                          src={node.img}
+                          alt={node.name}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
                     </div>
                     <h1 className="text-sm font-bold">{node.name}</h1>
                     <div>

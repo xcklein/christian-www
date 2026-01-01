@@ -1,4 +1,3 @@
-import { CanvasPage } from "@/pages/canvas-page";
 import { HomePage } from "@/pages/home-page";
 import { NotFoundPage } from "@/pages/not-found-page";
 import { TechnologyPage } from "@/pages/technology-page";
@@ -17,10 +16,6 @@ export const ROUTES: RouteObject[] = [
       {
         path: "/technology",
         element: <TechnologyPage />,
-      },
-      {
-        path: "/canvas",
-        element: <CanvasPage />,
       },
     ],
   },

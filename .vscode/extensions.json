@@ -4,6 +4,7 @@
     "dsznajder.es7-react-js-snippets",
     "jock.svg",
     "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "vitest.explorer"
   ]
 }
