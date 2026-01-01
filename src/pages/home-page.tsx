@@ -90,16 +90,15 @@ function FullStackSection() {
 
   return (
     <Section>
-      <motion.div
+      <motion.h2
         className="flex flex-col gap-2 text-4xl font-bold"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2>Full Stack</h2>
-        <h2>Expertise</h2>
-      </motion.div>
+        Full Stack Expertise
+      </motion.h2>
       <motion.div
         ref={containerRef}
         className="relative flex w-full flex-col items-center justify-center overflow-hidden"
@@ -383,7 +382,7 @@ export function HomePage() {
           Made With
         </motion.h2>
         <motion.div
-          className="flex flex-row flex-wrap items-center justify-center gap-8"
+          className="grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-3"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: false, amount: 0.5 }}
