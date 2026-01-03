@@ -7,17 +7,21 @@ export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof 
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     const isScrollable = window.document.documentElement.scrollHeight > window.innerHeight;
+    const velocity = scrollYProgress.getVelocity();
+
+    if (Math.abs(velocity) < 0.1) {
+      return;
+    }
+
     const prev = scrollYProgress.getPrevious() ?? 0;
-    const currClamped = Math.max(0, Math.min(1, current));
-    const prevClamped = Math.max(0, Math.min(1, prev));
-    const diff = currClamped - prevClamped;
+    const diff = current - prev;
 
     if (!isScrollable) {
       setVisible(true);
       return;
     }
 
-    if (currClamped < 0.05) {
+    if (current < 0.05) {
       setVisible(true);
     } else {
       if (diff < 0) {
