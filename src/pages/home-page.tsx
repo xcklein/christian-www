@@ -56,7 +56,7 @@ function Section({ className, ...props }: ComponentProps<"section">) {
     <motion.section
       ref={ref}
       className={cn(
-        "flex h-screen min-h-200 w-full flex-col items-center justify-center gap-8 p-4",
+        "flex h-svh min-h-200 w-full flex-col items-center justify-center gap-8 p-4",
         className,
       )}
       initial={{ opacity: 0, y: 20 }}
