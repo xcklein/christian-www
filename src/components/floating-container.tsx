@@ -9,7 +9,7 @@ export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof 
     const isScrollable = window.document.documentElement.scrollHeight > window.innerHeight;
     const velocity = scrollYProgress.getVelocity();
 
-    if (Math.abs(velocity) < 0.1) {
+    if (Math.abs(velocity) < 0.5) {
       return;
     }
 
