@@ -78,5 +78,33 @@
 }
 
 @theme {
+  --animate-heartbeat: heartbeat var(--animate-heartbeat-duration, 8000ms) ease-in-out infinite;
+
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1);
+    }
+    52.5% {
+      transform: scale(1.1);
+    }
+    55% {
+      transform: scale(1);
+    }
+    57.5% {
+      transform: scale(1.1);
+    }
+    60% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+@theme {
   --ease-flip-heavy: cubic-bezier(0.3, 0.8, 0.2, 1.3);
 }

@@ -3,23 +3,22 @@ import { useState, type ComponentProps } from "react";
 
 export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof motion.div>) => {
   const { scrollYProgress } = useScroll();
-
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
+    const isScrollable = window.document.documentElement.scrollHeight > window.innerHeight;
     const prev = scrollYProgress.getPrevious() ?? 0;
+    const diff = current - prev;
 
-    if (current === 1 || !prev) {
+    if (!isScrollable) {
       setVisible(true);
       return;
     }
 
-    const direction = current - prev;
-
-    if (scrollYProgress.get() < 0.05) {
+    if (current < 0.05) {
       setVisible(true);
     } else {
-      if (direction < 0) {
+      if (diff < 0) {
         setVisible(true);
       } else {
         setVisible(false);

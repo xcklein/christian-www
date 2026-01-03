@@ -97,7 +97,7 @@ function FullStackSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        Full Stack Expertise
+        Full-Stack Expertise
       </motion.h2>
       <motion.div
         ref={containerRef}
@@ -379,7 +379,7 @@ export function HomePage() {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Made With
+          Brought to you By
         </motion.h2>
         <motion.div
           className="grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-3"

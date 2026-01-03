@@ -16,6 +16,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { GITHUB_URL, LINKEDIN_URL } from "@/lib/urls";
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
@@ -54,7 +55,7 @@ export function NavMobile() {
         </DrawerHeader>
         <div className="flex flex-col gap-1">
           <div className="flex flex-col gap-1">
-            <h3 className="font-semibold">Playground</h3>
+            <h3 className="font-semibold">Pages</h3>
             <ul className="flex flex-col gap-1">
               <li>
                 <Link
@@ -75,7 +76,7 @@ export function NavMobile() {
             <ul className="flex flex-col gap-1">
               <li>
                 <Link
-                  to="https://github.com/xcklein"
+                  to={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
@@ -86,7 +87,7 @@ export function NavMobile() {
               </li>
               <li>
                 <Link
-                  to="https://linkedin.com/in/xcklein"
+                  to={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
@@ -111,7 +112,7 @@ export function NavOther() {
     <NavigationMenu viewport={false}>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Playground</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Pages</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="flex w-xs flex-col gap-1">
               <li>
@@ -132,7 +133,7 @@ export function NavOther() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    to="https://github.com/xcklein"
+                    to={GITHUB_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-row items-center gap-1"
@@ -145,7 +146,7 @@ export function NavOther() {
               <li>
                 <NavigationMenuLink asChild>
                   <Link
-                    to="https://linkedin.com/in/xcklein"
+                    to={LINKEDIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-row items-center gap-1"
