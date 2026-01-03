@@ -55,7 +55,10 @@ function Section({ className, ...props }: ComponentProps<"section">) {
   return (
     <motion.section
       ref={ref}
-      className={cn("flex h-svh w-full flex-col items-center justify-center gap-8 p-4", className)}
+      className={cn(
+        "flex h-screen min-h-200 w-full flex-col items-center justify-center gap-8 p-4",
+        className,
+      )}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       exit={{ opacity: 0, y: -20 }}
