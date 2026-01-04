@@ -202,7 +202,7 @@ function IconContainer({
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: direction === "up" ? 2 : -2, x: "-50%" }}
               className={cn(
-                "text-foreground absolute left-1/2 w-fit rounded-md px-2 py-0.5 text-xs whitespace-pre",
+                "text-foreground absolute left-1/2 w-fit rounded-md px-2 py-0.5 whitespace-pre",
                 direction === "up" ? "-top-8" : "-bottom-8",
               )}
             >

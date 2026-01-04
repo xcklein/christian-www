@@ -173,7 +173,7 @@ export function ContactPage() {
     <div className="flex w-full flex-col items-center justify-center gap-4 p-4">
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-3xl font-bold">Contact Me</h1>
-        <p className="text-muted-foreground">Reach out by submitting this form</p>
+        <p className="text-muted-foreground">Send me an email</p>
       </div>
       <Card className="w-full max-w-md p-4">
         <ContactForm />
