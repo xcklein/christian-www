@@ -41,7 +41,7 @@ export function NavMobile() {
               <Button
                 asChild
                 variant="ghost"
-                className="p-0!"
+                className="w-full justify-start p-0!"
                 onClick={() => {
                   setDrawerOpen(false);
                 }}
@@ -56,7 +56,7 @@ export function NavMobile() {
               <Button
                 asChild
                 variant="ghost"
-                className="p-0!"
+                className="w-full justify-start p-0!"
                 onClick={() => {
                   setDrawerOpen(false);
                 }}
@@ -71,7 +71,7 @@ export function NavMobile() {
               <Button
                 asChild
                 variant="ghost"
-                className="p-0!"
+                className="w-full justify-start p-0!"
                 onClick={() => {
                   setDrawerOpen(false);
                 }}

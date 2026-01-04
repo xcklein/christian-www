@@ -12,7 +12,9 @@ import { cn } from "@/lib/utils";
 import {
   AppWindowIcon,
   ArrowDownIcon,
+  ArrowRightIcon,
   DatabaseIcon,
+  QuoteIcon,
   ServerIcon,
   StarIcon,
   UserIcon,
@@ -232,22 +234,8 @@ function FullStackSection() {
         </div>
         <AnimatedBeam
           containerRef={containerRef}
-          fromRef={userRef}
-          toRef={frontendRef}
-          gradientStartColor="var(--foreground)"
-          gradientStopColor="var(--primary)"
-          pathColor="var(--muted-foreground)"
-          pathWidth={pathWidth}
-          reverse
-          duration={duration}
-          delay={3}
-          curvature={120}
-          vertical
-        />
-        <AnimatedBeam
-          containerRef={containerRef}
           fromRef={frontendRef}
-          toRef={backendRef}
+          toRef={userRef}
           gradientStartColor="var(--foreground)"
           gradientStopColor="var(--primary)"
           pathColor="var(--muted-foreground)"
@@ -255,13 +243,13 @@ function FullStackSection() {
           reverse
           duration={duration}
           delay={2}
-          curvature={-120}
+          curvature={120}
           vertical
         />
         <AnimatedBeam
           containerRef={containerRef}
           fromRef={backendRef}
-          toRef={dataRef}
+          toRef={frontendRef}
           gradientStartColor="var(--foreground)"
           gradientStopColor="var(--primary)"
           pathColor="var(--muted-foreground)"
@@ -269,6 +257,20 @@ function FullStackSection() {
           reverse
           duration={duration}
           delay={1}
+          curvature={-120}
+          vertical
+        />
+        <AnimatedBeam
+          containerRef={containerRef}
+          fromRef={dataRef}
+          toRef={backendRef}
+          gradientStartColor="var(--foreground)"
+          gradientStopColor="var(--primary)"
+          pathColor="var(--muted-foreground)"
+          pathWidth={pathWidth}
+          reverse
+          duration={duration}
+          delay={0}
           curvature={120}
           vertical
         />
@@ -323,7 +325,9 @@ function TopLanguagesSection() {
         transition={{ duration: 0.6, delay: 0.6 }}
       >
         <Button variant="link" asChild>
-          <Link to="/technology">See All</Link>
+          <Link to="/technology">
+            See All Technologies <ArrowRightIcon />
+          </Link>
         </Button>
       </motion.div>
     </Section>
@@ -340,7 +344,7 @@ function ReviewsSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        Reviews
+        Word of Mouth
       </motion.h2>
       <motion.span
         className="flex flex-row items-center justify-center gap-1"
@@ -362,32 +366,26 @@ function ReviewsSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <Marquee pauseOnHover>
+        <Marquee pauseOnHover className="[--duration:80s]">
           {QUOTES.map((quote) => (
             <Card key={quote.text} className="w-48 p-4 md:w-80">
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3">
-                  <Avatar className="size-12">
-                    <AvatarFallback className="text-xs font-semibold">
-                      {quote.author.name.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex flex-col gap-0.5">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2">
+                  <QuoteIcon className="fill-foreground text-transparent" />
+                  <div className="flex flex-col">
                     <p className="text-sm font-semibold">{quote.author.name}</p>
                     {quote.author.title && (
                       <p className="text-muted-foreground text-xs">{quote.author.title}</p>
                     )}
                   </div>
                 </div>
-                <blockquote className="text-muted-foreground text-sm italic">
-                  "{quote.text}"
-                </blockquote>
+                <blockquote className="text-muted-foreground italic">{quote.text}</blockquote>
               </div>
             </Card>
           ))}
         </Marquee>
-        <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-linear-to-r"></div>
-        <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-linear-to-l"></div>
+        <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/5 bg-linear-to-r"></div>
+        <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/5 bg-linear-to-l"></div>
       </motion.div>
     </Section>
   );
@@ -403,7 +401,7 @@ function BroughtToYouBySection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        Brought to you By
+        Brought to You By
       </motion.h2>
       <motion.div
         className="grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-3"
@@ -468,7 +466,9 @@ function ConnectSection() {
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
       >
         <Button variant="link" asChild>
-          <Link to="/contact">Contact Me</Link>
+          <Link to="/contact">
+            Contact Me <ArrowRightIcon />
+          </Link>
         </Button>
       </motion.div>
     </Section>

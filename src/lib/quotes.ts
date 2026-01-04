@@ -39,5 +39,5 @@ export const QUOTES: Quote[] = [
     text: "How do you know so much about this stuff?",
     author: { name: "Anonymous", title: "Team Member" },
   },
-  { text: "I'm proud of you.", author: { name: "Mom" } },
+  { text: "I'm proud of you.", author: { name: "Mom", title: "Mother" } },
 ];

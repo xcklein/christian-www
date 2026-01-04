@@ -50,41 +50,31 @@ export function TechnologyPage() {
   );
 
   return (
-    <div className="relative flex flex-col justify-center overflow-hidden">
-      {rows.map((row, idx) => (
-        // eslint-disable-next-line react-x/no-array-index-key
-        <Marquee key={idx} pauseOnHover className="[--duration:24s]">
-          {row.map((node) => {
-            const isFlipped = flipped[node.name] || false;
+    <div className="relative flex flex-col items-center justify-center gap-2 overflow-hidden">
+      <h1 className="text-center text-2xl font-bold md:text-4xl">Technologies Used</h1>
+      <div>
+        {rows.map((row, idx) => (
+          // eslint-disable-next-line react-x/no-array-index-key
+          <Marquee key={idx} pauseOnHover className="[--duration:24s]">
+            {row.map((node) => {
+              const isFlipped = flipped[node.name] || false;
 
-            return (
-              <div
-                key={node.name}
-                className="relative size-32 perspective-midrange hover:scale-110 md:size-44"
-              >
-                <Card
-                  className="ease-flip-heavy absolute h-full w-full cursor-pointer transition-transform duration-1000 transform-3d"
-                  onClick={() => {
-                    handleCardClick(node.name);
-                  }}
-                  style={{
-                    transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                  }}
+              return (
+                <div
+                  key={node.name}
+                  className="relative size-32 perspective-midrange hover:scale-110 md:size-44"
                 >
-                  {/* Front */}
-                  <div className="absolute inset-0 flex items-center justify-center p-4 backface-hidden">
-                    <div className="flex size-12 items-center justify-center md:size-16">
-                      <img
-                        src={node.img}
-                        alt={node.name}
-                        className="h-full w-full object-contain"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Back */}
-                  <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10">
+                  <Card
+                    className="ease-flip-heavy absolute h-full w-full cursor-pointer transition-transform duration-1000 transform-3d"
+                    onClick={() => {
+                      handleCardClick(node.name);
+                    }}
+                    style={{
+                      transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                    }}
+                  >
+                    {/* Front */}
+                    <div className="absolute inset-0 flex items-center justify-center p-4 backface-hidden">
                       <div className="flex size-12 items-center justify-center md:size-16">
                         <img
                           src={node.img}
@@ -93,18 +83,31 @@ export function TechnologyPage() {
                         />
                       </div>
                     </div>
-                    <h1 className="text-sm font-bold">{node.name}</h1>
-                    <div>
-                      <p className="text-xs font-semibold">{node.exp}</p>
-                      <ExpBar level={node.exp} />
+
+                    {/* Back */}
+                    <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10">
+                        <div className="flex size-12 items-center justify-center md:size-16">
+                          <img
+                            src={node.img}
+                            alt={node.name}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                      </div>
+                      <h1 className="text-sm font-bold">{node.name}</h1>
+                      <div>
+                        <p className="text-xs font-semibold">{node.exp}</p>
+                        <ExpBar level={node.exp} />
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </div>
-            );
-          })}
-        </Marquee>
-      ))}
+                  </Card>
+                </div>
+              );
+            })}
+          </Marquee>
+        ))}
+      </div>
       <Button
         size="icon"
         onClick={handleButtonClick}
