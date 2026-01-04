@@ -16,13 +16,10 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { GITHUB_URL, LINKEDIN_URL } from "@/lib/urls";
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
 import { Footer } from "./footer";
-import { GitHub } from "./svg/github";
-import { LinkedIn } from "./svg/linkedin";
 
 export function Nav() {
   const isMobile = useIsMobile();
@@ -69,31 +66,16 @@ export function NavMobile() {
                   <p className="text-muted-foreground text-sm">Some stuff I have worked with</p>
                 </Link>
               </li>
-            </ul>
-          </div>
-          <div className="flex flex-col gap-1">
-            <h3 className="font-semibold">Socials</h3>
-            <ul className="flex flex-col gap-1">
               <li>
                 <Link
-                  to={GITHUB_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
+                  to="/contact"
+                  className="hover:bg-accent flex flex-col gap-1 rounded-md p-2"
+                  onClick={() => {
+                    setDrawerOpen(false);
+                  }}
                 >
-                  <GitHub className="text-foreground size-4" />
-                  GitHub
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to={LINKEDIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:bg-accent flex flex-row items-center gap-2 rounded-md p-2"
-                >
-                  <LinkedIn className="text-foreground size-4" />
-                  LinkedIn
+                  <h4 className="font-medium">Contact Me</h4>
+                  <p className="text-muted-foreground text-sm">Let's connect!</p>
                 </Link>
               </li>
             </ul>
@@ -123,36 +105,11 @@ export function NavOther() {
                   </Link>
                 </NavigationMenuLink>
               </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Socials</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="flex flex-col gap-1">
               <li>
                 <NavigationMenuLink asChild>
-                  <Link
-                    to={GITHUB_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-row items-center gap-1"
-                  >
-                    <GitHub className="text-foreground size-4" />
-                    GitHub
-                  </Link>
-                </NavigationMenuLink>
-              </li>
-              <li>
-                <NavigationMenuLink asChild>
-                  <Link
-                    to={LINKEDIN_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-row items-center gap-1"
-                  >
-                    <LinkedIn className="text-foreground size-4" />
-                    LinkedIn
+                  <Link to="/contact">
+                    <h4>Contact Me</h4>
+                    <p className="text-muted-foreground">Let's connect!</p>
                   </Link>
                 </NavigationMenuLink>
               </li>

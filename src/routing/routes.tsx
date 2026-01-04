@@ -1,3 +1,4 @@
+import { ContactPage } from "@/pages/contact-page";
 import { HomePage } from "@/pages/home-page";
 import { NotFoundPage } from "@/pages/not-found-page";
 import { TechnologyPage } from "@/pages/technology-page";
@@ -16,6 +17,10 @@ export const ROUTES: RouteObject[] = [
       {
         path: "/technology",
         element: <TechnologyPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactPage />,
       },
     ],
   },

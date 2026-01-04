@@ -31,6 +31,7 @@ All contributions must maintain:
 - Tailwind CSS for styling (no raw CSS unless necessary)
 - Component-focused tests validating core functionality and behavior
 - Never change the theme without explicit direction
+- Only use colors from the theme
 
 ## Important Notes
 

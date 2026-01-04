@@ -1,11 +1,8 @@
-import { GITHUB_URL, LINKEDIN_URL } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { HeartIcon } from "lucide-react";
-import { Link } from "react-router";
+import { GitHubButton } from "./github-button";
+import { LinkedInButton } from "./linkedin-button";
 import { SourceButton } from "./source-button";
-import { GitHub } from "./svg/github";
-import { LinkedIn } from "./svg/linkedin";
-import { Button } from "./ui/button";
 
 interface FooterProps {
   className?: string;
@@ -22,16 +19,8 @@ export function Footer({ className }: FooterProps) {
         </p>
       </span>
       <span className="flex items-center gap-1">
-        <Button variant="ghost" size="icon" asChild>
-          <Link to={GITHUB_URL} target="_blank" rel="noopener noreferrer">
-            <GitHub />
-          </Link>
-        </Button>
-        <Button variant="ghost" size="icon" asChild>
-          <Link to={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
-            <LinkedIn />
-          </Link>
-        </Button>
+        <GitHubButton variant="ghost" size="icon" />
+        <LinkedInButton variant="ghost" size="icon" />
         <SourceButton variant="ghost" size="icon" />
       </span>
     </footer>

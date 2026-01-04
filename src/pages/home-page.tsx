@@ -1,3 +1,5 @@
+import { GitHubButton } from "@/components/github-button";
+import { LinkedInButton } from "@/components/linkedin-button";
 import { SourceButton } from "@/components/source-button";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -5,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 import { QUOTES } from "@/lib/quotes";
-import { TECHNOLOGIES, type Technology } from "@/lib/technologies";
+import { TECHNOLOGIES } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
 import {
   AppWindowIcon,
@@ -22,27 +24,34 @@ import { useInView } from "react-intersection-observer";
 import { Link } from "react-router";
 
 interface MadeWith {
-  tech: Technology;
+  name: string;
+  image: string;
 }
 
 const MADE_WITH: MadeWith[] = [
   {
-    tech: TECHNOLOGIES.react,
+    name: TECHNOLOGIES.react.name,
+    image: TECHNOLOGIES.react.img,
   },
   {
-    tech: TECHNOLOGIES.tailwind,
+    name: "Shadcn",
+    image: "images/icons/shadcn.svg",
   },
   {
-    tech: TECHNOLOGIES.typescript,
+    name: TECHNOLOGIES.tailwind.name,
+    image: TECHNOLOGIES.tailwind.img,
   },
   {
-    tech: TECHNOLOGIES.vercel,
+    name: TECHNOLOGIES.vercel.name,
+    image: TECHNOLOGIES.vercel.img,
   },
   {
-    tech: TECHNOLOGIES.vite,
+    name: TECHNOLOGIES.vite.name,
+    image: TECHNOLOGIES.vite.img,
   },
   {
-    tech: TECHNOLOGIES.vitest,
+    name: TECHNOLOGIES.vitest.name,
+    image: TECHNOLOGIES.vitest.img,
   },
 ];
 
@@ -249,6 +258,16 @@ export function HomePage() {
           >
             Software Engineer
           </motion.p>
+          <motion.div
+            className="flex flex-row gap-1"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.5 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+          >
+            <GitHubButton variant="ghost" size="icon" />
+            <LinkedInButton variant="ghost" size="icon" />
+          </motion.div>
         </div>
         <motion.div
           className="animate-bounce"
@@ -391,7 +410,7 @@ export function HomePage() {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, staggerChildren: 0.1, delayChildren: 0.2 }}
         >
-          {MADE_WITH.map(({ tech }, index) => (
+          {MADE_WITH.map((tech, index) => (
             <motion.div
               key={tech.name}
               className="flex flex-col items-center gap-4"
@@ -400,8 +419,8 @@ export function HomePage() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
             >
-              <div className="flex size-28 items-center justify-center md:size-32">
-                <img src={tech.img} alt={tech.name} className="h-full w-full object-contain" />
+              <div className="flex size-26 items-center justify-center md:size-32">
+                <img src={tech.image} alt={tech.name} className="h-full w-full object-contain" />
               </div>
               <p className="text-xl font-semibold">{tech.name}</p>
             </motion.div>
@@ -414,6 +433,36 @@ export function HomePage() {
           transition={{ duration: 0.6, ease: "easeOut", delay: (MADE_WITH.length + 1) * 0.1 }}
         >
           <SourceButton />
+        </motion.div>
+      </Section>
+      <Section>
+        <motion.h2
+          className="text-4xl font-bold"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Let's Connect
+        </motion.h2>
+        <motion.p
+          className="text-muted-foreground max-w-md text-center text-lg"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
+          Hiring? Looking for a partner? Just have a cool idea? Send me a ping.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+        >
+          <Button variant="link" asChild>
+            <Link to="/contact">Contact Me</Link>
+          </Button>
         </motion.div>
       </Section>
     </div>
