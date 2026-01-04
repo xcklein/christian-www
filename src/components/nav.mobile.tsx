@@ -85,7 +85,7 @@ export function NavMobile() {
           </ul>
         </nav>
         <DrawerFooter className="p-0">
-          <Footer />
+          <Footer className="p-0" />
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
