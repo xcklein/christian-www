@@ -1,9 +1,16 @@
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useState, type ComponentProps } from "react";
+import { useEffect, useState, type ComponentProps } from "react";
+import { useLocation } from "react-router";
 
 export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof motion.div>) => {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setVisible(true);
+  }, [location]);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     const isScrollable = window.document.documentElement.scrollHeight > window.innerHeight;
@@ -11,9 +18,14 @@ export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof 
     const currClamped = Math.max(0, Math.min(1, current));
     const prevClamped = Math.max(0, Math.min(1, prev));
     const diff = currClamped - prevClamped;
+    const velocity = scrollYProgress.getVelocity();
 
     if (!isScrollable) {
       setVisible(true);
+      return;
+    }
+
+    if (velocity < 0.15) {
       return;
     }
 
