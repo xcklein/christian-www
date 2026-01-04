@@ -9,10 +9,6 @@ export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof 
     const isScrollable = window.document.documentElement.scrollHeight > window.innerHeight;
     const velocity = scrollYProgress.getVelocity();
 
-    if (Math.abs(velocity) < 0.25) {
-      return;
-    }
-
     const prev = scrollYProgress.getPrevious() ?? 0;
     const currClamped = Math.max(0, Math.min(1, current));
     const prevClamped = Math.max(0, Math.min(1, prev));
@@ -20,6 +16,10 @@ export const FloatingContainer = ({ children, ...props }: ComponentProps<typeof 
 
     if (!isScrollable) {
       setVisible(true);
+      return;
+    }
+
+    if (Math.abs(velocity) < 0.25) {
       return;
     }
 
