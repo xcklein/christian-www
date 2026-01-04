@@ -58,7 +58,7 @@ function Section({ className, ...props }: ComponentProps<"section">) {
   return (
     <section
       className={cn(
-        "flex min-h-[calc(100svh-80px)] w-full flex-col items-center justify-center gap-8 p-4",
+        "flex min-h-[calc(100svh-52px)] w-full flex-col items-center justify-center gap-8 p-4",
         className,
       )}
     >
