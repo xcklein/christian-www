@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { QUOTES } from "@/lib/quotes";
 import { TECHNOLOGIES } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
@@ -73,7 +74,10 @@ function Circle({ ref, className, children, ...props }: ComponentPropsWithRef<ty
   return (
     <Card
       ref={ref}
-      className={cn("z-10 flex size-24 items-center justify-center rounded-full p-6", className)}
+      className={cn(
+        "flex size-24 items-center justify-center rounded-full p-6 md:size-32 md:p-8",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -146,13 +150,14 @@ function HeroSection() {
 }
 
 function FullStackSection() {
+  const isMobile = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
   const frontendRef = useRef<HTMLDivElement>(null);
   const backendRef = useRef<HTMLDivElement>(null);
   const dataRef = useRef<HTMLDivElement>(null);
 
-  const pathWidth = 8;
+  const pathWidth = isMobile ? 8 : 12;
   const duration = 2;
 
   return (
@@ -176,7 +181,7 @@ function FullStackSection() {
       >
         <div className="flex flex-col gap-6 md:flex-row-reverse md:gap-16 md:py-8">
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={userRef}>
+            <Circle ref={userRef} className="z-10">
               <UserIcon className="h-full w-full object-contain" />
             </Circle>
             <motion.p
@@ -190,7 +195,7 @@ function FullStackSection() {
             </motion.p>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={frontendRef}>
+            <Circle ref={frontendRef} className="z-10">
               <AppWindowIcon className="h-full w-full object-contain" />
             </Circle>
             <motion.p
@@ -204,7 +209,7 @@ function FullStackSection() {
             </motion.p>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={backendRef}>
+            <Circle ref={backendRef} className="z-10">
               <ServerIcon className="h-full w-full object-contain" />
             </Circle>
             <motion.p
@@ -218,7 +223,7 @@ function FullStackSection() {
             </motion.p>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={dataRef}>
+            <Circle ref={dataRef} className="z-10">
               <DatabaseIcon className="h-full w-full object-contain" />
             </Circle>
             <motion.p
@@ -341,7 +346,7 @@ function ReviewsSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        Word of Mouth
+        Word on the Street
       </motion.h2>
       <motion.span
         className="flex flex-row items-center justify-center gap-1"
