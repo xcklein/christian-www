@@ -456,7 +456,7 @@ function ReviewsSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
       >
-        <Marquee pauseOnHover className="[--duration:80s]">
+        <Marquee className="[--duration:80s]">
           {QUOTES.map((quote) => (
             <Card key={quote.text} className="w-48 p-4 md:w-80">
               <div className="flex flex-col gap-2">
