@@ -198,7 +198,7 @@ function FullStackSection() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
               style={{ perspective: "1000px" }}
-              className="z-20 relative"
+              className="relative z-20"
             >
               <Circle ref={userRef} className="z-10">
                 <UserIcon className="h-full w-full object-contain" />
@@ -221,7 +221,7 @@ function FullStackSection() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               style={{ perspective: "1000px" }}
-              className="z-20 relative"
+              className="relative z-20"
             >
               <Circle ref={frontendRef} className="z-10">
                 <AppWindowIcon className="h-full w-full object-contain" />
@@ -244,7 +244,7 @@ function FullStackSection() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
               style={{ perspective: "1000px" }}
-              className="z-20 relative"
+              className="relative z-20"
             >
               <Circle ref={backendRef} className="z-10">
                 <ServerIcon className="h-full w-full object-contain" />
@@ -267,7 +267,7 @@ function FullStackSection() {
               viewport={{ once: false, amount: 0.5 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
               style={{ perspective: "1000px" }}
-              className="z-20 relative"
+              className="relative z-20"
             >
               <Circle ref={dataRef} className="z-10">
                 <DatabaseIcon className="h-full w-full object-contain" />
