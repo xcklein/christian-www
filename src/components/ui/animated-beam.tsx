@@ -8,7 +8,6 @@ export interface AnimatedBeamProps {
   fromRef: RefObject<HTMLElement | null>;
   toRef: RefObject<HTMLElement | null>;
   curvature?: number;
-  reverse?: boolean;
   pathColor?: string;
   pathWidth?: number;
   pathOpacity?: number;
@@ -16,11 +15,11 @@ export interface AnimatedBeamProps {
   gradientStopColor?: string;
   delay?: number;
   duration?: number;
+  repeatDelay?: number;
   startXOffset?: number;
   startYOffset?: number;
   endXOffset?: number;
   endYOffset?: number;
-  vertical?: boolean;
 }
 
 export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
@@ -29,9 +28,9 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   fromRef,
   toRef,
   curvature = 0,
-  reverse = false,
   duration = 6,
   delay = 0,
+  repeatDelay = 0,
   pathColor = "gray",
   pathWidth = 2,
   pathOpacity = 0.2,
@@ -41,40 +40,21 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   startYOffset = 0,
   endXOffset = 0,
   endYOffset = 0,
-  vertical = false,
 }) => {
   const id = useId();
   const [pathD, setPathD] = useState("");
   const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
-
-  // Calculate the gradient coordinates based on the reverse prop and vertical prop
-  const gradientCoordinates = vertical
-    ? reverse
-      ? {
-          x1: ["0%", "0%"],
-          x2: ["0%", "0%"],
-          y1: ["90%", "-10%"],
-          y2: ["100%", "0%"],
-        }
-      : {
-          x1: ["0%", "0%"],
-          x2: ["0%", "0%"],
-          y1: ["10%", "110%"],
-          y2: ["0%", "100%"],
-        }
-    : reverse
-      ? {
-          x1: ["90%", "-10%"],
-          x2: ["100%", "0%"],
-          y1: ["0%", "0%"],
-          y2: ["0%", "0%"],
-        }
-      : {
-          x1: ["10%", "110%"],
-          x2: ["0%", "100%"],
-          y1: ["0%", "0%"],
-          y2: ["0%", "0%"],
-        };
+  const [gradientCoordinates, setGradientCoordinates] = useState<{
+    x1: [number, number];
+    x2: [number, number];
+    y1: [number, number];
+    y2: [number, number];
+  }>({
+    x1: [0, 0],
+    x2: [0, 0],
+    y1: [0, 0],
+    y2: [0, 0],
+  });
 
   useEffect(() => {
     const updatePath = () => {
@@ -92,15 +72,40 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         const endX = rectB.left - containerRect.left + rectB.width / 2 + endXOffset;
         const endY = rectB.top - containerRect.top + rectB.height / 2 + endYOffset;
 
+        // Calculate path
+        const controlX = (startX + endX) / 2;
+        const controlY = (startY + endY) / 2;
+
         let d: string;
-        if (vertical) {
-          const controlX = startX - curvature;
-          d = `M ${startX},${startY} Q ${controlX},${(startY + endY) / 2} ${endX},${endY}`;
+        if (Math.abs(endX - startX) > Math.abs(endY - startY)) {
+          // Horizontal-ish: curvature affects Y
+          d = `M ${startX},${startY} Q ${controlX},${startY - curvature} ${endX},${endY}`;
         } else {
-          const controlY = startY - curvature;
-          d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`;
+          // Vertical-ish: curvature affects X
+          d = `M ${startX},${startY} Q ${startX - curvature},${controlY} ${endX},${endY}`;
         }
         setPathD(d);
+
+        // Calculate gradient coordinates based on positions
+        const deltaX = endX - startX;
+        const deltaY = endY - startY;
+
+        // Normalize the direction vector
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        const dirX = distance > 0 ? deltaX / distance : 0;
+        const dirY = distance > 0 ? deltaY / distance : 0;
+
+        // Gradient length (how long the visible gradient is)
+        const gradientLength = distance * 0.25; // 25% of the path length
+
+        // Animate from before start (gradient fully hidden) to after end (gradient fully hidden)
+        // x1/y1 is the trailing edge (0% - transparent), x2/y2 is the leading edge (100% - transparent)
+        setGradientCoordinates({
+          x1: [startX - dirX * gradientLength * 2, endX] as [number, number],
+          x2: [startX - dirX * gradientLength, endX + dirX * gradientLength] as [number, number],
+          y1: [startY - dirY * gradientLength * 2, endY] as [number, number],
+          y2: [startY - dirY * gradientLength, endY + dirY * gradientLength] as [number, number],
+        });
       }
     };
 
@@ -121,17 +126,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
     return () => {
       resizeObserver.disconnect();
     };
-  }, [
-    containerRef,
-    fromRef,
-    toRef,
-    curvature,
-    startXOffset,
-    startYOffset,
-    endXOffset,
-    endYOffset,
-    vertical,
-  ]);
+  }, [containerRef, fromRef, toRef, curvature, startXOffset, startYOffset, endXOffset, endYOffset]);
 
   return (
     <svg
@@ -162,10 +157,10 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           id={id}
           gradientUnits={"userSpaceOnUse"}
           initial={{
-            x1: "0%",
-            x2: "0%",
-            y1: "0%",
-            y2: "0%",
+            x1: gradientCoordinates.x1[0],
+            x2: gradientCoordinates.x2[0],
+            y1: gradientCoordinates.y1[0],
+            y2: gradientCoordinates.y2[0],
           }}
           animate={{
             x1: gradientCoordinates.x1,
@@ -176,15 +171,15 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           transition={{
             delay,
             duration,
-            ease: [0.3, 1, 0.8, 1],
+            ease: "linear",
             repeat: Infinity,
-            repeatDelay: 0,
+            repeatDelay,
           }}
         >
-          <stop stopColor={gradientStartColor} stopOpacity="0"></stop>
+          <stop offset="0%" stopColor={gradientStopColor} stopOpacity="0"></stop>
+          <stop offset="67.5%" stopColor={gradientStopColor}></stop>
           <stop stopColor={gradientStartColor}></stop>
-          <stop offset="32.5%" stopColor={gradientStopColor}></stop>
-          <stop offset="100%" stopColor={gradientStopColor} stopOpacity="0"></stop>
+          <stop offset="100%" stopColor={gradientStartColor} stopOpacity="0"></stop>
         </motion.linearGradient>
       </defs>
     </svg>
