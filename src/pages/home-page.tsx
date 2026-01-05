@@ -20,7 +20,7 @@ import {
   StarIcon,
   UserIcon,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, stagger } from "motion/react";
 import type { ComponentProps, ComponentPropsWithRef } from "react";
 import { useRef } from "react";
 import { Link } from "react-router";
@@ -421,19 +421,34 @@ function ReviewsSection() {
           What's the word on the street?
         </motion.p>
       </div>
-      <motion.span
+      <motion.div
         className="flex flex-row items-center justify-center gap-1"
-        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        initial="initial"
+        whileInView="whileInView"
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+        variants={{
+          initial: { opacity: 0, y: 50, scale: 0.9 },
+          whileInView: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.6, ease: "easeOut", delay: 0.4, delayChildren: stagger(0.5) },
+          },
+        }}
       >
-        <StarIcon className="text-primary fill-primary" />
-        <StarIcon className="text-primary fill-primary" />
-        <StarIcon className="text-primary fill-primary" />
-        <StarIcon className="text-primary fill-primary" />
-        <StarIcon className="text-primary fill-primary" />
-      </motion.span>
+        {[0, 1, 2, 3, 4].map((index) => (
+          <motion.span
+            key={index}
+            variants={{
+              initial: { fillOpacity: 0 },
+              whileInView: { fillOpacity: 1 },
+            }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
+            <StarIcon className="text-primary fill-primary" />
+          </motion.span>
+        ))}
+      </motion.div>
       <motion.div
         className="relative flex w-full flex-col items-center justify-center overflow-hidden"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
