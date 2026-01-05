@@ -42,7 +42,7 @@ export function TechnologyPage() {
   };
 
   const rowLength = Math.ceil(Object.values(TECHNOLOGIES).length / 4);
-  const rows = Array.from({ length: 4 }, (_, i) =>
+  const rows = Array.from({ length: 3 }, (_, i) =>
     Object.values(TECHNOLOGIES).slice(
       i * rowLength,
       Math.min((i + 1) * rowLength, Object.values(TECHNOLOGIES).length),
@@ -50,12 +50,15 @@ export function TechnologyPage() {
   );
 
   return (
-    <div className="relative flex flex-col items-center justify-center gap-2 overflow-hidden">
-      <h1 className="text-center text-2xl font-bold md:text-4xl">Technologies Used</h1>
-      <div>
+    <div className="flex flex-col items-center justify-center gap-4 overflow-hidden">
+      <div className="flex flex-col gap-2 text-center">
+        <h1 className="text-4xl font-bold md:text-4xl">Technology</h1>
+        <p className="text-muted-foreground text-lg">Some stuff I have used.</p>
+      </div>
+      <div className="relative">
         {rows.map((row, idx) => (
           // eslint-disable-next-line react-x/no-array-index-key
-          <Marquee key={idx} pauseOnHover className="[--duration:24s]">
+          <Marquee key={idx} pauseOnHover className="[--duration:32s]">
             {row.map((node) => {
               const isFlipped = flipped[node.name] || false;
 

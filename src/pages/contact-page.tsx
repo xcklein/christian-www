@@ -61,7 +61,7 @@ export function ContactForm() {
           <input type="checkbox" {...register("botcheck")} style={{ display: "none" }} />
 
           <FieldSet>
-            <FieldGroup>
+            <FieldGroup className="gap-2">
               <Field>
                 <FieldLabel htmlFor="name">Name</FieldLabel>
                 <Input
@@ -71,9 +71,9 @@ export function ContactForm() {
                   {...register("name", { required: "Name is required" })}
                   aria-invalid={errors.name ? "true" : "false"}
                 />
-                <div className="min-h-5">
+                <div className="min-h-4">
                   {typeof errors.name?.message === "string" && (
-                    <p className="text-palette-red text-sm">{errors.name.message}</p>
+                    <p className="text-palette-red text-xs">{errors.name.message}</p>
                   )}
                 </div>
               </Field>
@@ -93,9 +93,9 @@ export function ContactForm() {
                   })}
                   aria-invalid={errors.email ? "true" : "false"}
                 />
-                <div className="min-h-5">
+                <div className="min-h-4">
                   {typeof errors.email?.message === "string" && (
-                    <p className="text-palette-red text-sm">{errors.email.message}</p>
+                    <p className="text-palette-red text-xs">{errors.email.message}</p>
                   )}
                 </div>
               </Field>
@@ -108,9 +108,9 @@ export function ContactForm() {
                   {...register("message", { required: "Message is required" })}
                   aria-invalid={errors.message ? "true" : "false"}
                 />
-                <div className="min-h-5">
+                <div className="min-h-4">
                   {typeof errors.message?.message === "string" && (
-                    <p className="text-palette-red text-sm">{errors.message.message}</p>
+                    <p className="text-palette-red text-xs">{errors.message.message}</p>
                   )}
                 </div>
               </Field>
@@ -124,6 +124,11 @@ export function ContactForm() {
                     onVerify={handleHCaptchaChange}
                     theme={actual}
                   />
+                </div>
+                <div className="min-h-4">
+                  {typeof errors.captcha?.message === "string" && (
+                    <p className="text-palette-red text-xs">{errors.captcha.message}</p>
+                  )}
                 </div>
               </Field>
 
@@ -172,8 +177,8 @@ export function ContactPage() {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4 p-4">
       <div className="flex flex-col gap-2 text-center">
-        <h1 className="text-3xl font-bold">Contact Me</h1>
-        <p className="text-muted-foreground">Send me an email</p>
+        <h1 className="text-4xl font-bold">Contact Me</h1>
+        <p className="text-muted-foreground text-lg">Submit this form and let's chat.</p>
       </div>
       <Card className="w-full max-w-md p-4">
         <ContactForm />

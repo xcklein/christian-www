@@ -75,7 +75,7 @@ function Circle({ ref, className, children, ...props }: ComponentPropsWithRef<ty
     <Card
       ref={ref}
       className={cn(
-        "flex size-24 items-center justify-center rounded-full p-6 md:size-32 md:p-8",
+        "flex size-20 items-center justify-center rounded-full p-6 md:size-32 md:p-8",
         className,
       )}
       {...props}
@@ -374,7 +374,7 @@ function TopLanguagesSection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.15 }}
             style={{ perspective: "1000px" }}
           >
-            <div className="flex size-28 items-center justify-center md:size-32">
+            <div className="flex size-24 items-center justify-center md:size-32">
               <img src={icon} className="h-full w-full object-contain" />
             </div>
             <p className="text-xl font-semibold">{name}</p>
@@ -506,7 +506,7 @@ function BroughtToYouBySection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
             style={{ perspective: "1000px" }}
           >
-            <div className="flex size-26 items-center justify-center md:size-32">
+            <div className="flex size-24 items-center justify-center md:size-32">
               <img src={tech.image} alt={tech.name} className="h-full w-full object-contain" />
             </div>
             <p className="text-xl font-semibold">{tech.name}</p>
