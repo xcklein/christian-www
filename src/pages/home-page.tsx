@@ -174,8 +174,8 @@ function FullStackSection() {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="flex flex-col gap-4 md:flex-row-reverse md:gap-16 md:py-8">
-          <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col gap-6 md:flex-row-reverse md:gap-16 md:py-8">
+          <div className="flex flex-col items-center gap-1">
             <Circle ref={userRef}>
               <UserIcon className="h-full w-full object-contain" />
             </Circle>
@@ -189,7 +189,7 @@ function FullStackSection() {
               User
             </motion.p>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-1">
             <Circle ref={frontendRef}>
               <AppWindowIcon className="h-full w-full object-contain" />
             </Circle>
@@ -203,7 +203,7 @@ function FullStackSection() {
               Frontend
             </motion.p>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-1">
             <Circle ref={backendRef}>
               <ServerIcon className="h-full w-full object-contain" />
             </Circle>
@@ -217,7 +217,7 @@ function FullStackSection() {
               Backend
             </motion.p>
           </div>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-1">
             <Circle ref={dataRef}>
               <DatabaseIcon className="h-full w-full object-contain" />
             </Circle>
