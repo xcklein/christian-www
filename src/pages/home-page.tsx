@@ -102,8 +102,8 @@ function HeroSection() {
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h1
           className="text-4xl font-bold"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
@@ -111,8 +111,8 @@ function HeroSection() {
         </motion.h1>
         <motion.p
           className="text-muted-foreground text-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
@@ -120,8 +120,8 @@ function HeroSection() {
         </motion.p>
         <motion.div
           className="flex flex-row gap-1"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
         >
@@ -131,8 +131,8 @@ function HeroSection() {
       </div>
       <motion.div
         className="animate-bounce"
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -10, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: false, amount: 0.5 }}
         animate={{ y: [0, -10, 0] }}
         transition={{
@@ -162,76 +162,123 @@ function FullStackSection() {
 
   return (
     <Section>
-      <motion.h2
-        className="text-center text-4xl font-bold"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        Full-Stack Expertise
-      </motion.h2>
+      <div className="flex flex-col items-center justify-center gap-2">
+        <motion.h2
+          className="text-center text-4xl font-bold"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Full-Stack Expertise
+        </motion.h2>
+        <motion.p
+          className="text-muted-foreground text-center text-lg"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
+          From data collection to user experience.
+        </motion.p>
+      </div>
       <motion.div
         ref={containerRef}
         className="relative flex w-full flex-col items-center justify-center"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
       >
         <div className="flex flex-col gap-6 md:flex-row-reverse md:gap-16 md:py-8">
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={userRef} className="z-10">
-              <UserIcon className="h-full w-full object-contain" />
-            </Circle>
+            <motion.div
+              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
+              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+              style={{ perspective: "1000px" }}
+              className="z-20 relative"
+            >
+              <Circle ref={userRef} className="z-10">
+                <UserIcon className="h-full w-full object-contain" />
+              </Circle>
+            </motion.div>
             <motion.p
               className="flex items-center font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.65 }}
             >
               User
             </motion.p>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={frontendRef} className="z-10">
-              <AppWindowIcon className="h-full w-full object-contain" />
-            </Circle>
+            <motion.div
+              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
+              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+              style={{ perspective: "1000px" }}
+              className="z-20 relative"
+            >
+              <Circle ref={frontendRef} className="z-10">
+                <AppWindowIcon className="h-full w-full object-contain" />
+              </Circle>
+            </motion.div>
             <motion.p
               className="flex items-center font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.75 }}
             >
               Frontend
             </motion.p>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={backendRef} className="z-10">
-              <ServerIcon className="h-full w-full object-contain" />
-            </Circle>
+            <motion.div
+              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
+              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+              style={{ perspective: "1000px" }}
+              className="z-20 relative"
+            >
+              <Circle ref={backendRef} className="z-10">
+                <ServerIcon className="h-full w-full object-contain" />
+              </Circle>
+            </motion.div>
             <motion.p
               className="flex items-center font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
             >
               Backend
             </motion.p>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <Circle ref={dataRef} className="z-10">
-              <DatabaseIcon className="h-full w-full object-contain" />
-            </Circle>
+            <motion.div
+              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
+              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
+              viewport={{ once: false, amount: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              style={{ perspective: "1000px" }}
+              className="z-20 relative"
+            >
+              <Circle ref={dataRef} className="z-10">
+                <DatabaseIcon className="h-full w-full object-contain" />
+              </Circle>
+            </motion.div>
             <motion.p
               className="flex items-center font-semibold"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.95 }}
             >
               Data
             </motion.p>
@@ -284,21 +331,34 @@ function FullStackSection() {
 function TopLanguagesSection() {
   return (
     <Section>
-      <motion.h2
-        className="text-center text-4xl font-bold"
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        Top Languages
-      </motion.h2>
+      <div className="flex flex-col items-center justify-center gap-2">
+        <motion.h2
+          className="text-center text-4xl font-bold"
+          initial={{ opacity: 0, rotateX: -90 }}
+          whileInView={{ opacity: 1, rotateX: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          style={{ perspective: "1000px" }}
+        >
+          Top Languages
+        </motion.h2>
+        <motion.p
+          className="text-muted-foreground text-center text-lg"
+          initial={{ opacity: 0, rotateX: -90 }}
+          whileInView={{ opacity: 1, rotateX: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          style={{ perspective: "1000px" }}
+        >
+          My bread and butter.
+        </motion.p>
+      </div>
       <motion.div
         className="flex flex-row flex-wrap items-center justify-center gap-8"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, staggerChildren: 0.15, delayChildren: 0.2 }}
+        transition={{ duration: 0.6, staggerChildren: 0.15, delayChildren: 0.4 }}
       >
         {[
           { icon: "/images/icons/typescript.svg", name: "TypeScript" },
@@ -308,10 +368,11 @@ function TopLanguagesSection() {
           <motion.div
             className="flex flex-col items-center gap-4"
             key={name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, rotateX: -90 }}
+            whileInView={{ opacity: 1, rotateX: 0 }}
             viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.15 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.15 }}
+            style={{ perspective: "1000px" }}
           >
             <div className="flex size-28 items-center justify-center md:size-32">
               <img src={icon} className="h-full w-full object-contain" />
@@ -321,10 +382,11 @@ function TopLanguagesSection() {
         ))}
       </motion.div>
       <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, rotateX: -90 }}
+        whileInView={{ opacity: 1, rotateX: 0 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
+        style={{ perspective: "1000px" }}
       >
         <Button variant="link" asChild>
           <Link to="/technology">
@@ -339,21 +401,32 @@ function TopLanguagesSection() {
 function ReviewsSection() {
   return (
     <Section>
-      <motion.h2
-        className="text-center text-4xl font-bold"
-        initial={{ opacity: 0, x: 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        Word on the Street
-      </motion.h2>
+      <div className="flex flex-col items-center justify-center gap-2">
+        <motion.h2
+          className="text-center text-4xl font-bold"
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Reviews
+        </motion.h2>
+        <motion.p
+          className="text-muted-foreground text-center text-lg"
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
+          What's the word on the street?
+        </motion.p>
+      </div>
       <motion.span
         className="flex flex-row items-center justify-center gap-1"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
       >
         <StarIcon className="text-primary fill-primary" />
         <StarIcon className="text-primary fill-primary" />
@@ -363,10 +436,10 @@ function ReviewsSection() {
       </motion.span>
       <motion.div
         className="relative flex w-full flex-col items-center justify-center overflow-hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
       >
         <Marquee pauseOnHover className="[--duration:80s]">
           {QUOTES.map((quote) => (
@@ -396,15 +469,26 @@ function ReviewsSection() {
 function BroughtToYouBySection() {
   return (
     <Section>
-      <motion.h2
-        className="text-center text-4xl font-bold"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        Brought to You By
-      </motion.h2>
+      <div className="flex flex-col items-center justify-center gap-2">
+        <motion.h2
+          className="text-center text-4xl font-bold"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          Brought to You By
+        </motion.h2>
+        <motion.p
+          className="text-muted-foreground text-center text-lg"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
+          Not sponsored.
+        </motion.p>
+      </div>
       <motion.div
         className="grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-3"
         initial={{ opacity: 0 }}
@@ -420,6 +504,7 @@ function BroughtToYouBySection() {
             whileInView={{ opacity: 1, rotateY: 0 }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
+            style={{ perspective: "1000px" }}
           >
             <div className="flex size-26 items-center justify-center md:size-32">
               <img src={tech.image} alt={tech.name} className="h-full w-full object-contain" />
@@ -433,6 +518,7 @@ function BroughtToYouBySection() {
         whileInView={{ opacity: 1, rotateY: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: (MADE_WITH.length + 1) * 0.1 }}
+        style={{ perspective: "1000px" }}
       >
         <SourceButton />
       </motion.div>
@@ -445,8 +531,8 @@ function ConnectSection() {
     <Section>
       <motion.h2
         className="text-center text-4xl font-bold"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
@@ -454,16 +540,16 @@ function ConnectSection() {
       </motion.h2>
       <motion.p
         className="text-muted-foreground max-w-md text-center text-lg"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
         Hiring? Looking for a partner? Just have a cool idea? Send me a ping.
       </motion.p>
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
       >
