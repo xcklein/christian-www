@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router";
 import { ThemeProvider } from "./components/theme-provider";
@@ -10,6 +11,7 @@ export function App() {
         <BrowserRouter>
           <RouteWrapper />
         </BrowserRouter>
+        <Analytics />
       </ThemeProvider>
     </StrictMode>
   );
