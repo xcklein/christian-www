@@ -41,7 +41,7 @@ export function TechnologyPage() {
     }
   };
 
-  const rowLength = Math.ceil(Object.values(TECHNOLOGIES).length / 4);
+  const rowLength = Math.ceil(Object.values(TECHNOLOGIES).length / 3);
   const rows = Array.from({ length: 3 }, (_, i) =>
     Object.values(TECHNOLOGIES).slice(
       i * rowLength,
@@ -58,7 +58,7 @@ export function TechnologyPage() {
       <div className="relative">
         {rows.map((row, idx) => (
           // eslint-disable-next-line react-x/no-array-index-key
-          <Marquee key={idx} pauseOnHover className="[--duration:32s]">
+          <Marquee key={idx} pauseOnHover className="[--duration:40s]">
             {row.map((node) => {
               const isFlipped = flipped[node.name] || false;
 
