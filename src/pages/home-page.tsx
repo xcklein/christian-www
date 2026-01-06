@@ -334,21 +334,19 @@ function TopLanguagesSection() {
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h2
           className="text-center text-4xl font-bold"
-          initial={{ opacity: 0, rotateX: -90 }}
-          whileInView={{ opacity: 1, rotateX: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          style={{ perspective: "1000px" }}
         >
           Top Languages
         </motion.h2>
         <motion.p
           className="text-muted-foreground text-center text-lg"
-          initial={{ opacity: 0, rotateX: -90 }}
-          whileInView={{ opacity: 1, rotateX: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          style={{ perspective: "1000px" }}
         >
           My bread and butter.
         </motion.p>
@@ -372,7 +370,6 @@ function TopLanguagesSection() {
             whileInView={{ opacity: 1, rotateX: 0 }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.15 }}
-            style={{ perspective: "1000px" }}
           >
             <div className="flex size-24 items-center justify-center md:size-32">
               <img src={icon} className="h-full w-full object-contain" />
@@ -382,11 +379,10 @@ function TopLanguagesSection() {
         ))}
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, rotateX: -90 }}
-        whileInView={{ opacity: 1, rotateX: 0 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
-        style={{ perspective: "1000px" }}
       >
         <Button variant="link" asChild>
           <Link to="/technology">
@@ -509,7 +505,7 @@ function BroughtToYouBySection() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, staggerChildren: 0.1, delayChildren: 0.2 }}
+        transition={{ duration: 0.6, delayChildren: stagger(0.2) }}
       >
         {MADE_WITH.map((tech, index) => (
           <motion.div
@@ -518,8 +514,8 @@ function BroughtToYouBySection() {
             initial={{ opacity: 0, rotateY: -90 }}
             whileInView={{ opacity: 1, rotateY: 0 }}
             viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
-            style={{ perspective: "1000px" }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
+            style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
           >
             <div className="flex size-24 items-center justify-center md:size-32">
               <img src={tech.image} alt={tech.name} className="h-full w-full object-contain" />
@@ -529,11 +525,10 @@ function BroughtToYouBySection() {
         ))}
       </motion.div>
       <motion.div
-        initial={{ opacity: 0, rotateY: -90 }}
-        whileInView={{ opacity: 1, rotateY: 0 }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: (MADE_WITH.length + 1) * 0.1 }}
-        style={{ perspective: "1000px" }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: (MADE_WITH.length + 1) * 0.2 }}
       >
         <SourceButton />
       </motion.div>
@@ -546,7 +541,7 @@ function ConnectSection() {
     <Section>
       <motion.h2
         className="text-center text-4xl font-bold"
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -555,7 +550,7 @@ function ConnectSection() {
       </motion.h2>
       <motion.p
         className="text-muted-foreground max-w-md text-center text-lg"
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -563,7 +558,7 @@ function ConnectSection() {
         Hiring? Looking for a partner? Just have a cool idea? Send me a ping.
       </motion.p>
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
+        initial={{ opacity: 0, x: 100 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
