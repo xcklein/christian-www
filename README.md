@@ -72,6 +72,40 @@ src/
 └── lib/            # Utility functions
 ```
 
+## Analytics
+
+Vercel Web Analytics is enabled on this project to track visitor data and page views. The `@vercel/analytics` package provides real-time insights into your site's performance and user behavior.
+
+### How It Works
+
+The Analytics component is integrated into the root App component (`src/app.tsx`):
+
+```tsx
+import { Analytics } from "@vercel/analytics/react";
+
+export function App() {
+  return (
+    <StrictMode>
+      <ThemeProvider>
+        <BrowserRouter>
+          <RouteWrapper />
+        </BrowserRouter>
+        <Analytics />
+      </ThemeProvider>
+    </StrictMode>
+  );
+}
+```
+
+Once deployed to Vercel, the analytics script automatically collects:
+- Page views with route information
+- Core Web Vitals metrics
+- Client-side performance data
+
+You can view analytics data in your Vercel dashboard under the Analytics tab of your project.
+
+For more information on configuring and using Vercel Web Analytics, visit the [official documentation](https://vercel.com/docs/analytics/quickstart).
+
 ## Deployment
 
 The site is deployed on Vercel with automatic deployments triggered on pushes to the main branch.
