@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/lefthook.json",
+  "pre-push": {
+    "commands": {
+      "lint": {
+        "run": "pnpm lint"
+      },
+      "build": {
+        "run": "pnpm build"
+      },
+      "test": {
+        "run": "pnpm test"
+      }
+    }
+  }
+}
