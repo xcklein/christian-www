@@ -14,23 +14,34 @@ describe("Footer", () => {
     expect(footer).toBeInTheDocument();
   });
 
-  it("should display copyright text", () => {
+  it("should display made with love section", () => {
     render(
       <BrowserRouter>
         <Footer />
       </BrowserRouter>,
     );
-    const copyright = screen.getByText("© 2025 Me");
-    expect(copyright).toBeInTheDocument();
+    const madeWithLove = screen.getByText(/With|by Me/i);
+    expect(madeWithLove).toBeInTheDocument();
   });
 
-  it("should render source button", () => {
+  it("should render social buttons", () => {
     render(
       <BrowserRouter>
         <Footer />
       </BrowserRouter>,
     );
-    const sourceButton = screen.getByText("Source");
-    expect(sourceButton).toBeInTheDocument();
+    const footer = screen.getByRole("contentinfo");
+    const links = footer.querySelectorAll("a");
+    expect(links.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it("should have flex layout with space between", () => {
+    const { container } = render(
+      <BrowserRouter>
+        <Footer />
+      </BrowserRouter>,
+    );
+    const footer = container.querySelector("footer");
+    expect(footer).toHaveClass("flex", "items-center", "justify-between");
   });
 });

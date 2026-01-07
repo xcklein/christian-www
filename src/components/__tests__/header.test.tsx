@@ -61,7 +61,8 @@ describe("Header", () => {
         <Header />
       </BrowserRouter>,
     );
-    const homeLink = screen.getByRole("link", { name: "" }).closest("a");
+    const links = screen.getAllByRole("link");
+    const homeLink = links[0];
     expect(homeLink).toHaveAttribute("href", "/");
   });
 
