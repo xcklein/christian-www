@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useTheme } from "@/hooks/use-theme";
 import { QUOTES } from "@/lib/quotes";
 import { TECHNOLOGIES } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
@@ -36,8 +37,8 @@ const MADE_WITH: MadeWith[] = [
     image: TECHNOLOGIES.react.img,
   },
   {
-    name: "Shadcn",
-    image: "images/icons/shadcn.svg",
+    name: TECHNOLOGIES.shadcn.name,
+    image: TECHNOLOGIES.shadcn.img,
   },
   {
     name: TECHNOLOGIES.tailwind.name,
@@ -478,6 +479,8 @@ function ReviewsSection() {
 }
 
 function BroughtToYouBySection() {
+  const { actual } = useTheme();
+
   return (
     <Section>
       <div className="flex flex-col items-center justify-center gap-2">
@@ -517,8 +520,11 @@ function BroughtToYouBySection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
             style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
           >
-            <div className="flex size-24 items-center justify-center md:size-32">
-              <img src={tech.image} alt={tech.name} className="h-full w-full object-contain" />
+            <div className="relative flex size-24 items-center justify-center md:size-32">
+              {actual === "dark" && (
+                <div className="from-foreground/10 absolute inset-0 rounded-full bg-radial to-transparent to-70%" />
+              )}
+              <img src={tech.image} alt={tech.name} className="z-10 h-full w-full object-contain" />
             </div>
             <p className="text-xl font-semibold">{tech.name}</p>
           </motion.div>

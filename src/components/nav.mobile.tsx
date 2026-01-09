@@ -18,7 +18,11 @@ export function NavMobile() {
   return (
     <Drawer open={drawerOpen} onOpenChange={setDrawerOpen} direction="left">
       <DrawerTrigger asChild>
-        <Button variant="ghost" size="icon" className="bg-card rounded-full">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow"
+        >
           <MenuIcon />
         </Button>
       </DrawerTrigger>

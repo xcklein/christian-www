@@ -9,7 +9,12 @@ export function NavDesktop() {
     <nav className="flex flex-row items-center gap-1">
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="ghost" size="icon" asChild className="bg-card rounded-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow"
+          >
             <Link to="/">
               <HomeIcon />
             </Link>
@@ -19,7 +24,12 @@ export function NavDesktop() {
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="ghost" size="icon" asChild className="bg-card rounded-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow"
+          >
             <Link to="/technology">
               <CpuIcon />
             </Link>
@@ -29,7 +39,12 @@ export function NavDesktop() {
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="ghost" size="icon" asChild className="bg-card rounded-full">
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow"
+          >
             <Link to="/contact">
               <MailIcon />
             </Link>

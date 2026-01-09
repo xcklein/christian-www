@@ -14,7 +14,7 @@ export function Header({ className }: HeaderProps) {
       </span>
       <span className="flex flex-1 justify-center"></span>
       <span className="flex flex-0 items-center gap-2">
-        <ThemeButton className="bg-card rounded-full" />
+        <ThemeButton className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow" />
       </span>
     </header>
   );

@@ -46,10 +46,7 @@ export function Marquee({
       {...props}
       className={cn(
         "group flex gap-(--gap) overflow-hidden p-2 [--duration:40s] [--gap:1rem]",
-        {
-          "flex-row": !vertical,
-          "flex-col": vertical,
-        },
+        vertical ? "flex-col" : "flex-row",
         className,
       )}
     >

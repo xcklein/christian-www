@@ -53,7 +53,7 @@ export function TechnologyPage() {
     <div className="flex flex-col items-center justify-center gap-4 overflow-hidden">
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-4xl font-bold md:text-4xl">Technology</h1>
-        <p className="text-muted-foreground text-lg">Some stuff I have used.</p>
+        <p className="text-muted-foreground text-lg">Some stuff I have worked with.</p>
       </div>
       <div className="relative">
         {rows.map((row, idx) => (
@@ -65,7 +65,7 @@ export function TechnologyPage() {
               return (
                 <div
                   key={node.name}
-                  className="relative size-32 perspective-midrange hover:scale-110 md:size-44"
+                  className="relative size-32 perspective-midrange hover:scale-105 md:size-44"
                 >
                   <Card
                     className="ease-flip-heavy absolute h-full w-full cursor-pointer transition-transform duration-1000 transform-3d"
