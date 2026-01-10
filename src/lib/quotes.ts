@@ -16,15 +16,15 @@ export const QUOTES: Quote[] = [
     author: { name: "Anonymous", title: "Team Member" },
   },
   {
+    text: "Christian is a leader. [...] his presence was immediately felt.",
+    author: { name: "Anonymous", title: "Team Member" },
+  },
+  {
     text: "You are the epitome of a senior software engineer.",
     author: { name: "Anonymous", title: "Team Member" },
   },
   {
     text: "He is knowledgeable across a broad range of topics and is a great resource.",
-    author: { name: "Anonymous", title: "Team Member" },
-  },
-  {
-    text: "Christian is a leader. [...] his presence was immediately felt.",
     author: { name: "Anonymous", title: "Team Member" },
   },
   {
