@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
+import { Progress } from "@/components/ui/progress";
 import { Exp, TECHNOLOGIES } from "@/lib/technologies";
 import { UndoIcon } from "lucide-react";
 import { useState } from "react";
@@ -8,11 +9,17 @@ import { useState } from "react";
 function ExpBar({ level }: { level: Exp }) {
   const colors: Record<Exp, string> = {
     [Exp.GROWING]: "bg-palette-green",
-    [Exp.SEASONED]: "bg-palette-yellow",
-    [Exp.HARDENED]: "bg-palette-red",
+    [Exp.COMFORTABLE]: "bg-palette-yellow",
+    [Exp.SEASONED]: "bg-palette-red",
   };
 
-  return <div className={`${colors[level]} h-1 w-full`} />;
+  const percent: Record<Exp, number> = {
+    [Exp.GROWING]: 33,
+    [Exp.COMFORTABLE]: 66,
+    [Exp.SEASONED]: 100,
+  };
+
+  return <Progress value={percent[level]} className="h-2" fillClassName={colors[level]} />;
 }
 
 type FlipState = Record<string, boolean>;
@@ -99,7 +106,7 @@ export function TechnologyPage() {
                         </div>
                       </div>
                       <h1 className="text-sm font-bold">{node.name}</h1>
-                      <div>
+                      <div className="flex flex-col gap-1">
                         <p className="text-xs font-semibold">{node.exp}</p>
                         <ExpBar level={node.exp} />
                       </div>
