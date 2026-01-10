@@ -8,13 +8,13 @@ import { useState } from "react";
 
 function ExpBar({ level }: { level: Exp }) {
   const colors: Record<Exp, string> = {
-    [Exp.GROWING]: "bg-palette-green",
+    [Exp.FAMILIAR]: "bg-palette-green",
     [Exp.COMFORTABLE]: "bg-palette-yellow",
     [Exp.SEASONED]: "bg-palette-red",
   };
 
   const percent: Record<Exp, number> = {
-    [Exp.GROWING]: 33,
+    [Exp.FAMILIAR]: 33,
     [Exp.COMFORTABLE]: 66,
     [Exp.SEASONED]: 100,
   };
