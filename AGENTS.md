@@ -6,17 +6,7 @@ Instructions for AI agents working on this project. All guidance in this documen
 
 This is a professional portfolio website showcasing software engineering expertise, projects, and technical background. Content and presentation should be professional, contemporary, and reflective of senior-level engineering capabilities with diverse technical expertise.
 
-## Technology Stack
-
-- **Frontend Framework**: React 19+ with TypeScript
-- **Build Tool**: Vite
-- **Component Library**: shadcn/ui
-- **Styling**: Tailwind CSS with custom theme
-- **Routing**: React Router (client-side)
-- **Code Quality**: ESLint and Prettier
-- **Package Manager**: pnpm
-- **Testing**: Vitest
-- **Deployment**: Vercel
+Refer to README.md in the root directory for further context.
 
 ## Development Standards
 

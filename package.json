@@ -1,8 +1,15 @@
 {
   "name": "christian-www",
+  "description": "My personal website.",
+  "author": "Christian",
   "private": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
+  "homepage": "https://christian.gg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xcklein/christian-www"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
