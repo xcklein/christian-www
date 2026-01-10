@@ -1,24 +1,24 @@
 # christian-www
 
-A professional portfolio website showcasing software engineering expertise, projects, and technical background. Built with modern web technologies prioritizing performance, accessibility, and user experience.
+Hello hello! Welcome to my site. This is intended to act as a cross between a professional portfolio and a fun playground. Feel free to snoop around the source code to see how I work. Check out the site at https://christian.gg.
 
 ## Tech Stack
 
-- **Framework**: React 19+ with TypeScript
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS with custom theme system
-- **Routing**: React Router for client-side navigation
-- **UI Components**: shadcn/ui component library
-- **Code Quality**: ESLint and Prettier
-- **Package Manager**: pnpm
-- **Testing**: Vitest
-- **Deployment**: Vercel
+- **Framework**: [React](https://react.dev/)
+- **Build Tool**: [Vite](https://vite.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/), [Tweakcn](https://tweakcn.com/)
+- **Routing**: [React Router](https://reactrouter.com/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Code Quality**: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [Lefthook](https://lefthook.dev/)
+- **Package Manager**: [pnpm](https://pnpm.io/)
+- **Testing**: [Vitest](https://vitest.dev/)
+- **Deployment**: [Vercel](https://vercel.com/)
 
-## Getting Started
+## Development
 
 ### Prerequisites
 
-- Node.js 24+
+- Node.js 24+ (Recommend [Volta](https://volta.sh/))
 - pnpm
 
 ### Installation
@@ -27,54 +27,32 @@ A professional portfolio website showcasing software engineering expertise, proj
 pnpm install
 ```
 
-### Development
+### Run It
 
 ```bash
 pnpm run dev
-```
-
-The development server runs at `http://localhost:5173`
-
-### Build
-
-```bash
-pnpm run build
-```
-
-### Preview Production Build
-
-```bash
-pnpm run preview
-```
-
-### Linting
-
-```bash
-pnpm run lint
-```
-
-### Testing
-
-```bash
-pnpm run test
 ```
 
 ## Project Structure
 
 ```
 src/
-├── components/     # Reusable UI components
+├── components/     # Reusable components
 ├── contexts/       # React contexts
 ├── hooks/          # React hooks
 ├── pages/          # Page components
-├── routing/        # Routing configuration
-├── styles/         # Global styles
-└── lib/            # Utility functions
+├── routing/        # Routing
+├── styles/         # Global CSS
+└── lib/            # Junk drawer
 ```
 
 ## Deployment
 
 The site is deployed on Vercel with automatic deployments triggered on pushes to the main branch.
+
+## AI
+
+AI usage in this project is limited to copilot. All generated code is inspected and often refactored by me.
 
 ## License
 
