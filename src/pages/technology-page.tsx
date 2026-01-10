@@ -9,14 +9,14 @@ import { useState } from "react";
 function ExpBar({ level }: { level: Exp }) {
   const colors: Record<Exp, string> = {
     [Exp.FAMILIAR]: "bg-palette-green",
-    [Exp.COMFORTABLE]: "bg-palette-yellow",
-    [Exp.SEASONED]: "bg-palette-red",
+    [Exp.SEASONED]: "bg-palette-yellow",
+    [Exp.DANGEROUS]: "bg-palette-red",
   };
 
   const percent: Record<Exp, number> = {
     [Exp.FAMILIAR]: 33,
-    [Exp.COMFORTABLE]: 66,
-    [Exp.SEASONED]: 100,
+    [Exp.SEASONED]: 66,
+    [Exp.DANGEROUS]: 100,
   };
 
   return <Progress value={percent[level]} className="h-2" fillClassName={colors[level]} />;

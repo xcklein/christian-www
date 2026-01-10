@@ -21,8 +21,8 @@ import {
   StarIcon,
   UserIcon,
 } from "lucide-react";
-import { motion, stagger } from "motion/react";
-import type { ComponentProps, ComponentPropsWithRef } from "react";
+import { motion, useInView } from "motion/react";
+import type { ComponentPropsWithRef } from "react";
 import { useRef } from "react";
 import { Link } from "react-router";
 
@@ -58,13 +58,14 @@ const MADE_WITH: MadeWith[] = [
   },
 ];
 
-function Section({ className, ...props }: ComponentProps<"section">) {
+function Section({ className, ...props }: ComponentPropsWithRef<"section">) {
   return (
     <section
       className={cn(
         "flex min-h-[calc(100svh-52px)] w-full flex-col items-center justify-center gap-8 p-4",
         className,
       )}
+      {...props}
     >
       {props.children}
     </section>
@@ -87,12 +88,14 @@ function Circle({ ref, className, children, ...props }: ComponentPropsWithRef<ty
 }
 
 function HeroSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+
   return (
-    <Section>
+    <Section ref={ref}>
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <Avatar className="size-80">
@@ -104,8 +107,7 @@ function HeroSection() {
         <motion.h1
           className="text-4xl font-bold"
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           Christian
@@ -113,8 +115,7 @@ function HeroSection() {
         <motion.p
           className="text-muted-foreground text-2xl"
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
           Software Engineer
@@ -122,8 +123,7 @@ function HeroSection() {
         <motion.div
           className="flex flex-row gap-1"
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
         >
           <GitHubButton variant="ghost" size="icon" />
@@ -133,9 +133,7 @@ function HeroSection() {
       <motion.div
         className="animate-bounce"
         initial={{ opacity: 0, y: -10, scale: 0.9 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
-        animate={{ y: [0, -10, 0] }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: -10, scale: 0.9 }}
         transition={{
           duration: 0.6,
           ease: "easeOut",
@@ -152,6 +150,8 @@ function HeroSection() {
 
 function FullStackSection() {
   const isMobile = useIsMobile();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
   const containerRef = useRef<HTMLDivElement>(null);
   const userRef = useRef<HTMLDivElement>(null);
   const frontendRef = useRef<HTMLDivElement>(null);
@@ -162,13 +162,12 @@ function FullStackSection() {
   const duration = 2;
 
   return (
-    <Section>
+    <Section ref={ref}>
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h2
           className="text-center text-4xl font-bold"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           Full-Stack Expertise
@@ -176,8 +175,7 @@ function FullStackSection() {
         <motion.p
           className="text-muted-foreground text-center text-lg"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           From data collection to user experience.
@@ -187,17 +185,19 @@ function FullStackSection() {
         ref={containerRef}
         className="relative flex w-full flex-col items-center justify-center"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <div className="flex flex-col gap-6 md:flex-row-reverse md:gap-16 md:py-8">
           <div className="flex flex-col items-center gap-1">
             <motion.div
               initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+              animate={
+                isInView
+                  ? { opacity: 1, rotateZ: 0, scale: 1 }
+                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
               style={{ perspective: "1000px" }}
               className="relative z-20"
             >
@@ -208,9 +208,10 @@ function FullStackSection() {
             <motion.p
               className="flex items-center font-semibold"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.65 }}
+              animate={
+                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
+              }
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
             >
               User
             </motion.p>
@@ -218,9 +219,12 @@ function FullStackSection() {
           <div className="flex flex-col items-center gap-1">
             <motion.div
               initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+              animate={
+                isInView
+                  ? { opacity: 1, rotateZ: 0, scale: 1 }
+                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
               style={{ perspective: "1000px" }}
               className="relative z-20"
             >
@@ -231,9 +235,10 @@ function FullStackSection() {
             <motion.p
               className="flex items-center font-semibold"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.75 }}
+              animate={
+                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
+              }
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
             >
               Frontend
             </motion.p>
@@ -241,9 +246,12 @@ function FullStackSection() {
           <div className="flex flex-col items-center gap-1">
             <motion.div
               initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+              animate={
+                isInView
+                  ? { opacity: 1, rotateZ: 0, scale: 1 }
+                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
               style={{ perspective: "1000px" }}
               className="relative z-20"
             >
@@ -254,9 +262,10 @@ function FullStackSection() {
             <motion.p
               className="flex items-center font-semibold"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
+              animate={
+                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
+              }
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
             >
               Backend
             </motion.p>
@@ -264,9 +273,12 @@ function FullStackSection() {
           <div className="flex flex-col items-center gap-1">
             <motion.div
               initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              whileInView={{ opacity: 1, rotateZ: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}
+              animate={
+                isInView
+                  ? { opacity: 1, rotateZ: 0, scale: 1 }
+                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
               style={{ perspective: "1000px" }}
               className="relative z-20"
             >
@@ -277,9 +289,10 @@ function FullStackSection() {
             <motion.p
               className="flex items-center font-semibold"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.95 }}
+              animate={
+                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
+              }
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
             >
               Data
             </motion.p>
@@ -330,14 +343,16 @@ function FullStackSection() {
 }
 
 function TopLanguagesSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+
   return (
-    <Section>
+    <Section ref={ref}>
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h2
           className="text-center text-4xl font-bold"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           Top Languages
@@ -345,8 +360,7 @@ function TopLanguagesSection() {
         <motion.p
           className="text-muted-foreground text-center text-lg"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           My bread and butter.
@@ -355,9 +369,8 @@ function TopLanguagesSection() {
       <motion.div
         className="flex flex-row flex-wrap items-center justify-center gap-8"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, staggerChildren: 0.15, delayChildren: 0.4 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6, delayChildren: 0.1, staggerChildren: 0.1 }}
       >
         {[
           { icon: "/images/icons/typescript.svg", name: "TypeScript" },
@@ -368,9 +381,8 @@ function TopLanguagesSection() {
             className="flex flex-col items-center gap-4"
             key={name}
             initial={{ opacity: 0, rotateX: -90 }}
-            whileInView={{ opacity: 1, rotateX: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.15 }}
+            animate={isInView ? { opacity: 1, rotateX: 0 } : { opacity: 0, rotateX: -90 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + index * 0.1 }}
           >
             <div className="flex size-24 items-center justify-center md:size-32">
               <img src={icon} className="h-full w-full object-contain" />
@@ -381,9 +393,8 @@ function TopLanguagesSection() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.85 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
       >
         <Button variant="link" asChild>
           <Link to="/technology">
@@ -396,14 +407,16 @@ function TopLanguagesSection() {
 }
 
 function ReviewsSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+
   return (
-    <Section>
+    <Section ref={ref}>
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h2
           className="text-center text-4xl font-bold"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           Reviews
@@ -411,8 +424,7 @@ function ReviewsSection() {
         <motion.p
           className="text-muted-foreground text-center text-lg"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           What's the word on the street?
@@ -420,27 +432,16 @@ function ReviewsSection() {
       </div>
       <motion.div
         className="flex flex-row items-center justify-center gap-1"
-        initial="initial"
-        whileInView="whileInView"
-        viewport={{ once: false, amount: 0.5 }}
-        variants={{
-          initial: { opacity: 0, y: 50, scale: 0.9 },
-          whileInView: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: { duration: 0.6, ease: "easeOut", delay: 0.4, delayChildren: stagger(0.5) },
-          },
-        }}
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
       >
         {[0, 1, 2, 3, 4].map((index) => (
           <motion.span
             key={index}
-            variants={{
-              initial: { fillOpacity: 0 },
-              whileInView: { fillOpacity: 1 },
-            }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ fillOpacity: 0 }}
+            animate={isInView ? { fillOpacity: 1 } : { fillOpacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut", delay: 0.8 + index * 0.4 }}
           >
             <StarIcon className="text-primary fill-primary" />
           </motion.span>
@@ -449,8 +450,7 @@ function ReviewsSection() {
       <motion.div
         className="relative flex w-full flex-col items-center justify-center overflow-hidden"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
       >
         <Marquee className="[--duration:80s]">
@@ -480,15 +480,16 @@ function ReviewsSection() {
 
 function BroughtToYouBySection() {
   const { actual } = useTheme();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
 
   return (
-    <Section>
+    <Section ref={ref}>
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h2
           className="text-center text-4xl font-bold"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           Brought to You By
@@ -496,8 +497,7 @@ function BroughtToYouBySection() {
         <motion.p
           className="text-muted-foreground text-center text-lg"
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           Not sponsored.
@@ -506,18 +506,16 @@ function BroughtToYouBySection() {
       <motion.div
         className="grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-3"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, delayChildren: stagger(0.2) }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6, delayChildren: 0.1, staggerChildren: 0.1 }}
       >
         {MADE_WITH.map((tech, index) => (
           <motion.div
             key={tech.name}
             className="flex flex-col items-center gap-4"
             initial={{ opacity: 0, rotateY: -90 }}
-            whileInView={{ opacity: 1, rotateY: 0 }}
-            viewport={{ once: false, amount: 0.5 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
+            animate={isInView ? { opacity: 1, rotateY: 0 } : { opacity: 0, rotateY: -90 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + index * 0.1 }}
             style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
           >
             <div className="relative flex size-24 items-center justify-center md:size-32">
@@ -532,9 +530,8 @@ function BroughtToYouBySection() {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: (MADE_WITH.length + 1) * 0.2 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
       >
         <SourceButton />
       </motion.div>
@@ -543,13 +540,15 @@ function BroughtToYouBySection() {
 }
 
 function ConnectSection() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
+
   return (
-    <Section>
+    <Section ref={ref}>
       <motion.h2
         className="text-center text-4xl font-bold"
         initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         Let's Connect
@@ -557,16 +556,14 @@ function ConnectSection() {
       <motion.p
         className="text-muted-foreground max-w-md text-center text-lg"
         initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
         Hiring? Looking for a partner? Just have a cool idea? Send me a ping.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: false, amount: 0.5 }}
+        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
       >
         <Button variant="link" asChild>
