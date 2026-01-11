@@ -1,3 +1,4 @@
+import { useFooter } from "@/hooks/use-footer";
 import { cn } from "@/lib/utils";
 import { MadeWithLove } from "./made-with-love";
 import { Socials } from "./socials";
@@ -7,8 +8,11 @@ interface FooterProps {
 }
 
 export function Footer({ className }: FooterProps) {
+  const footer = useFooter();
+
   return (
-    <footer className={cn("flex items-center justify-between p-2", className)}>
+    // eslint-disable-next-line react-hooks/refs
+    <footer ref={footer.ref} className={cn("flex items-center justify-between p-2", className)}>
       <span className="flex items-center gap-1">
         <MadeWithLove />
       </span>

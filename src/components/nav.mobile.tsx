@@ -10,7 +10,26 @@ import {
 import { CpuIcon, HomeIcon, MailIcon, MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
-import { Footer } from "./footer";
+import { MadeWithLove } from "./made-with-love";
+import { Socials } from "./socials";
+
+const NAV = [
+  {
+    title: "Home",
+    href: "/",
+    icon: HomeIcon,
+  },
+  {
+    title: "Technology",
+    href: "/technology",
+    icon: CpuIcon,
+  },
+  {
+    title: "Contact",
+    href: "/contact",
+    icon: MailIcon,
+  },
+];
 
 export function NavMobile() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -28,7 +47,7 @@ export function NavMobile() {
       </DrawerTrigger>
       <DrawerContent className="p-6" aria-describedby={undefined}>
         <DrawerHeader className="mb-4 p-0">
-          <DrawerTitle className="text-2xl font-bold">
+          <DrawerTitle className="text-3xl font-bold">
             <Link
               to="/"
               onClick={() => {
@@ -41,55 +60,34 @@ export function NavMobile() {
         </DrawerHeader>
         <nav>
           <ul className="flex flex-col gap-1">
-            <li>
-              <Button
-                asChild
-                variant="ghost"
-                className="w-full justify-start p-0!"
-                onClick={() => {
-                  setDrawerOpen(false);
-                }}
-              >
-                <Link to="/">
-                  <HomeIcon />
-                  Home
-                </Link>
-              </Button>
-            </li>
-            <li>
-              <Button
-                asChild
-                variant="ghost"
-                className="w-full justify-start p-0!"
-                onClick={() => {
-                  setDrawerOpen(false);
-                }}
-              >
-                <Link to="/technology">
-                  <CpuIcon />
-                  Technology
-                </Link>
-              </Button>
-            </li>
-            <li>
-              <Button
-                asChild
-                variant="ghost"
-                className="w-full justify-start p-0!"
-                onClick={() => {
-                  setDrawerOpen(false);
-                }}
-              >
-                <Link to="/contact">
-                  <MailIcon />
-                  Contact
-                </Link>
-              </Button>
-            </li>
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <Button
+                  asChild
+                  variant="ghost"
+                  className="h-12 w-full justify-start p-0! text-lg"
+                  onClick={() => {
+                    setDrawerOpen(false);
+                  }}
+                >
+                  <Link to={item.href}>
+                    <item.icon className="size-5" />
+                    {item.title}
+                  </Link>
+                </Button>
+              </li>
+            ))}
           </ul>
         </nav>
         <DrawerFooter className="p-0">
-          <Footer className="p-0" />
+          <div className="flex items-center justify-between">
+            <span className="flex items-center gap-1">
+              <MadeWithLove />
+            </span>
+            <span className="flex items-center gap-1">
+              <Socials />
+            </span>
+          </div>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

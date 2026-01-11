@@ -1,11 +1,13 @@
 import { GitHubButton } from "@/components/github-button";
 import { LinkedInButton } from "@/components/linkedin-button";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 import { SourceButton } from "@/components/source-button";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
+import { useFooter } from "@/hooks/use-footer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTheme } from "@/hooks/use-theme";
 import { QUOTES } from "@/lib/quotes";
@@ -21,9 +23,9 @@ import {
   StarIcon,
   UserIcon,
 } from "lucide-react";
-import { motion, useInView } from "motion/react";
+import { AnimatePresence, motion, useInView } from "motion/react";
 import type { ComponentPropsWithRef } from "react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 
 interface MadeWith {
@@ -441,7 +443,7 @@ function ReviewsSection() {
             key={index}
             initial={{ fillOpacity: 0 }}
             animate={isInView ? { fillOpacity: 1 } : { fillOpacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut", delay: 0.8 + index * 0.4 }}
+            transition={{ duration: 0.2, ease: "easeOut", delay: 0.8 + index * 0.3 }}
           >
             <StarIcon className="text-primary fill-primary" />
           </motion.span>
@@ -577,6 +579,29 @@ function ConnectSection() {
 }
 
 export function HomePage() {
+  const footer = useFooter();
+  const [footerDistance, setFooterDistance] = useState(0);
+  const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrollToTopVisible(window.scrollY > 400);
+
+      if (footer.ref.current) {
+        const footerRect = footer.ref.current.getBoundingClientRect();
+        const distanceFromBottom = window.innerHeight - footerRect.top;
+        setFooterDistance(Math.max(0, distanceFromBottom));
+      }
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [footer.ref]);
+
   return (
     <div className="m-auto flex max-w-4xl flex-col items-center justify-center gap-16 overflow-hidden">
       <HeroSection />
@@ -585,6 +610,20 @@ export function HomePage() {
       <ReviewsSection />
       <BroughtToYouBySection />
       <ConnectSection />
+      <AnimatePresence>
+        {isScrollToTopVisible && (
+          <motion.div
+            key="scroll-to-top"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className={cn("right-4 bottom-4 z-50", footerDistance > 0 ? "absolute" : "fixed")}
+          >
+            <ScrollToTopButton />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
