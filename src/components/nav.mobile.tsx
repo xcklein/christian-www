@@ -40,7 +40,7 @@ export function NavMobile() {
         <Button
           variant="ghost"
           size="icon"
-          className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow"
+          className="bg-sidebar hover:bg-sidebar-accent! size-12 rounded-full shadow"
         >
           <MenuIcon />
         </Button>

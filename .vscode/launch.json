@@ -9,6 +9,6 @@
       "name": "localhost",
       "request": "launch",
       "type": "node-terminal"
-    },
+    }
   ]
 }
