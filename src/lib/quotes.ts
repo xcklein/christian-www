@@ -20,8 +20,8 @@ export const QUOTES: Quote[] = [
     author: { name: "Anonymous", title: "Team Member" },
   },
   {
-    text: "You are the epitome of a senior software engineer.",
-    author: { name: "Anonymous", title: "Team Member" },
+    text: "You're one of my favorite engineers that I've worked with.",
+    author: { name: "Anonymous", title: "Manager" },
   },
   {
     text: "He is knowledgeable across a broad range of topics and is a great resource.",
@@ -36,8 +36,12 @@ export const QUOTES: Quote[] = [
     author: { name: "Anonymous", title: "Manager" },
   },
   {
-    text: "How do you know so much about this stuff?",
-    author: { name: "Anonymous", title: "Team Member" },
+    text: "I see some real good stuff come out of you.",
+    author: { name: "Anonymous", title: "Director" },
   },
   { text: "I'm proud of you.", author: { name: "Mom", title: "Mother" } },
+  {
+    text: "Out of everyone I've worked with here, I believe I've learned the most from you.",
+    author: { name: "Anonymous", title: "Team Member" },
+  },
 ];

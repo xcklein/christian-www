@@ -1,26 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
-import { Progress } from "@/components/ui/progress";
-import { Exp, TECHNOLOGIES } from "@/lib/technologies";
+import { TECHNOLOGIES } from "@/lib/technologies";
 import { UndoIcon } from "lucide-react";
 import { useState } from "react";
-
-function ExpBar({ level }: { level: Exp }) {
-  const colors: Record<Exp, string> = {
-    [Exp.FAMILIAR]: "bg-palette-green",
-    [Exp.SEASONED]: "bg-palette-yellow",
-    [Exp.DANGEROUS]: "bg-palette-red",
-  };
-
-  const percent: Record<Exp, number> = {
-    [Exp.FAMILIAR]: 33,
-    [Exp.SEASONED]: 66,
-    [Exp.DANGEROUS]: 100,
-  };
-
-  return <Progress value={percent[level]} className="h-2" fillClassName={colors[level]} />;
-}
 
 type FlipState = Record<string, boolean>;
 
@@ -96,7 +79,7 @@ export function TechnologyPage() {
 
                     {/* Back */}
                     <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
-                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10">
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-50">
                         <div className="flex size-12 items-center justify-center md:size-16">
                           <img
                             src={node.img}
@@ -106,10 +89,6 @@ export function TechnologyPage() {
                         </div>
                       </div>
                       <h1 className="text-sm font-bold">{node.name}</h1>
-                      <div className="flex flex-col gap-1">
-                        <p className="text-xs font-semibold">{node.exp}</p>
-                        <ExpBar level={node.exp} />
-                      </div>
                     </div>
                   </Card>
                 </div>
