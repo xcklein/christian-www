@@ -6,11 +6,7 @@ interface ViteTypeOptions {
   strictImportMetaEnv: unknown;
 }
 
-interface ImportMetaEnv {
-  readonly VITE_WEB3FORMS_ACCESS_KEY: string;
-  readonly VITE_HCAPTCHA_SITE_KEY: string;
-  // more env variables...
-}
+type ImportMetaEnv = Record<string, string>;
 
 interface ImportMeta {
   readonly env: ImportMetaEnv;
