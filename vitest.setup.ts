@@ -16,7 +16,7 @@ if (!HTMLElement.prototype.releasePointerCapture) {
 }
 
 // Polyfill getComputedStyle to handle transform property
-const originalGetComputedStyle = window.getComputedStyle;
+const originalGetComputedStyle = window.getComputedStyle.bind(window);
 vi.stubGlobal("getComputedStyle", (element: Element, pseudoElt?: string | null) => {
   const computedStyle = originalGetComputedStyle(element, pseudoElt);
   if (!computedStyle.transform) {
