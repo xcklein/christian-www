@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { BrowserRouter } from "react-router";
 import { beforeAll, describe, expect, it } from "vitest";
@@ -90,7 +90,9 @@ describe("NavMobile", () => {
     const homeLink = screen.getByRole("link", { name: /Home/i });
     await user.click(homeLink);
 
-    // After clicking, the home link should still be accessible
-    expect(homeLink).toBeInTheDocument();
+    // After clicking, the drawer should close and its contents unmount
+    await waitFor(() => {
+      expect(homeLink).not.toBeInTheDocument();
+    });
   });
 });
