@@ -3,9 +3,22 @@
   "colors": false,
   "pre-commit": {
     "commands": {
-      "format": {
-        "run": "pnpm format",
+      "eslint": {
+        "glob": "*.{ts,tsx,js,jsx}",
+        "run": "pnpm eslint --fix {staged_files}",
         "stage_fixed": true
+      },
+      "prettier": {
+        "glob": "*.{ts,tsx,js,jsx,json,md}",
+        "run": "pnpm prettier --write {staged_files}",
+        "stage_fixed": true
+      }
+    }
+  },
+  "commit-msg": {
+    "commands": {
+      "commitlint": {
+        "run": "pnpm commitlint --edit {1}"
       }
     }
   }

@@ -1,8 +1,7 @@
-import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import { CpuIcon, HomeIcon, MailIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Button } from "./ui/button";
-import { Tooltip, TooltipContent } from "./ui/tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function NavDesktop() {
   return (
