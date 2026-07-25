@@ -50,10 +50,6 @@ src/
 
 The site is deployed on Vercel with automatic deployments triggered on pushes to the main branch.
 
-## AI
-
-AI usage in this project is limited to copilot. All generated code is inspected and often refactored by me.
-
 ## License
 
 All rights reserved.

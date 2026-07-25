@@ -1,4 +1,4 @@
-# Agents
+# CLAUDE.md
 
 Instructions for AI agents working on this project. All guidance in this document shall be followed unless explicitly directed otherwise.
 
@@ -27,3 +27,12 @@ All contributions must maintain:
 
 - The `framer-motion` package is installed and aliased as `motion`
 - Maintain consistency with existing code patterns and conventions
+
+## Pull Requests
+
+When reviewing pull requests, follow these guidelines:
+
+- Do not offer feedback related to code with ongoing or resolved comment threads.
+- Do not offer feedback on code that is unchanged.
+- Do not offer feedback related to missing or incomplete code documentation.
+- Do not offer feedback on TODO comments.
