@@ -43,7 +43,7 @@ export function TechnologyPage() {
     <div className="flex flex-col items-center justify-center gap-4 overflow-hidden">
       <div className="flex flex-col gap-2 text-center">
         <h1 className="text-4xl font-bold md:text-4xl">Technology</h1>
-        <p className="text-muted-foreground text-lg">Some stuff I have worked with.</p>
+        <p className="text-muted-foreground text-lg">A few things I have worked with.</p>
       </div>
       <div className="relative">
         {rows.map((row, idx) => (
