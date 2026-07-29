@@ -387,7 +387,7 @@ function TopLanguagesSection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + index * 0.1 }}
           >
             <div className="flex size-24 items-center justify-center md:size-32">
-              <img src={icon} className="h-full w-full object-contain" />
+              <img src={icon} alt="" className="h-full w-full object-contain" />
             </div>
             <p className="text-xl font-semibold">{name}</p>
           </motion.div>

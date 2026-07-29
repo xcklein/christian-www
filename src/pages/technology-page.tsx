@@ -57,29 +57,23 @@ export function TechnologyPage() {
                   key={node.name}
                   className="relative size-32 perspective-midrange hover:scale-105 md:size-44"
                 >
-                  <Card
-                    className="ease-flip-heavy absolute h-full w-full cursor-pointer transition-transform duration-1000 transform-3d"
+                  <button
+                    type="button"
+                    className="absolute inset-0 h-full w-full cursor-pointer text-left"
+                    aria-pressed={isFlipped}
+                    aria-label={`Flip the ${node.name} card`}
                     onClick={() => {
                       handleCardClick(node.name);
                     }}
-                    style={{
-                      transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                    }}
                   >
-                    {/* Front */}
-                    <div className="absolute inset-0 flex items-center justify-center p-4 backface-hidden">
-                      <div className="flex size-12 items-center justify-center md:size-16">
-                        <img
-                          src={node.img}
-                          alt={node.name}
-                          className="h-full w-full object-contain"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Back */}
-                    <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
-                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-50">
+                    <Card
+                      className="ease-flip-heavy absolute inset-0 h-full w-full transition-transform duration-1000 transform-3d"
+                      style={{
+                        transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                      }}
+                    >
+                      {/* Front */}
+                      <div className="absolute inset-0 flex items-center justify-center p-4 backface-hidden">
                         <div className="flex size-12 items-center justify-center md:size-16">
                           <img
                             src={node.img}
@@ -88,9 +82,22 @@ export function TechnologyPage() {
                           />
                         </div>
                       </div>
-                      <h1 className="text-sm font-bold">{node.name}</h1>
-                    </div>
-                  </Card>
+
+                      {/* Back */}
+                      <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-50">
+                          <div className="flex size-12 items-center justify-center md:size-16">
+                            <img
+                              src={node.img}
+                              alt={node.name}
+                              className="h-full w-full object-contain"
+                            />
+                          </div>
+                        </div>
+                        <h1 className="text-sm font-bold">{node.name}</h1>
+                      </div>
+                    </Card>
+                  </button>
                 </div>
               );
             })}
