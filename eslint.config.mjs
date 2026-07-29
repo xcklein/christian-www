@@ -21,7 +21,7 @@ export default defineConfig([
       reactRefresh.configs.vite,
       reactX.configs["recommended-typescript"],
       reactDom.configs.recommended,
-      jsxA11y.flatConfigs.recommended,
+      jsxA11y.flatConfigs.strict,
     ],
     languageOptions: {
       ecmaVersion: 2020,
