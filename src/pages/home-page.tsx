@@ -28,36 +28,13 @@ import type { ComponentPropsWithRef } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 
-interface MadeWith {
-  name: string;
-  image: string;
-}
-
-const MADE_WITH: MadeWith[] = [
-  {
-    name: TECHNOLOGIES.react.name,
-    image: TECHNOLOGIES.react.img,
-  },
-  {
-    name: TECHNOLOGIES.shadcn.name,
-    image: TECHNOLOGIES.shadcn.img,
-  },
-  {
-    name: TECHNOLOGIES.tailwind.name,
-    image: TECHNOLOGIES.tailwind.img,
-  },
-  {
-    name: TECHNOLOGIES.vercel.name,
-    image: TECHNOLOGIES.vercel.img,
-  },
-  {
-    name: TECHNOLOGIES.vite.name,
-    image: TECHNOLOGIES.vite.img,
-  },
-  {
-    name: TECHNOLOGIES.vitest.name,
-    image: TECHNOLOGIES.vitest.img,
-  },
+const MADE_WITH = [
+  TECHNOLOGIES.react,
+  TECHNOLOGIES.shadcn,
+  TECHNOLOGIES.tailwind,
+  TECHNOLOGIES.vercel,
+  TECHNOLOGIES.vite,
+  TECHNOLOGIES.vitest,
 ];
 
 function Section({ className, ...props }: ComponentPropsWithRef<"section">) {
@@ -374,22 +351,18 @@ function TopLanguagesSection() {
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delayChildren: 0.1, staggerChildren: 0.1 }}
       >
-        {[
-          { icon: "/images/icons/typescript.svg", name: "TypeScript" },
-          { icon: "/images/icons/csharp.svg", name: "C#" },
-          { icon: "/images/icons/python.svg", name: "Python" },
-        ].map(({ icon, name }, index) => (
+        {[TECHNOLOGIES.typescript, TECHNOLOGIES.csharp, TECHNOLOGIES.python].map((tech, index) => (
           <motion.div
             className="flex flex-col items-center gap-4"
-            key={name}
+            key={tech.name}
             initial={{ opacity: 0, rotateX: -90 }}
             animate={isInView ? { opacity: 1, rotateX: 0 } : { opacity: 0, rotateX: -90 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + index * 0.1 }}
           >
             <div className="flex size-24 items-center justify-center md:size-32">
-              <img src={icon} alt="" className="h-full w-full object-contain" />
+              <img src={tech.img} alt="" className="h-full w-full object-contain" />
             </div>
-            <p className="text-xl font-semibold">{name}</p>
+            <p className="text-xl font-semibold">{tech.name}</p>
           </motion.div>
         ))}
       </motion.div>
@@ -524,7 +497,7 @@ function BroughtToYouBySection() {
               {actual === "dark" && (
                 <div className="from-foreground/10 absolute inset-0 rounded-full bg-radial to-transparent to-70%" />
               )}
-              <img src={tech.image} alt={tech.name} className="z-10 h-full w-full object-contain" />
+              <img src={tech.img} alt={tech.name} className="z-10 h-full w-full object-contain" />
             </div>
             <p className="text-xl font-semibold">{tech.name}</p>
           </motion.div>
