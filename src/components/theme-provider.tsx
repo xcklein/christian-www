@@ -11,7 +11,7 @@ type ThemeProviderProps = {
 
 export type ThemeState = {
   theme: Theme;
-  actual: Omit<Theme, "system">;
+  actual: Exclude<Theme, "system">;
   setTheme: (theme: Theme) => void;
 };
 
