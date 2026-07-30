@@ -5,7 +5,7 @@ import { Link } from "react-router";
 
 export function NotFoundPage() {
   return (
-    <div className="flex min-h-[calc(100svh-80px)] w-full flex-col items-center justify-center gap-6 p-4 text-center md:min-h-[calc(100svh-52px)]">
+    <div className="flex min-h-svh w-full flex-col items-center justify-center gap-6 p-4 text-center">
       <motion.div
         className="animate-float"
         initial={{ opacity: 0, scale: 0.8 }}
