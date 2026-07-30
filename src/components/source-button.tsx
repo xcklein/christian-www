@@ -1,21 +1,10 @@
 import { SOURCE_URL } from "@/lib/urls";
-import { CodeIcon, SquareArrowOutUpRightIcon } from "lucide-react";
+import { CodeIcon } from "lucide-react";
 import type { ComponentProps } from "react";
-import { Link } from "react-router";
-import { Button } from "./ui/button";
+import { ExternalLinkButton } from "./external-link-button";
 
-export function SourceButton({ ...props }: ComponentProps<typeof Button>) {
-  return (
-    <Button variant="link" asChild {...props}>
-      <Link to={SOURCE_URL} target="_blank" rel="noopener noreferrer">
-        {props.size?.includes("icon") ? (
-          <CodeIcon />
-        ) : (
-          <>
-            Source <SquareArrowOutUpRightIcon />
-          </>
-        )}
-      </Link>
-    </Button>
-  );
+type SourceButtonProps = Omit<ComponentProps<typeof ExternalLinkButton>, "href" | "icon" | "label">;
+
+export function SourceButton(props: SourceButtonProps) {
+  return <ExternalLinkButton href={SOURCE_URL} icon={<CodeIcon />} label="Source" {...props} />;
 }
