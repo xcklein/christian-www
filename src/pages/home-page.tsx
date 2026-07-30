@@ -510,6 +510,7 @@ function BroughtToYouBySection() {
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delayChildren: 0.1, staggerChildren: 0.1 }}
+        style={{ perspective: "1000px" }}
       >
         {MADE_WITH.map((tech, index) => (
           <motion.div
@@ -518,7 +519,6 @@ function BroughtToYouBySection() {
             initial={{ opacity: 0, rotateY: -90 }}
             animate={isInView ? { opacity: 1, rotateY: 0 } : { opacity: 0, rotateY: -90 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + index * 0.1 }}
-            style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
           >
             <div className="relative flex size-24 items-center justify-center md:size-32">
               {actual === "dark" && (
