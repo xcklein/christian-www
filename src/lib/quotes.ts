@@ -36,7 +36,7 @@ export const QUOTES: Quote[] = [
     author: { name: "Anonymous", title: "Manager" },
   },
   {
-    text: "I see some real good stuff come out of you.",
+    text: "I've learned so much by working with you.",
     author: { name: "Anonymous", title: "Director" },
   },
   {
