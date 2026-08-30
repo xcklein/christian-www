@@ -45,7 +45,7 @@ describe("NavMobile", () => {
     expect(homeLink).toBeInTheDocument();
   });
 
-  it("should have Home, Technology, and Contact navigation items", async () => {
+  it("should have Home, Projects, Technology, and Contact navigation items", async () => {
     const user = userEvent.setup();
     render(
       <BrowserRouter>
@@ -56,6 +56,7 @@ describe("NavMobile", () => {
     await user.click(menuButton);
 
     expect(screen.getByRole("link", { name: /Home/i })).toHaveAttribute("href", "/");
+    expect(screen.getByRole("link", { name: /Projects/i })).toHaveAttribute("href", "/projects");
     expect(screen.getByRole("link", { name: /Technology/i })).toHaveAttribute(
       "href",
       "/technology",

@@ -1,4 +1,4 @@
-import { CpuIcon, HomeIcon, MailIcon } from "lucide-react";
+import { CpuIcon, FolderKanbanIcon, HomeIcon, MailIcon } from "lucide-react";
 import { Link } from "react-router";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -20,6 +20,21 @@ export function NavDesktop() {
           </Button>
         </TooltipTrigger>
         <TooltipContent>Home</TooltipContent>
+      </Tooltip>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="bg-sidebar hover:bg-sidebar-accent! rounded-full shadow"
+          >
+            <Link to="/projects">
+              <FolderKanbanIcon />
+            </Link>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Projects</TooltipContent>
       </Tooltip>
       <Tooltip>
         <TooltipTrigger asChild>

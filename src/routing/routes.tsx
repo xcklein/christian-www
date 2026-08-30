@@ -1,6 +1,7 @@
 import { ContactPage } from "@/pages/contact-page";
 import { HomePage } from "@/pages/home-page";
 import { NotFoundPage } from "@/pages/not-found-page";
+import { ProjectsPage } from "@/pages/projects-page";
 import { TechnologyPage } from "@/pages/technology-page";
 import type { RouteObject } from "react-router";
 import { Layout } from "./layout";
@@ -13,6 +14,10 @@ export const ROUTES: RouteObject[] = [
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: "/projects",
+        element: <ProjectsPage />,
       },
       {
         path: "/technology",

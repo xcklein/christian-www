@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { NavDesktop } from "../nav.desktop";
 
 describe("NavDesktop", () => {
-  it("should render navigation with three links", () => {
+  it("should render navigation with links", () => {
     render(
       <BrowserRouter>
         <NavDesktop />
@@ -23,6 +23,17 @@ describe("NavDesktop", () => {
     const links = screen.getAllByRole("link", { hidden: true });
     const homeLink = links[0];
     expect(homeLink).toHaveAttribute("href", "/");
+  });
+
+  it("should have Projects link", () => {
+    render(
+      <BrowserRouter>
+        <NavDesktop />
+      </BrowserRouter>,
+    );
+    const links = screen.getAllByRole("link", { hidden: true });
+    const projectsLink = links.find((link) => link.getAttribute("href") === "/projects");
+    expect(projectsLink).toHaveAttribute("href", "/projects");
   });
 
   it("should have Technology link", () => {
@@ -57,13 +68,13 @@ describe("NavDesktop", () => {
     expect(nav).toHaveClass("flex", "flex-row", "items-center", "gap-1");
   });
 
-  it("should have three navigation links", () => {
+  it("should have four navigation links", () => {
     render(
       <BrowserRouter>
         <NavDesktop />
       </BrowserRouter>,
     );
     const links = screen.getAllByRole("link", { hidden: true });
-    expect(links.length).toBe(3);
+    expect(links.length).toBe(4);
   });
 });

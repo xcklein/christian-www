@@ -7,7 +7,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { CpuIcon, HomeIcon, MailIcon, MenuIcon } from "lucide-react";
+import { CpuIcon, FolderKanbanIcon, HomeIcon, MailIcon, MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router";
 import { MadeWithLove } from "./made-with-love";
@@ -18,6 +18,11 @@ const NAV = [
     title: "Home",
     href: "/",
     icon: HomeIcon,
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+    icon: FolderKanbanIcon,
   },
   {
     title: "Technology",
