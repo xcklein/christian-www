@@ -1,7 +1,6 @@
 import { GitHubButton } from "@/components/github-button";
 import { LinkedInButton } from "@/components/linkedin-button";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
-import { SourceButton } from "@/components/source-button";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -9,7 +8,6 @@ import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 import { useFooter } from "@/hooks/use-footer";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useTheme } from "@/hooks/use-theme";
 import { QUOTES } from "@/lib/quotes";
 import { TECHNOLOGIES } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
@@ -27,15 +25,6 @@ import { AnimatePresence, motion, useInView } from "motion/react";
 import type { ComponentPropsWithRef } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
-
-const MADE_WITH = [
-  TECHNOLOGIES.react,
-  TECHNOLOGIES.shadcn,
-  TECHNOLOGIES.tailwind,
-  TECHNOLOGIES.vercel,
-  TECHNOLOGIES.vite,
-  TECHNOLOGIES.vitest,
-];
 
 function Section({ className, ...props }: ComponentPropsWithRef<"section">) {
   return (
@@ -453,67 +442,6 @@ function ReviewsSection() {
   );
 }
 
-function BroughtToYouBySection() {
-  const { actual } = useTheme();
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, amount: 0.5 });
-
-  return (
-    <Section ref={ref}>
-      <div className="flex flex-col items-center justify-center gap-2">
-        <motion.h2
-          className="text-center text-4xl font-bold"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          Brought to You By
-        </motion.h2>
-        <motion.p
-          className="text-muted-foreground text-center text-lg"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-        >
-          Not sponsored.
-        </motion.p>
-      </div>
-      <motion.div
-        className="grid grid-cols-2 items-center justify-center gap-8 md:grid-cols-3"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.6, delayChildren: 0.1, staggerChildren: 0.1 }}
-        style={{ perspective: "1000px" }}
-      >
-        {MADE_WITH.map((tech, index) => (
-          <motion.div
-            key={tech.name}
-            className="flex flex-col items-center gap-4"
-            initial={{ opacity: 0, rotateY: -90 }}
-            animate={isInView ? { opacity: 1, rotateY: 0 } : { opacity: 0, rotateY: -90 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 + index * 0.1 }}
-          >
-            <div className="relative flex size-24 items-center justify-center md:size-32">
-              {actual === "dark" && (
-                <div className="from-foreground/10 absolute inset-0 rounded-full bg-radial to-transparent to-70%" />
-              )}
-              <img src={tech.img} alt={tech.name} className="z-10 h-full w-full object-contain" />
-            </div>
-            <p className="text-xl font-semibold">{tech.name}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
-      >
-        <SourceButton />
-      </motion.div>
-    </Section>
-  );
-}
-
 function ConnectSection() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
@@ -534,7 +462,7 @@ function ConnectSection() {
         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
-        Hiring? Looking for a partner? Just have a cool idea? Send me a ping.
+        Hiring? Looking for a partner? Have a cool idea? Send me a ping.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, x: 100 }}
@@ -581,7 +509,6 @@ export function HomePage() {
       <FullStackSection />
       <TopLanguagesSection />
       <ReviewsSection />
-      <BroughtToYouBySection />
       <ConnectSection />
       <AnimatePresence>
         {isScrollToTopVisible && (
