@@ -39,6 +39,10 @@ export const QUOTES: Quote[] = [
     text: "I see some real good stuff come out of you.",
     author: { name: "Anonymous", title: "Director" },
   },
+  {
+    text: "Engineers like Christian are hard to come by.",
+    author: { name: "Gazmir Mazari", title: "Software Engineer" },
+  },
   { text: "I'm proud of you.", author: { name: "Mom", title: "Mother" } },
   {
     text: "Out of everyone I've worked with here, I believe I've learned the most from you.",
