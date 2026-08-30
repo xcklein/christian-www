@@ -43,7 +43,6 @@ export const QUOTES: Quote[] = [
     text: "Engineers like Christian are hard to come by.",
     author: { name: "Gazmir Mazari", title: "Peer Engineer" },
   },
-  { text: "I'm proud of you.", author: { name: "Mom", title: "Mother" } },
   {
     text: "Out of everyone I've worked with here, I believe I've learned the most from you.",
     author: { name: "Anonymous", title: "Peer Engineer" },
