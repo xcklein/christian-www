@@ -13,11 +13,11 @@ export const QUOTES: Quote[] = [
   },
   {
     text: "Christian always finds the time to help his teammates out.",
-    author: { name: "Anonymous", title: "Peer Engineer" },
+    author: { name: "Anonymous", title: "Software Engineer" },
   },
   {
     text: "Christian is a leader. [...] his presence was immediately felt.",
-    author: { name: "Anonymous", title: "Peer Engineer" },
+    author: { name: "Anonymous", title: "Software Engineer" },
   },
   {
     text: "You're one of my favorite engineers that I've worked with.",
@@ -25,11 +25,11 @@ export const QUOTES: Quote[] = [
   },
   {
     text: "He is knowledgeable across a broad range of topics and is a great resource.",
-    author: { name: "Anonymous", title: "Peer Engineer" },
+    author: { name: "Anonymous", title: "Software Engineer" },
   },
   {
     text: "Your ability to break down complex problems, understand the biggest picture & how a small solution fits in, is unmatched.",
-    author: { name: "Anonymous", title: "Peer Engineer" },
+    author: { name: "Anonymous", title: "Software Engineer" },
   },
   {
     text: "You've clearly made an impact during team events by visually sketching out designs using Mermaid, Draw.io, etc.",
@@ -41,10 +41,10 @@ export const QUOTES: Quote[] = [
   },
   {
     text: "Engineers like Christian are hard to come by.",
-    author: { name: "Gazmir Mazari", title: "Peer Engineer" },
+    author: { name: "Gazmir Mazari", title: "Software Engineer" },
   },
   {
     text: "Out of everyone I've worked with here, I believe I've learned the most from you.",
-    author: { name: "Anonymous", title: "Peer Engineer" },
+    author: { name: "Anonymous", title: "Software Engineer" },
   },
 ];
