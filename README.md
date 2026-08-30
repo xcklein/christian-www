@@ -43,7 +43,7 @@ src/
 ├── pages/          # Page components
 ├── routing/        # Routing
 ├── styles/         # Global CSS
-└── lib/            # Junk drawer
+└── lib/            # Shared utilities, constants, and data
 ```
 
 ## Deployment

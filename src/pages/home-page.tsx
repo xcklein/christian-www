@@ -18,7 +18,6 @@ import {
   DatabaseIcon,
   QuoteIcon,
   ServerIcon,
-  StarIcon,
   UserIcon,
 } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "motion/react";
@@ -86,7 +85,7 @@ function HeroSection() {
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
-          Software Engineer
+          Senior Software Engineer
         </motion.p>
         <motion.div
           className="flex flex-row gap-1"
@@ -383,7 +382,7 @@ function ReviewsSection() {
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Reviews
+          What People Say
         </motion.h2>
         <motion.p
           className="text-muted-foreground text-center text-lg"
@@ -391,26 +390,9 @@ function ReviewsSection() {
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
-          What's the word on the street?
+          A few words from people I've worked with.
         </motion.p>
       </div>
-      <motion.div
-        className="flex flex-row items-center justify-center gap-1"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
-      >
-        {[0, 1, 2, 3, 4].map((index) => (
-          <motion.span
-            key={index}
-            initial={{ fillOpacity: 0 }}
-            animate={isInView ? { fillOpacity: 1 } : { fillOpacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut", delay: 0.8 + index * 0.3 }}
-          >
-            <StarIcon className="text-primary fill-primary" />
-          </motion.span>
-        ))}
-      </motion.div>
       <motion.div
         className="relative flex w-full flex-col items-center justify-center overflow-hidden"
         initial={{ opacity: 0, y: 50, scale: 0.9 }}
