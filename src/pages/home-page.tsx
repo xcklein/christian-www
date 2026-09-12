@@ -1,13 +1,12 @@
+import { FlowDots } from "@/components/flow-dots";
 import { GitHubButton } from "@/components/github-button";
 import { LinkedInButton } from "@/components/linkedin-button";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
-import { AnimatedBeam } from "@/components/ui/animated-beam";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
 import { useFooter } from "@/hooks/use-footer";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { QUOTES } from "@/lib/quotes";
 import { TECHNOLOGIES } from "@/lib/technologies";
 import { cn } from "@/lib/utils";
@@ -16,13 +15,14 @@ import {
   ArrowDownIcon,
   ArrowRightIcon,
   DatabaseIcon,
+  type LucideIcon,
   QuoteIcon,
   ServerIcon,
   UserIcon,
 } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 import type { ComponentPropsWithRef } from "react";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useRef, useSyncExternalStore } from "react";
 import { Link } from "react-router";
 
 function Section({ className, ...props }: ComponentPropsWithRef<"section">) {
@@ -39,20 +39,84 @@ function Section({ className, ...props }: ComponentPropsWithRef<"section">) {
   );
 }
 
-function Circle({ ref, className, children, ...props }: ComponentPropsWithRef<typeof Card>) {
+interface NodeProps {
+  icon: LucideIcon;
+  label: string;
+  className: string;
+  isInView: boolean;
+  delay: number;
+}
+
+function Node({ icon: Icon, label, className, isInView, delay }: NodeProps) {
   return (
-    <Card
-      ref={ref}
-      className={cn(
-        "flex size-20 items-center justify-center rounded-full p-6 md:size-32 md:p-8",
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </Card>
+    <div className={cn("flex flex-col items-center gap-1", className)}>
+      <motion.div
+        initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
+        animate={
+          isInView
+            ? { opacity: 1, rotateZ: 0, scale: 1 }
+            : { opacity: 0, rotateZ: -180, scale: 0.3 }
+        }
+        transition={{ duration: 0.8, ease: "easeOut", delay }}
+      >
+        <Card className="flex size-20 items-center justify-center rounded-full p-5 md:size-32 md:p-8">
+          <Icon className="h-full w-full object-contain" />
+        </Card>
+      </motion.div>
+      <motion.p
+        className="font-semibold"
+        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: delay + 0.1 }}
+      >
+        {label}
+      </motion.p>
+    </div>
   );
 }
+
+// In flow order, Data to User. On desktop that is a left-to-right row. On
+// mobile it is a 3x3 grid that loops clockwise, so consecutive nodes stay
+// adjacent, with the dots in the cell between them pointed along the flow:
+//
+//   Data   ...   Backend
+//                  :
+//   User   ...   Frontend
+//
+// `gap` is the dot group leading into the node. Grid classes are inert on
+// desktop, where the container is a flex row.
+const NODES = [
+  { icon: DatabaseIcon, label: "Data", cell: "col-start-1 row-start-1" },
+  {
+    icon: ServerIcon,
+    label: "Backend",
+    cell: "col-start-3 row-start-1",
+    gap: "col-start-2 row-start-1 h-20 self-start md:h-32",
+  },
+  {
+    icon: AppWindowIcon,
+    label: "Frontend",
+    cell: "col-start-3 row-start-3",
+    gap: "col-start-3 row-start-2 flex-col justify-self-center md:h-32 md:flex-row",
+  },
+  {
+    icon: UserIcon,
+    label: "User",
+    cell: "col-start-1 row-start-3",
+    gap: "col-start-2 row-start-3 h-20 flex-row-reverse self-start md:h-32 md:flex-row",
+  },
+];
+
+// The dots in each gap light up one after another, and the gaps take turns
+// from Data towards User with a pause between them, then the whole cycle
+// rests and repeats.
+const DOT_STEP = 0.25;
+const DOTS_PER_GAP = 3;
+// Each dot is visible for two steps, so a gap's last dot has faded by then.
+const GAP_ACTIVE = (DOTS_PER_GAP + 1) * DOT_STEP;
+const GAP_PAUSE = 0.5;
+const GAP_STRIDE = GAP_ACTIVE + GAP_PAUSE;
+const FLOW_PERIOD = GAP_STRIDE * (NODES.length - 1) + 1;
 
 function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -116,17 +180,8 @@ function HeroSection() {
 }
 
 function FullStackSection() {
-  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const userRef = useRef<HTMLDivElement>(null);
-  const frontendRef = useRef<HTMLDivElement>(null);
-  const backendRef = useRef<HTMLDivElement>(null);
-  const dataRef = useRef<HTMLDivElement>(null);
-
-  const pathWidth = isMobile ? 8 : 12;
-  const duration = 2;
 
   return (
     <Section ref={ref}>
@@ -149,161 +204,31 @@ function FullStackSection() {
         </motion.p>
       </div>
       <motion.div
-        ref={containerRef}
-        className="relative flex w-full flex-col items-center justify-center"
+        className="grid grid-cols-[auto_auto_auto] justify-items-center gap-x-4 gap-y-2 md:flex md:items-start md:gap-2 md:py-8"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <div className="flex flex-col gap-6 md:flex-row-reverse md:gap-16 md:py-8">
-          <div className="flex flex-col items-center gap-1">
-            <motion.div
-              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              animate={
-                isInView
-                  ? { opacity: 1, rotateZ: 0, scale: 1 }
-                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
-              }
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-              style={{ perspective: "1000px" }}
-              className="relative z-20"
-            >
-              <Circle ref={userRef} className="z-10">
-                <UserIcon className="h-full w-full object-contain" />
-              </Circle>
-            </motion.div>
-            <motion.p
-              className="flex items-center font-semibold"
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={
-                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
-              }
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
-            >
-              User
-            </motion.p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <motion.div
-              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              animate={
-                isInView
-                  ? { opacity: 1, rotateZ: 0, scale: 1 }
-                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
-              }
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-              style={{ perspective: "1000px" }}
-              className="relative z-20"
-            >
-              <Circle ref={frontendRef} className="z-10">
-                <AppWindowIcon className="h-full w-full object-contain" />
-              </Circle>
-            </motion.div>
-            <motion.p
-              className="flex items-center font-semibold"
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={
-                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
-              }
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-            >
-              Frontend
-            </motion.p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <motion.div
-              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              animate={
-                isInView
-                  ? { opacity: 1, rotateZ: 0, scale: 1 }
-                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
-              }
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-              style={{ perspective: "1000px" }}
-              className="relative z-20"
-            >
-              <Circle ref={backendRef} className="z-10">
-                <ServerIcon className="h-full w-full object-contain" />
-              </Circle>
-            </motion.div>
-            <motion.p
-              className="flex items-center font-semibold"
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={
-                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
-              }
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
-            >
-              Backend
-            </motion.p>
-          </div>
-          <div className="flex flex-col items-center gap-1">
-            <motion.div
-              initial={{ opacity: 0, rotateZ: -180, scale: 0.3 }}
-              animate={
-                isInView
-                  ? { opacity: 1, rotateZ: 0, scale: 1 }
-                  : { opacity: 0, rotateZ: -180, scale: 0.3 }
-              }
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
-              style={{ perspective: "1000px" }}
-              className="relative z-20"
-            >
-              <Circle ref={dataRef} className="z-10">
-                <DatabaseIcon className="h-full w-full object-contain" />
-              </Circle>
-            </motion.div>
-            <motion.p
-              className="flex items-center font-semibold"
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              animate={
-                isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.9 }
-              }
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
-            >
-              Data
-            </motion.p>
-          </div>
-        </div>
-        <AnimatedBeam
-          containerRef={containerRef}
-          fromRef={frontendRef}
-          toRef={userRef}
-          gradientStartColor="var(--foreground)"
-          gradientStopColor="var(--primary)"
-          pathColor="var(--muted-foreground)"
-          pathWidth={pathWidth}
-          duration={duration}
-          delay={duration * 2}
-          repeatDelay={duration * 2}
-          curvature={120}
-        />
-        <AnimatedBeam
-          containerRef={containerRef}
-          fromRef={backendRef}
-          toRef={frontendRef}
-          gradientStartColor="var(--foreground)"
-          gradientStopColor="var(--primary)"
-          pathColor="var(--muted-foreground)"
-          pathWidth={pathWidth}
-          duration={duration}
-          delay={duration * 1}
-          repeatDelay={duration * 2}
-          curvature={-120}
-        />
-        <AnimatedBeam
-          containerRef={containerRef}
-          fromRef={dataRef}
-          toRef={backendRef}
-          gradientStartColor="var(--foreground)"
-          gradientStopColor="var(--primary)"
-          pathColor="var(--muted-foreground)"
-          pathWidth={pathWidth}
-          duration={duration}
-          delay={duration * 0}
-          repeatDelay={duration * 2}
-          curvature={120}
-        />
+        {NODES.map((node, index) => (
+          <Fragment key={node.label}>
+            {node.gap && (
+              <FlowDots
+                className={node.gap}
+                count={DOTS_PER_GAP}
+                step={DOT_STEP}
+                period={FLOW_PERIOD}
+                delay={(index - 1) * GAP_STRIDE}
+              />
+            )}
+            <Node
+              icon={node.icon}
+              label={node.label}
+              className={node.cell}
+              isInView={isInView}
+              delay={0.4 + index * 0.1}
+            />
+          </Fragment>
+        ))}
       </motion.div>
     </Section>
   );
@@ -461,29 +386,34 @@ function ConnectSection() {
   );
 }
 
+function subscribeToViewport(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  window.addEventListener("resize", onChange);
+  return () => {
+    window.removeEventListener("scroll", onChange);
+    window.removeEventListener("resize", onChange);
+  };
+}
+
+function getServerSnapshot() {
+  return false;
+}
+
 export function HomePage() {
   const footer = useFooter();
-  const [footerDistance, setFooterDistance] = useState(0);
-  const [isScrollToTopVisible, setIsScrollToTopVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrollToTopVisible(window.scrollY > 400);
-
-      if (footer.ref.current) {
-        const footerRect = footer.ref.current.getBoundingClientRect();
-        const distanceFromBottom = window.innerHeight - footerRect.top;
-        setFooterDistance(Math.max(0, distanceFromBottom));
-      }
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [footer.ref]);
+  const isScrollToTopVisible = useSyncExternalStore(
+    subscribeToViewport,
+    () => window.scrollY > 400,
+    getServerSnapshot,
+  );
+  const isFooterInView = useSyncExternalStore(
+    subscribeToViewport,
+    () => {
+      const el = footer.ref.current;
+      return el !== null && el.getBoundingClientRect().top < window.innerHeight;
+    },
+    getServerSnapshot,
+  );
 
   return (
     <div className="m-auto flex max-w-4xl flex-col items-center justify-center gap-16 overflow-hidden">
@@ -500,7 +430,7 @@ export function HomePage() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className={cn("right-4 bottom-4 z-50", footerDistance > 0 ? "absolute" : "fixed")}
+            className={cn("right-4 bottom-4 z-50", isFooterInView ? "absolute" : "fixed")}
           >
             <ScrollToTopButton />
           </motion.div>
