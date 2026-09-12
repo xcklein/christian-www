@@ -42,7 +42,7 @@ export function TechnologyPage() {
   return (
     <div className="flex flex-col items-center justify-center gap-4 overflow-hidden">
       <div className="flex flex-col gap-2 text-center">
-        <h1 className="text-4xl font-bold md:text-4xl">Technology</h1>
+        <h1 className="text-4xl font-bold">Technology</h1>
         <p className="text-muted-foreground text-lg">A few things I have worked with.</p>
       </div>
       <div className="relative">
@@ -87,14 +87,10 @@ export function TechnologyPage() {
                       <div className="absolute inset-0 flex rotate-y-180 flex-col justify-between p-4 backface-hidden">
                         <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-50">
                           <div className="flex size-12 items-center justify-center md:size-16">
-                            <img
-                              src={node.img}
-                              alt={node.name}
-                              className="h-full w-full object-contain"
-                            />
+                            <img src={node.img} alt="" className="h-full w-full object-contain" />
                           </div>
                         </div>
-                        <h1 className="text-sm font-bold">{node.name}</h1>
+                        <p className="text-sm font-bold">{node.name}</p>
                       </div>
                     </Card>
                   </button>
