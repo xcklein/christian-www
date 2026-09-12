@@ -2,6 +2,7 @@ import { Footer } from "@/components/footer";
 import { FooterProvider } from "@/components/footer-provider";
 import { Header } from "@/components/header";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Suspense } from "react";
 import { Outlet } from "react-router";
 
 export function Layout() {
@@ -12,7 +13,9 @@ export function Layout() {
       <div className="flex min-h-dvh flex-col">
         <Header className="sticky top-0 z-50 flex-0" />
         <main className="relative flex flex-1">
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </main>
         {!isMobile && <Footer className="flex-0" />}
       </div>

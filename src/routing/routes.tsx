@@ -1,9 +1,7 @@
-import { ContactPage } from "@/pages/contact-page";
 import { HomePage } from "@/pages/home-page";
-import { NotFoundPage } from "@/pages/not-found-page";
-import { ProjectsPage } from "@/pages/projects-page";
-import { TechnologyPage } from "@/pages/technology-page";
+import { Suspense } from "react";
 import type { RouteObject } from "react-router";
+import { ContactPage, NotFoundPage, ProjectsPage, TechnologyPage } from "./lazy-pages";
 import { Layout } from "./layout";
 
 export const ROUTES: RouteObject[] = [
@@ -31,6 +29,10 @@ export const ROUTES: RouteObject[] = [
   },
   {
     path: "*",
-    element: <NotFoundPage />,
+    element: (
+      <Suspense fallback={null}>
+        <NotFoundPage />
+      </Suspense>
+    ),
   },
 ];
