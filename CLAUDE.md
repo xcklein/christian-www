@@ -8,6 +8,10 @@ This is a professional portfolio website showcasing software engineering experti
 
 Refer to README.md in the root directory for further context.
 
+## Engineering Standards
+
+This project must follow the standards defined in the [xcklein/standards](https://github.com/xcklein/standards) repository. Those ADRs are authoritative; consult them before making architectural, tooling, or UI decisions, and raise any conflict with the guidance below rather than silently choosing one.
+
 ## Development Standards
 
 All contributions must maintain:
@@ -23,9 +27,22 @@ All contributions must maintain:
 - Never change the theme without explicit direction
 - Only use colors from the theme
 
+## Verification
+
+Before considering a change complete, all three must pass:
+
+```bash
+pnpm build
+pnpm lint
+pnpm test
+```
+
 ## Important Notes
 
-- The `framer-motion` package is installed and aliased as `motion`
+- Animations use the `motion` package, imported from `motion/react`
+- Environment variables are validated with Zod in `src/config.ts` and accessed through the exported `CONFIG` object, never through `import.meta.env` directly
+- Commits must follow [Conventional Commits](https://www.conventionalcommits.org/); commitlint and ESLint run automatically via Lefthook hooks
+- Use the `@/` path alias for imports from `src/`
 - Maintain consistency with existing code patterns and conventions
 
 ## Pull Requests
