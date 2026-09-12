@@ -401,7 +401,7 @@ function ReviewsSection() {
       >
         <Marquee className="[--duration:80s]">
           {QUOTES.map((quote) => (
-            <Card key={quote.text} className="w-48 p-4 md:w-80">
+            <Card key={quote.text} className="w-72 p-4 md:w-112">
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <QuoteIcon className="fill-foreground text-transparent" />
