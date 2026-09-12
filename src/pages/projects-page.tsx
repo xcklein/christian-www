@@ -18,25 +18,29 @@ export function ProjectsPage() {
       <div className="flex w-full max-w-2xl flex-col gap-4">
         {PROJECTS.map((project) => (
           <Card key={project.name} className="relative gap-3 p-6">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <ExternalLinkButton
-                  href={project.url}
-                  icon={<SquareArrowOutUpRightIcon />}
-                  label={`Visit ${project.name}`}
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-4 right-4"
-                />
-              </TooltipTrigger>
-              <TooltipContent>Visit {project.name}</TooltipContent>
-            </Tooltip>
+            {project.url && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <ExternalLinkButton
+                    href={project.url}
+                    icon={<SquareArrowOutUpRightIcon />}
+                    label={`Visit ${project.name}`}
+                    variant="ghost"
+                    size="icon"
+                    className="absolute top-4 right-4"
+                  />
+                </TooltipTrigger>
+                <TooltipContent>Visit {project.name}</TooltipContent>
+              </Tooltip>
+            )}
             <div className="flex items-center gap-4">
-              <img
-                src={actual === "dark" ? project.logoDark : project.logo}
-                alt={`${project.name} logo`}
-                className="size-12 shrink-0 object-contain"
-              />
+              {project.logo && (
+                <img
+                  src={actual === "dark" ? (project.logoDark ?? project.logo) : project.logo}
+                  alt={`${project.name} logo`}
+                  className="size-12 shrink-0 rounded-md object-contain"
+                />
+              )}
               <h2 className="text-2xl font-bold">{project.name}</h2>
             </div>
             <p>{project.description}</p>
