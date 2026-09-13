@@ -2,7 +2,6 @@ import { FlowDots } from "@/components/flow-dots";
 import { GitHubButton } from "@/components/github-button";
 import { LinkedInButton } from "@/components/linkedin-button";
 import { ScrollToTopButton } from "@/components/scroll-to-top-button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Marquee } from "@/components/ui/marquee";
@@ -129,10 +128,13 @@ function HeroSection() {
         animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <Avatar className="size-80">
-          <AvatarImage src="/images/christian-circle.png" />
-          <AvatarFallback className="text-4xl">C</AvatarFallback>
-        </Avatar>
+        <div
+          role="img"
+          aria-label="Line drawing of Christian"
+          className="bg-card dark:bg-foreground size-80 overflow-hidden rounded-full"
+        >
+          <div className="bg-foreground dark:bg-background size-full mask-[url(/images/christian.svg)] mask-contain mask-center mask-no-repeat" />
+        </div>
       </motion.div>
       <div className="flex flex-col items-center justify-center gap-2">
         <motion.h1
