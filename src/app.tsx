@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/react";
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router";
 import { ThemeProvider } from "./components/theme-provider";
@@ -13,8 +11,6 @@ export function App() {
           <RouteWrapper />
         </BrowserRouter>
       </ThemeProvider>
-      <Analytics />
-      <SpeedInsights />
     </StrictMode>
   );
 }
