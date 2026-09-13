@@ -33,14 +33,13 @@ export function ThemeProvider({
 
     root.classList.remove("light", "dark");
 
-    const systemTheme = getSystemTheme();
+    const applied = theme === "system" ? getSystemTheme() : theme;
 
-    if (theme === "system") {
-      root.classList.add(systemTheme);
-      return;
-    }
+    root.classList.add(applied);
 
-    root.classList.add(theme);
+    document
+      .querySelector('link[rel="icon"][type="image/svg+xml"]')
+      ?.setAttribute("href", `/favicon-${applied}.svg`);
   }, [theme]);
 
   const value: ThemeState = {
