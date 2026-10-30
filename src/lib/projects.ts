@@ -18,6 +18,14 @@ export const PROJECTS: Project[] = [
     logoDark: "https://olatile.com/images/olatile-logo-dark.svg",
   },
   {
+    name: "raster.gg",
+    description:
+      "Free image tools that convert, compress, resize, crop, rotate, strip metadata, and combine images into a PDF. Everything runs in the browser on WebAssembly codecs, so images never leave the device.",
+    url: "https://raster.gg",
+    tech: ["Astro", "React", "WebAssembly", "Tailwind", "Zustand"],
+    logo: "/images/logos/raster.png",
+  },
+  {
     name: "Cadence",
     description:
       "A Discord bot that streams music into a voice channel, with a queue you can search, shuffle, and skip through. An AI DJ introduces each track with a personalized nod to whoever requested it.",
